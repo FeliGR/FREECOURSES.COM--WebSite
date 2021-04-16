@@ -13,6 +13,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: center;
   justify-content: center;
 }
 
@@ -25,7 +26,7 @@ body{
 
 .img-left{
   width: 45%;
-  background: url(../image/blue-creative.jpg) center;
+  background: url(../images/Logo_UNA_Rojo.png) center;
   background-size: cover;
 }
 
@@ -97,43 +98,13 @@ body{
   background: #0069d9;
 }
 
-.forget-link, .register-link{
+.register-link{
   color: #007bff;
   font-weight: bold;
 }
 
-.forget-link:hover, .register-link:hover{
+.register-link:hover{
   color: #0069d9;
   text-decoration: none;
-}
-
-.form-box .btn-social{
-  color: white !important;
-  border: 0;
-  font-weight: bold;
-}
-
-.form-box .btn-facebook{
-  background: #4866a8;
-}
-
-.form-box .btn-google{
-  background: #da3f34;
-}
-
-.form-box .btn-twitter{
-  background: #33ccff;
-}
-
-.form-box .btn-facebook:hover{
-  background: #3d578f;
-}
-
-.form-box .btn-google:hover{
-  background: #bf3b31;
-}
-
-.form-box .btn-twitter:hover{
-  background: #2eb7e5;
 }
 

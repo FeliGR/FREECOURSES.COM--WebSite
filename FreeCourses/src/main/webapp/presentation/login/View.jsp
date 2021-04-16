@@ -10,6 +10,7 @@
     <head>
         <%@ include file="/presentation/Head.jsp" %>
         <%@ include file="/presentation/Header.jsp" %>
+
         <meta http-equiv="Content-Type" content="text/html; charset="utf-8">
         <title>Login Form</title>
         <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
@@ -17,7 +18,7 @@
 
     </head>
     <body>
-        <div class="container">
+        <div class="container text-center">
             <div class="row px-3">
                 <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
                     <div class="img-left d-none d-md-flex"></div>
@@ -28,7 +29,7 @@
                         </h4>
                         <form class="form-box px-3">
                             <div class="form-input">
-                                <span><i class="fa fa-envelope-o"></i></span>
+                                <span><i class="fa fa-id-card" ></i></span>
                                 <input type="text" name="userId" placeholder="ID" tabindex="10" required>
                             </div>
                             <div class="form-input">
@@ -53,5 +54,8 @@
                 </div>
             </div>
         </div>
+        <%@ include file="/presentation/Footer.jsp" %>
     </body>
+    
+    
 </html>
