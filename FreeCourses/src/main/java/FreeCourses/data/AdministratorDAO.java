@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FreeCourses;
+package FreeCourses.data;
 
 
 import java.util.List;
@@ -12,6 +12,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import FreeCourses.logic.*;
 
 /**
   @author joela

@@ -1,7 +1,7 @@
 package FreeCourses.presentation.home;
 
 
-import FreeCourses.Course;
+import FreeCourses.logic.Course;
 import java.util.ArrayList;
 import java.util.List;
 

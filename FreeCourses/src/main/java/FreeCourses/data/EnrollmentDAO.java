@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FreeCourses;
+package FreeCourses.data;
 
 
 import java.util.List;
@@ -12,50 +12,51 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import FreeCourses.logic.*;
 
 /**
  *
  * @author joela
  */
-public class UserDAO {
+public class EnrollmentDAO {
         private Session session = HibernateUtil.getSessionFactory().openSession();
     
-    public List<User> findAll() {
-        List<User> usersList;
-        usersList = session.createQuery("from User", User.class).list();
-        return usersList;
+    public List<Enrollment> findAll() {
+        List<Enrollment> enrollmentsList;
+        enrollmentsList = session.createQuery("from Enrollment", Enrollment.class).list();
+        return enrollmentsList;
     }
     
-    public User findById(String id) {
-        User user;
+    public Enrollment findById(int id) {
+        Enrollment enrollment;
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
+        CriteriaQuery<Enrollment> query = builder.createQuery(Enrollment.class);
+        Root<Enrollment> root = query.from(Enrollment.class);
         query.select(root).where(builder.equal(root.get("id"), id));
         Query q = session.createQuery(query);
-        user = (User) q.getSingleResult();
-        return user;
+        enrollment = (Enrollment) q.getSingleResult();
+        return enrollment;
     }
     
-    public User save(User user) {
+    public Enrollment save(Enrollment enrollment) {
         session.beginTransaction();
-        session.save(user);
+        session.save(enrollment);
         session.getTransaction().commit();
-        return user;
+        return enrollment;
     }
     
-    public User update(User user) {
+    public Enrollment update(Enrollment enrollment) {
         session.beginTransaction();
-        session.update(user);
+        session.update(enrollment);
         session.getTransaction().commit();
-        return user;
+        return enrollment;
     }
     
-    public boolean delete(String id) {
-        User user;
+    public boolean delete(int id) {
+        Enrollment enrollment;
         session.beginTransaction();
-        user = session.get(User.class, id);
-        session.delete(user);
+        enrollment = session.get(Enrollment.class, id);
+        session.delete(enrollment);
         session.getTransaction().commit();
         return true;
     }

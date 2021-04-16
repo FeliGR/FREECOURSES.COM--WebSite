@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <!DOCTYPE html>
 
-<footer class="bg-dark text-center text-lg-start fixed-bottom text-primary text-white">
+<footer class="footer text-center text-lg-start fixed-bottom text-primary text-white">
   <!-- Copyright -->
   <div class="text-center p-3">
     © 2020 Copyright: Brute Force Technologies    

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FreeCourses;
+package FreeCourses.logic;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;

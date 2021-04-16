@@ -9,20 +9,23 @@ and open the template in the editor.
 */
 body{
     height: 100vh;
-    /*  background: #0062E6 !important;*/
+    background: hsla(197, 100%, 63%, 1);
+    background: linear-gradient(90deg, hsla(197, 100%, 63%, 1) 0%, hsla(294, 100%, 55%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(197, 100%, 63%, 1) 0%, hsla(294, 100%, 55%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(197, 100%, 63%, 1) 0%, hsla(294, 100%, 55%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#40C9FF", endColorstr="#E81CFF", GradientType=1 );
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
     justify-content: center;
-    margin: 0;
-    font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: .8125rem;
-    font-weight: 400;
-    line-height: 1.5385;
-    color: #333;
-    text-align: left;
-    background-color: #f5f5f5
+
+}
+.navbar{
+    background: #e81cff!important;
+}
+.footer{
+    background: #40c9ff !important;
 }
 
 .card{
@@ -34,13 +37,13 @@ body{
 
 .img-left{
     width: 45%;
-    background: url(../images/Logo_UNA_Rojo.png) center;
+    background: url(../images/e-learning.png) center;
     background-size: cover;
 }
 .img-english_course{
     background: url(../images/english_course.png) center;
     background-size: cover;
-    
+
 }
 
 .card-body{

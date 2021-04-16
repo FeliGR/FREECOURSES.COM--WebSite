@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FreeCourses;
+package FreeCourses.data;
 
 
 import java.util.List;
@@ -12,50 +12,51 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import FreeCourses.logic.*;
 
 /**
  *
  * @author joela
  */
-public class StudentDAO {
+public class SectionDAO {
         private Session session = HibernateUtil.getSessionFactory().openSession();
     
-    public List<Student> findAll() {
-        List<Student> studentsList;
-        studentsList = session.createQuery("from Student", Student.class).list();
-        return studentsList;
+    public List<Section> findAll() {
+        List<Section> sectionsList;
+        sectionsList = session.createQuery("from Group", Section.class).list();
+        return sectionsList;
     }
     
-    public Student findById(String id) {
-        Student student;
+    public Section findById(int id) {
+        Section section;
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Student> query = builder.createQuery(Student.class);
-        Root<Student> root = query.from(Student.class);
+        CriteriaQuery<Section> query = builder.createQuery(Section.class);
+        Root<Section> root = query.from(Section.class);
         query.select(root).where(builder.equal(root.get("id"), id));
         Query q = session.createQuery(query);
-        student = (Student) q.getSingleResult();
-        return student;
+        section = (Section) q.getSingleResult();
+        return section;
     }
     
-    public Student save(Student student) {
+    public Section save(Section section) {
         session.beginTransaction();
-        session.save(student);
+        session.save(section);
         session.getTransaction().commit();
-        return student;
+        return section;
     }
     
-    public Student update(Student student) {
+    public Section update(Section section) {
         session.beginTransaction();
-        session.update(student);
+        session.update(section);
         session.getTransaction().commit();
-        return student;
+        return section;
     }
     
-    public boolean delete(String id) {
-        Student student;
+    public boolean delete(int id) {
+        Section section;
         session.beginTransaction();
-        student = session.get(Student.class, id);
-        session.delete(student);
+        section = session.get(Section.class, id);
+        session.delete(section);
         session.getTransaction().commit();
         return true;
     }
