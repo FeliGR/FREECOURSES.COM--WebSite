@@ -4,54 +4,56 @@
     Author     : felig
 --%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
-<%@page import="FreeCourses.presentation.home.Model"%>
+<%--<%@page import="FreeCourses.presentation.home.Model"%>
 <%@page import="java.util.List"%>
 <%@page import="FreeCourses.Course;"%>
 <%@page import="java.util.ArrayList"%>
 <%
     Model model = (Model) request.getAttribute("model");
     List<Course> courses = model.getCourses();
-%>
+%>--%>
 <!DOCTYPE html>
 <html>
     <head>
         <%@ include file="/presentation/Head.jsp" %>
+        <%@ include file="/presentation/Header.jsp" %>
         <title>Cursos Libres</title>  
     </head>
     <body>
-        <%@ include file="/presentation/Header.jsp" %>
-        <div class="container justify-content-center">
+        <div class="container py-5">
+            <div class="row text-center text-white mb-5">
+                <div class="col-lg-7 mx-auto">
+                    <h1 class="display-4">Product List</h1>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-md-8">
-                    <div class="input-group mb-3"> <input type="text" class="form-control input-text" placeholder="Search courses...." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <div class="input-group-append"> <button class="btn btn-outline-primary btn-lg" type="button"><i class="fa fa-search"></i></button> </div>
-                    </div>
+                <div class="col-lg-8 mx-auto">
+                    <!-- List group-->
+                    <ul class="list-group shadow">
+                        <!-- list group item-->
+                        <li class="list-group-item">
+                            <!-- Custom content-->
+                            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                                <div class="media-body order-2 order-lg-1">
+                                    <h5 class="mt-0 font-weight-bold mb-2">Apple iPhone XR (Red, 128 GB)</h5>
+                                    <p class="font-italic text-muted mb-0 small">128 GB ROM | 15.49 cm (6.1 inch) Display 12MP Rear Camera | 7MP Front Camera A12 Bionic Chip Processor</p>
+                                    <div class="d-flex align-items-center justify-content-between mt-1">
+                                        <h6 class="font-weight-bold my-2">?64,999</h6>
+                                        <ul class="list-inline small">
+                                            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                            <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                            <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
+                                        </ul>
+                                    </div>
+                                </div><img src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
+                            </div> <!-- End -->
+                        </li> <!-- End -->
+                    </ul> <!-- End -->
                 </div>
             </div>
         </div>
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="card card-body">
-                        <div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
-                            <div class="mr-2 mb-3 mb-lg-0"> <img class ="img-english_course" width="150" height="150" alt=""> </div>
-                            <div class="media-body">
-                                <h6 class="media-title font-weight-semibold">Business english 01</h6>                                
-                                <p class="mb-3">This course will prepare you for business english(oral and grammar)</p>
-                            </div>
-                            <div class="mt-3 mt-lg-0 ml-lg-3 text-center">
-                                <h3 class="mb-0 font-weight-semibold">ON SALE</h3>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<%@ include file="/presentation/Footer.jsp" %>
-</body>
+        <%@ include file="/presentation/Footer.jsp" %>
+    </body>
 </html>

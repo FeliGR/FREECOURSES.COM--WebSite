@@ -14,6 +14,8 @@ FreeCourses.logic/Administrator.java
  FreeCourses.Administrator
 FreeCourses.logic/Student.java
  FreeCourses.Student
+FreeCourses/presentation/home/Controller.java
+ FreeCourses.presentation.home.Controller
 FreeCourses.logic/User.java
  FreeCourses.User
 FreeCourses.data/UserDAO.java
@@ -28,5 +30,7 @@ FreeCourses.logic/Service.java
  FreeCourses.Service
 FreeCourses.data/AdministratorDAO.java
  FreeCourses.AdministratorDAO
+FreeCourses/presentation/home/Model.java
+ FreeCourses.presentation.home.Model
 FreeCourses.data/StudentDAO.java
  FreeCourses.StudentDAO
