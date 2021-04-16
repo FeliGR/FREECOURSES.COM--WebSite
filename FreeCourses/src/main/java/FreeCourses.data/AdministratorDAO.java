@@ -14,8 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 /**
- *
- * @author joela
+  @author joela
  */
 public class AdministratorDAO {
     private Session session = HibernateUtil.getSessionFactory().openSession();
