@@ -5,6 +5,7 @@
  */
 package FreeCourses.presentation.login;
 
+import FreeCourses.logic.User;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,13 +46,13 @@ public class Controller extends HttpServlet {
 
     private String login(HttpServletRequest request) { 
         try{
-            Map<String,String> errores =  this.validar(request);
-            if(errores.isEmpty()){
+            Map<String,String> errors =  this.validar(request);
+            if(errors.isEmpty()){
                 this.updateModel(request);          
                 return this.loginAction(request);
             }
             else{
-                request.setAttribute("errores", errores);
+                request.setAttribute("errors", errors);
                 return "/presentation/login/View.jsp"; 
             }            
         }
@@ -61,47 +62,50 @@ public class Controller extends HttpServlet {
     }
     
     Map<String,String> validar(HttpServletRequest request){
-        Map<String,String> errores = new HashMap<>();
-        if (request.getParameter("cedulaFld").isEmpty()){
-            errores.put("cedulaFld","Cedula requerida");
+        Map<String,String> errors = new HashMap<>();
+        if (request.getParameter("userId").isEmpty()){
+            errors.put("userId","Required Id");
         }
 
-        if (request.getParameter("claveFld").isEmpty()){
-            errores.put("claveFld","Clave requerida");
+        if (request.getParameter("userPsw").isEmpty()){
+            errors.put("userPsw","Required Password");
         }
-        return errores;
+        return errors;
     }
     
     void updateModel(HttpServletRequest request){
        Model model= (Model) request.getAttribute("model");
        
-        model.getCurrent().setId(request.getParameter("cedulaFld"));
-        model.getCurrent().setPassword(request.getParameter("claveFld"));
+        model.getCurrent().setId(request.getParameter("userId"));
+        model.getCurrent().setPassword(request.getParameter("userPsw"));
    }
 
         
     public String loginAction(HttpServletRequest request) {
         Model model= (Model) request.getAttribute("model");
-        FreeCourses.logic.Service  domainModel = FreeCourses.logic.Service.instance();
+        FreeCourses.logic.Service  domainService = FreeCourses.logic.Service.instance();
         HttpSession session = request.getSession(true);
         try {
-            User real = domainModel.usuarioFind(model.getCurrent().getId(),model.getCurrent().getPassword());
-            session.setAttribute("usuario", real);
+
+            User real = domainService.findUserById(model.getCurrent().getId());
+            session.setAttribute("user", real);
             String viewUrl="";
-            switch(real.getTipo()){
+            switch(real.getType()){
                 case 1:
-                    viewUrl="/presentation/cliente/cuentas/show";
+                    viewUrl="/presentation/Index.jsp";//viewUrl="/presentation/student";
                     break;
                 case 2:
-                     viewUrl="";
-                    break;             
+                     viewUrl="/presentarion/Index.jsp";//viewUrl="/presentarion/professor";
+                    break;
+                case 3:
+                    viewUrl="/presentarion/Index.jsp";//viewUrl="/presentarion/admin";
             }
             return viewUrl;
         } catch (Exception ex) {
-            Map<String,String> errores = new HashMap<>();
-            request.setAttribute("errores", errores);
-            errores.put("cedulaFld","Usuario o clave incorrectos");
-            errores.put("claveFld","Usuario o clave incorrectos");
+            Map<String,String> errors = new HashMap<>();
+            request.setAttribute("errors", errors);
+            errors.put("userId","Incorrect user or password");
+            errors.put("userPsw","Incorrect user or password");
             return "/presentation/login/View.jsp"; 
         }        
     }   
@@ -123,8 +127,8 @@ public class Controller extends HttpServlet {
         
     public String showAction(HttpServletRequest request){
         Model model= (Model) request.getAttribute("model");
-        model.getCurrent().setCedula("");
-        model.getCurrent().setClave("");
+        model.getCurrent().setId("");
+        model.getCurrent().setPassword("");
         return "/presentation/login/View.jsp"; 
     }    
 

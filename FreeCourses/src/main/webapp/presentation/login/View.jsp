@@ -11,7 +11,7 @@
 <html>
     <head>
         <%@ include file="/presentation/Head.jsp" %>
-        
+
 
         <meta http-equiv="Content-Type" content="text/html; charset="utf-8">
         <title>Login Form</title>
@@ -21,9 +21,9 @@
     </head>
     <body>
         <%@ include file="/presentation/Header.jsp" %>
-        <% Model model= (Model) request.getAttribute("model"); %>
-        <% Map<String,String> errores = (Map<String,String>) request.getAttribute("errores"); %>
-        <% Map<String,String[]> form = (errores==null)?this.getForm(model):request.getParameterMap();%>
+        <% Model model = (Model) request.getAttribute("model"); %>
+        <% Map<String, String> errors = (Map<String, String>) request.getAttribute("errors"); %>
+        <% Map<String, String[]> form = (errors == null) ? this.getForm(model) : request.getParameterMap();%>
         <div class="container text-center">
             <div class="row px-3">
                 <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
@@ -36,11 +36,11 @@
                         <form class="form-box px-3">
                             <div class="form-input">
                                 <span><i class="fa fa-id-card" ></i></span>
-                                <input type="text" name="userId" placeholder="ID" tabindex="10" required>
+                                <input class="<%=erroneo("userId", errors)%>" type="text" name="userId" placeholder="ID" value="<%=form.get("userId")[0]%>" title="<%=title("userId", errors)%> tabindex="10" required>
                             </div>
                             <div class="form-input">
                                 <span><i class="fa fa-key"></i></span>
-                                <input type="password" name="userPsw" placeholder="Password" required>
+                                <input <%=erroneo("userPsw", errors)%> type="password" name="userPsw" placeholder="Password" required value="<%=form.get("userPsw")[0]%>" title="<%=title("userPsw", errors)%>">
                             </div>
 
                             <div class="mb-3 text-center">
@@ -62,29 +62,31 @@
         </div>
         <%@ include file="/presentation/Footer.jsp" %>
     </body>
-    
-    
+
+
 </html>
 <%!
-    private String erroneo(String campo, Map<String,String> errores){
-      if ( (errores!=null) && (errores.get(campo)!=null) )
-        return "is-invalid";
-      else
-        return "";
+    private String erroneo(String campo, Map<String, String> errors) {
+        if ((errors != null) && (errors.get(campo) != null)) {
+            return "is-invalid";
+        } else {
+            return "";
+        }
     }
 
-    private String title(String campo, Map<String,String> errores){
-      if ( (errores!=null) && (errores.get(campo)!=null) )
-        return errores.get(campo);
-      else
-        return "";
+    private String title(String campo, Map<String, String> errors) {
+        if ((errors != null) && (errors.get(campo) != null)) {
+            return errors.get(campo);
+        } else {
+            return "";
+        }
     }
 
-    private Map<String,String[]> getForm(Model model){
-       Map<String,String[]> values = new HashMap<>();
-       values.put("cedulaFld", new String[]{model.getCurrent().getCedula()});
-       values.put("claveFld", new String[]{model.getCurrent().getClave()});
-       return values;
+    private Map<String, String[]> getForm(Model model) {
+        Map<String, String[]> values = new HashMap<>();
+        values.put("userId", new String[]{model.getCurrent().getId()});
+        values.put("userPsw", new String[]{model.getCurrent().getPassword()});
+        return values;
     }
-    
-%> 
+
+%>
