@@ -1,0 +1,42 @@
+FreeCourses/logic/Professor.java
+ FreeCourses.logic.Professor
+FreeCourses/logic/User.java
+ FreeCourses.logic.User
+FreeCourses/logic/Course.java
+ FreeCourses.logic.Course
+FreeCourses/presentation/login/Model.java
+ FreeCourses.presentation.login.Model
+FreeCourses/presentation/home/Model.java
+ FreeCourses.presentation.home.Model
+FreeCourses/logic/Enrollment.java
+ FreeCourses.logic.Enrollment
+FreeCourses/logic/Student.java
+ FreeCourses.logic.Student
+FreeCourses/logic/Administrator.java
+ FreeCourses.logic.Administrator
+Main.java
+ Main
+FreeCourses/logic/Service.java
+ FreeCourses.logic.Service
+FreeCourses/logic/Section.java
+ FreeCourses.logic.Section
+FreeCourses/presentation/home/Controller.java
+ FreeCourses.presentation.home.Controller
+FreeCourses/data/ProfessorDAO.java
+ FreeCourses.data.ProfessorDAO
+FreeCourses/data/StudentDAO.java
+ FreeCourses.data.StudentDAO
+FreeCourses/data/EnrollmentDAO.java
+ FreeCourses.data.EnrollmentDAO
+FreeCourses/data/UserDAO.java
+ FreeCourses.data.UserDAO
+FreeCourses/data/AdministratorDAO.java
+ FreeCourses.data.AdministratorDAO
+FreeCourses/data/HibernateUtil.java
+ FreeCourses.data.HibernateUtil
+FreeCourses/data/SectionDAO.java
+ FreeCourses.data.SectionDAO
+FreeCourses/data/CourseDAO.java
+ FreeCourses.data.CourseDAO
+FreeCourses/presentation/login/Controller.java
+ FreeCourses.presentation.login.Controller

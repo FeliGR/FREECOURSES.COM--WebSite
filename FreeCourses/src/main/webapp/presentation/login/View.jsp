@@ -33,7 +33,7 @@
                         <h4 class="title text-center mt-4">
                             Login into account
                         </h4>
-                        <form class="form-box px-3">
+                        <form class="form-box px-3" action="/FreeCourses/presentation/login/login" method="post">
                             <div class="form-input">
                                 <span><i class="fa fa-id-card" ></i></span>
                                 <input class="<%=erroneo("userId", errors)%>" type="text" name="userId" placeholder="ID" value="<%=form.get("userId")[0]%>" title="<%=title("userId", errors)%> tabindex="10" required>
@@ -83,10 +83,11 @@
     }
 
     private Map<String, String[]> getForm(Model model) {
-        Map<String, String[]> values = new HashMap<>();
+        Map<String, String[]> values = new HashMap<String, String[]>();
         values.put("userId", new String[]{model.getCurrent().getId()});
         values.put("userPsw", new String[]{model.getCurrent().getPassword()});
         return values;
     }
 
 %>
+

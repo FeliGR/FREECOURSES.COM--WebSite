@@ -10,14 +10,20 @@ import java.util.List;
  * @author alonso
  */
 public class Model {
-      List<Course> courses;
+    List<Course> courses;
+
+    public Model(List<Course> courses) {
+        this.courses = courses;
+    }
       
-      public Model(){
+    public Model(){
         this.reset();
     }
     public void reset(){       
-        setCourses(new ArrayList<Course>());
+       List<Course> rows = new ArrayList<>();
+       this.setCourses(rows); 
     }   
+    
     public List<Course> getCourses() {
         return courses;
     }

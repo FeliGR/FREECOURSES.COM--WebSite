@@ -116,7 +116,7 @@ public class Controller extends HttpServlet {
     
     public String logoutAction(HttpServletRequest request){
         HttpSession session = request.getSession(true);
-        session.removeAttribute("usuario");
+        session.removeAttribute("user");
         session.invalidate();
         return "/presentation/Index.jsp";   
     }
@@ -171,5 +171,4 @@ public class Controller extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
 }
