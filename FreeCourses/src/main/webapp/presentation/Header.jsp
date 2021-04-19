@@ -4,7 +4,9 @@
     Author     : felig
 --%>
 
+<%@page import="FreeCourses.logic.User"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
+<% User user=  (User) session.getAttribute("user");  %>
 <!DOCTYPE html>
 <header>
     <div>
@@ -19,9 +21,16 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/Index.jsp">Home</a>
                         </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link active" href="/FreeCourses/presentation/login/show">Log in</a>
                         </li>
+                        
+                        <% if (user != null) {%>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Log out</a>
+                        </li>
+                        <% } %>
                     </ul>
                 </div>
             </div>

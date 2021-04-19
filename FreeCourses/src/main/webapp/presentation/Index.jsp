@@ -17,7 +17,7 @@
     <head>
         <%@ include file="/presentation/Head.jsp" %>
         <%@ include file="/presentation/Header.jsp" %>
-        <title>Cursos Libres</title>  
+        <title>Home | FREECOURSES.COM</title>  
     </head>
     <body>
         <div class="container py-5">

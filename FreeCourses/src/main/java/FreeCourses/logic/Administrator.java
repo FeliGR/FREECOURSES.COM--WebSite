@@ -5,6 +5,7 @@
  */
 package FreeCourses.logic;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
@@ -13,21 +14,29 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "managers")
-public class Administrator extends User {
+public class Administrator implements Serializable {
+    
+    @Id
+    @Column(name = "id", unique = true, columnDefinition = "varchar(64)")
+    private String id;
     @Column(name = "name")
     private String name;
     
     public Administrator() {
     }
 
-    public Administrator(String name) {
+    public Administrator(String id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-//    public Administrator(String name, String id, String password, int type) {
-//        super(id, password, type);
-//        this.name = name;
-//    }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

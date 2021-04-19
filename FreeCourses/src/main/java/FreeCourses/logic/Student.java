@@ -13,8 +13,11 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "students")
-public class Student extends User {
+public class Student {
     
+    @Id
+    @Column(name = "id", unique = true, columnDefinition = "varchar(64)")
+    private String id;
     @Column(name = "name")
     private String name;
     @Column(name = "email")
@@ -28,19 +31,21 @@ public class Student extends User {
     public Student() {
     }
 
-//    public Student(String id, String password, int type) {
-//        super(id, password, type);
-//    }
-//
-//    public Student(String id, String name, String email, String phone, List<Enrollment> enrollmentsList) {
-//        this.id = id;
-//        this.name = name;
-//        this.email = email;
-//        this.phone = phone;
-//        this.enrollmentsList = enrollmentsList;
-//    }
-    
-    
+    public Student(String id, String name, String email, String phone) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+   
     public String getName() {
         return name;
     }
@@ -73,9 +78,9 @@ public class Student extends User {
         this.enrollmentsList = enrollmentsList;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Student{" + "id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", enrollmentsList=" + enrollmentsList + '}';
-//    }
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", enrollmentsList=" + enrollmentsList + '}';
+    }
 }
 

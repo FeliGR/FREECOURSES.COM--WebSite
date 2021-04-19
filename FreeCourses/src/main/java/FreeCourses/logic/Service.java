@@ -171,9 +171,9 @@ public class Service {
         Administrator adminUpdated;
         Administrator updatedAdmin = adminDAO.findById(id);
         updatedAdmin.setName(admin.getName());
-        if (admin.getPassword() != null) {
-            updatedAdmin.setPassword(admin.password);
-        }
+//        if (admin.getPassword() != null) {
+//            updatedAdmin.setPassword(admin.password);
+//        }
 
         adminUpdated = adminDAO.update(updatedAdmin);
         return adminUpdated;
@@ -217,9 +217,9 @@ public class Service {
         Professor professorUpdated;
         Professor updatedProfessor = professorDAO.findById(id);
         updatedProfessor.setName(professor.getName());
-        if (professor.getPassword() != null) {
-            updatedProfessor.setPassword(professor.password);
-        }
+//        if (professor.getPassword() != null) {
+//            updatedProfessor.setPassword(professor.password);
+//        }
         updatedProfessor.setEmail(professor.getEmail());
         updatedProfessor.setPhone(professor.getPhone());
         updatedProfessor.setSpecialty(professor.getSpecialty());
@@ -234,9 +234,9 @@ public class Service {
         Student studentUpdated;
         Student updatedStudent = studentDAO.findById(id);
         updatedStudent.setName(student.getName());
-        if (student.getPassword() != null) {
-            updatedStudent.setPassword(student.password);
-        }
+//        if (student.getPassword() != null) {
+//            updatedStudent.setPassword(student.password);
+//        }
         updatedStudent.setEmail(student.getEmail());
         updatedStudent.setPhone(student.getPhone());
         updatedStudent.getEnrollmentsList().clear();//Revisar esto en caso de no servir

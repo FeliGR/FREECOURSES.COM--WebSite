@@ -1,0 +1,162 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package FreeCourses.presentation.signup;
+
+import FreeCourses.logic.Student;
+import FreeCourses.logic.User;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author felig
+ */
+@WebServlet(name = "SignupController", urlPatterns = {"/presentation/signup/show", "/presentation/signup/signup"})
+public class Controller extends HttpServlet {
+
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+
+        request.setAttribute("model", new FreeCourses.presentation.signup.Model());
+
+        String viewUrl = "";
+        switch (request.getServletPath()) {
+            case "/presentation/signup/show":
+                viewUrl = this.show(request);
+                break;
+            case "/presentation/signup/signup":
+                viewUrl = this.signup(request);
+                break;
+        }
+        request.getRequestDispatcher(viewUrl).forward(request, response);
+    }
+
+    private String signup(HttpServletRequest request) {
+        try {
+            Map<String, String> errores = this.validar(request);
+            if (errores.isEmpty()) {
+                this.updateModel(request);
+                return this.signupAction(request);
+            } else {
+                request.setAttribute("errores", errores);
+                return "/presentation/signup/View.jsp";
+            }
+        } catch (Exception e) {
+            return "/presentation/Error.jsp";
+        }
+    }
+
+    Map<String, String> validar(HttpServletRequest request) {
+        Map<String, String> errores = new HashMap<>();
+
+        if (request.getParameter("userId").isEmpty()) {
+            errores.put("userId", "Id required");
+        }
+        if (request.getParameter("userFullName").isEmpty()) {
+            errores.put("userFullName", "FullName required");
+        }
+        if (request.getParameter("userEmail").isEmpty()) {
+            errores.put("userEmail", "Email required");
+        }
+        if (request.getParameter("userPhone").isEmpty()) {
+            errores.put("userPhone", "Phone required");
+        }
+        if (request.getParameter("userPassword").isEmpty()) {
+            errores.put("userPassword", "Password required");
+        }
+        return errores;
+
+    }
+
+    void updateModel(HttpServletRequest request) {
+        FreeCourses.presentation.signup.Model model = (FreeCourses.presentation.signup.Model) request.getAttribute("model");
+
+        model.getCurrent().setName(request.getParameter("userFullName"));
+        model.getCurrent().setEmail(request.getParameter("userEmail"));
+        model.getCurrent().setPhone(request.getParameter("userPhone"));
+
+        model.getUser().setId(request.getParameter("userId"));
+        model.getUser().setPassword(request.getParameter("userPassword"));
+        model.getUser().setType(1);
+    }
+
+    public String signupAction(HttpServletRequest request) throws Exception {
+        Model model = (Model) request.getAttribute("model");
+        FreeCourses.logic.Service domainService = FreeCourses.logic.Service.instance();
+
+        User user = new User(request.getParameter("userId"), request.getParameter("userPassword"), 1);
+        System.out.print(request.getParameter("userId"));
+        System.out.print(request.getParameter("userPassword"));
+        Student student = new Student(request.getParameter("userId"), request.getParameter("userFullName"),
+                request.getParameter("userEmail"), request.getParameter("userPhone"));
+
+        domainService.saveStudent(student);
+        domainService.saveUser(user);
+
+        return "/presentation/Index.jsp";
+    }
+
+    public String show(HttpServletRequest request) {
+        return this.showAction(request);
+    }
+
+    public String showAction(HttpServletRequest request) {
+        FreeCourses.presentation.signup.Model model = (FreeCourses.presentation.signup.Model) request.getAttribute("model");
+
+        model.getCurrent().setId("");
+        model.getCurrent().setName("");
+        model.getCurrent().setEmail("");
+        model.getCurrent().setPhone("");
+        model.getUser().setPassword("");
+        return "/presentation/login/SignUp.jsp";
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}

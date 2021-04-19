@@ -11,13 +11,9 @@
 <html>
     <head>
         <%@ include file="/presentation/Head.jsp" %>
-
-
         <meta http-equiv="Content-Type" content="text/html; charset="utf-8">
-        <title>Login Form</title>
+        <title>Log in | FREECOURSES.COM</title>
         <meta name="viewport" content="width=device-width,initial-scale=1, shrink-to-fit=no">
-
-
     </head>
     <body>
         <%@ include file="/presentation/Header.jsp" %>
@@ -51,7 +47,7 @@
 
                             <div class="text-center mb-2">
                                 Don't have an account?
-                                <a href="#" class="register-link">
+                                <a href="/FreeCourses/presentation/signup/show" class="register-link">
                                     Register here
                                 </a>
                             </div>

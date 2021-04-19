@@ -5,6 +5,7 @@
  */
 package FreeCourses.logic;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 /**
@@ -13,7 +14,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "professors")
-public class Professor extends User{
+public class Professor implements Serializable {
+    @Id
+    @Column(name = "id", unique = true, columnDefinition = "varchar(64)")
+    private String id;
     @Column(name = "name")
     private String name;
     @Column(name = "email")
@@ -29,11 +33,8 @@ public class Professor extends User{
     public Professor() {
     }
 
-//    public Professor(String id, String password, int type) {
-//        super(id, password, type);
-//    }
-
-    public Professor(String name, String email, String phone, String specialty, List<Section> sectionsList) {
+    public Professor(String id, String name, String email, String phone, String specialty, List<Section> sectionsList) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -41,6 +42,14 @@ public class Professor extends User{
         this.sectionsList = sectionsList;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }  
+    
     public String getName() {
         return name;
     }
@@ -83,6 +92,6 @@ public class Professor extends User{
 
     @Override
     public String toString() {
-        return "Professor{" + "name=" + name + ", email=" + email + ", phone=" + phone + ", specialty=" + specialty + ", sectionsList=" + sectionsList + '}';
+        return "Professor{" + "id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", specialty=" + specialty + ", sectionsList=" + sectionsList + '}';
     }
 }
