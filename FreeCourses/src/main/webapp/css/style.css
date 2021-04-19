@@ -159,3 +159,12 @@ img {
     height: 170px;
     width: 140px
 }
+
+input[type=text].is-invalid,input[type=password].is-invalid{
+    border-color: #dc3545;
+    padding-right: 20px;
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 12 12;
+    background-image: url(../images/is-invalid.png);    
+}
