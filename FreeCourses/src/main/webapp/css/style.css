@@ -27,7 +27,13 @@ body{
 .footer{
     background: #40c9ff !important;
 }
-
+.list-group{
+    max-height: 400px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
 .card{
     overflow: hidden;
     border: 0 !important;
@@ -166,5 +172,5 @@ input[type=text].is-invalid,input[type=password].is-invalid{
     background-repeat: no-repeat;
     background-position: center right;
     background-size: 12 12;
-    background-image: url(../images/is-invalid.png);    
+        
 }

@@ -32,11 +32,11 @@
                         <form class="form-box px-3" action="/FreeCourses/presentation/login/login" method="post">
                             <div class="form-input">
                                 <span><i class="fa fa-id-card" ></i></span>
-                                <input class="<%=erroneo("userId", errors)%>" type="text" name="userId" placeholder="ID" value="<%=form.get("userId")[0]%>" title="<%=title("userId", errors)%> tabindex="10" required>
+                                <input class="<%=erroneo("userId", errors)%>" type="text" name="userId" placeholder="ID" value="<%=form.get("userId")[0]%>" title="<%=title("userId", errors)%>" tabindex="10" required>
                             </div>
                             <div class="form-input">
                                 <span><i class="fa fa-key"></i></span>
-                                <input <%=erroneo("userPsw", errors)%> type="password" name="userPsw" placeholder="Password" required value="<%=form.get("userPsw")[0]%>" title="<%=title("userPsw", errors)%>">
+                                <input class="<%=erroneo("userPsw", errors)%>" type="password" name="userPsw" placeholder="Password" value="<%=form.get("userPsw")[0]%>" title="<%=title("userPsw", errors)%>" tabindex="10" required>
                             </div>
 
                             <div class="mb-3 text-center">

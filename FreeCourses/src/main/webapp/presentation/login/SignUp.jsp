@@ -10,7 +10,7 @@
     <head>
         <%@ include file="/presentation/Head.jsp" %>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-        <title>Sing up | FREECOURSES.COM</title>
+        <title>Sign up | FREECOURSES.COM</title>
     </head>
     <body>
         <%@ include file="/presentation/Header.jsp" %>

@@ -20,117 +20,121 @@ import javax.servlet.http.HttpSession;
  *
  * @author joela
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/presentation/login/show","/presentation/login/login","/presentation/login/logout"})
+@WebServlet(name = "LoginController", urlPatterns = {"/presentation/login/show", "/presentation/login/login", "/presentation/login/logout"})
 public class Controller extends HttpServlet {
-
-  protected void processRequest(HttpServletRequest request, 
-                                HttpServletResponse response)
-         throws ServletException, IOException {
-      
-        request.setAttribute("model", new Model()); 
+    
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
         
-        String viewUrl="";
-        switch(request.getServletPath()){
+        request.setAttribute("model", new Model());
+        
+        String viewUrl = "";
+        switch (request.getServletPath()) {
             case "/presentation/login/show":
-                viewUrl=this.show(request);
-                break;              
+                viewUrl = this.show(request);
+                break;
             case "/presentation/login/login":
-                viewUrl=this.login(request);
-                break;            
+                viewUrl = this.login(request);
+                break;
             case "/presentation/login/logout":
-                viewUrl=this.logout(request);
+                viewUrl = this.logout(request);
                 break;
         }
-        request.getRequestDispatcher(viewUrl).forward( request, response); 
-  }
-
-    private String login(HttpServletRequest request) { 
-        try{
-            Map<String,String> errors =  this.validar(request);
-            if(errors.isEmpty()){
-                this.updateModel(request);          
-                return this.loginAction(request);
-            }
-            else{
-                request.setAttribute("errors", errors);
-                return "/presentation/login/View.jsp"; 
-            }            
-        }
-        catch(Exception e){
-            return "/presentation/Error.jsp";             
-        }         
+        request.getRequestDispatcher(viewUrl).forward(request, response);
     }
     
-    Map<String,String> validar(HttpServletRequest request){
-        Map<String,String> errors = new HashMap<>();
-        if (request.getParameter("userId").isEmpty()){
-            errors.put("userId","Required Id");
+    private String login(HttpServletRequest request) {
+        try {
+            Map<String, String> errors = this.validar(request);
+            if (errors.isEmpty()) {
+                this.updateModel(request);
+                return this.loginAction(request);
+            } else {
+                request.setAttribute("errors", errors);
+                return "/presentation/login/View.jsp";
+            }
+        } catch (Exception e) {
+            return "/presentation/Error.jsp";
         }
-
-        if (request.getParameter("userPsw").isEmpty()){
-            errors.put("userPsw","Required Password");
+    }
+    
+    Map<String, String> validar(HttpServletRequest request) {
+        Map<String, String> errors = new HashMap<>();
+        if (request.getParameter("userId").isEmpty()) {
+            errors.put("userId", "Required Id");
+        }
+        
+        if (request.getParameter("userPsw").isEmpty()) {
+            errors.put("userPsw", "Required Password");
         }
         return errors;
     }
     
-    void updateModel(HttpServletRequest request){
-       Model model= (Model) request.getAttribute("model");
-       
+    void updateModel(HttpServletRequest request) {
+        Model model = (Model) request.getAttribute("model");
+        
         model.getCurrent().setId(request.getParameter("userId"));
         model.getCurrent().setPassword(request.getParameter("userPsw"));
-   }
-
-        
+    }
+    
     public String loginAction(HttpServletRequest request) {
-        Model model= (Model) request.getAttribute("model");
-        FreeCourses.logic.Service  domainService = FreeCourses.logic.Service.instance();
+        Model model = (Model) request.getAttribute("model");
+        FreeCourses.logic.Service domainService = FreeCourses.logic.Service.instance();
         HttpSession session = request.getSession(true);
         try {
-
+            
             User real = domainService.findUserById(model.getCurrent().getId());
-            session.setAttribute("user", real);
-            String viewUrl="";
-            switch(real.getType()){
-                case 1:
-                    viewUrl="/presentation/Index.jsp";//viewUrl="/presentation/student";
-                    break;
-                case 2:
-                     viewUrl="/presentarion/Index.jsp";//viewUrl="/presentarion/professor";
-                    break;
-                case 3:
-                    viewUrl="/presentarion/Index.jsp";//viewUrl="/presentarion/admin";
+            if (model.getCurrent().getPassword().equals(real.getPassword())) {
+                session.setAttribute("user", real);
+                String viewUrl = "";
+                switch (real.getType()) {
+                    case 1:
+                        session.setAttribute("student", domainService.findStudentById(real.getId()));
+                        viewUrl = "/presentation/Index.jsp";//viewUrl="/presentation/student";
+                        break;
+                    case 2:
+                        session.setAttribute("professor", domainService.findProfessorById(real.getId()));
+                        viewUrl = "/presentarion/Index.jsp";//viewUrl="/presentarion/professor";
+                        break;
+                    case 3:
+                        session.setAttribute("admin", domainService.findAdminById(real.getId()));
+                        viewUrl = "/presentarion/Index.jsp";//viewUrl="/presentarion/admin";
+                }
+                return viewUrl;
+            } else {
+                throw new Exception("Incorrect Password");
             }
-            return viewUrl;
         } catch (Exception ex) {
-            Map<String,String> errors = new HashMap<>();
+            Map<String, String> errors = new HashMap<>();
             request.setAttribute("errors", errors);
-            errors.put("userId","Incorrect user or password");
-            errors.put("userPsw","Incorrect user or password");
-            return "/presentation/login/View.jsp"; 
-        }        
-    }   
-
-    public String logout(HttpServletRequest request){
+            errors.put("userId", "Incorrect user or password");
+            errors.put("userPsw", "Incorrect user or password");
+            return "/presentation/login/View.jsp";
+        }
+    }
+    
+    public String logout(HttpServletRequest request) {
         return this.logoutAction(request);
     }
     
-    public String logoutAction(HttpServletRequest request){
+    public String logoutAction(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         session.removeAttribute("user");
         session.invalidate();
-        return "/presentation/Index.jsp";   
+        return "/presentation/Index.jsp";
     }
-
-    public String show(HttpServletRequest request){
+    
+    public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
-        
-    public String showAction(HttpServletRequest request){
-        Model model= (Model) request.getAttribute("model");
+    
+    public String showAction(HttpServletRequest request) {
+        Model model = (Model) request.getAttribute("model");
         model.getCurrent().setId("");
         model.getCurrent().setPassword("");
-        return "/presentation/login/View.jsp"; 
-    }    
+        return "/presentation/login/View.jsp";
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
