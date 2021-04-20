@@ -91,15 +91,15 @@ public class Controller extends HttpServlet {
                 switch (real.getType()) {
                     case 1:
                         session.setAttribute("student", domainService.findStudentById(real.getId()));
-                        viewUrl = "/presentation/Index.jsp";//viewUrl="/presentation/student";
+                        viewUrl = "/presentation/home/show";//viewUrl="/presentation/student";
                         break;
                     case 2:
                         session.setAttribute("professor", domainService.findProfessorById(real.getId()));
-                        viewUrl = "/presentarion/Index.jsp";//viewUrl="/presentarion/professor";
+                        viewUrl = "/presentarion/home/show";//viewUrl="/presentarion/professor";
                         break;
                     case 3:
                         session.setAttribute("admin", domainService.findAdminById(real.getId()));
-                        viewUrl = "/presentarion/Index.jsp";//viewUrl="/presentarion/admin";
+                        viewUrl = "/presentarion/home/show";//viewUrl="/presentarion/admin";
                 }
                 return viewUrl;
             } else {
@@ -122,7 +122,7 @@ public class Controller extends HttpServlet {
         HttpSession session = request.getSession(true);
         session.removeAttribute("user");
         session.invalidate();
-        return "/presentation/Index.jsp";
+        return "/presentation/home/show";
     }
     
     public String show(HttpServletRequest request) {

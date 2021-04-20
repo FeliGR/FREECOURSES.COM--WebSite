@@ -42,15 +42,6 @@ public class Controller extends HttpServlet {
     public String showAction(HttpServletRequest request) {
         Model model = (Model) request.getAttribute("model");
         FreeCourses.logic.Service domainService = FreeCourses.logic.Service.instance();
-//        HttpSession session = request.getSession(true);
-// 
-//        Usuario usuario = (Usuario) session.getAttribute("usuario");
-//        Cliente cliente;
-//        try {
-//            cliente = domainModel.clienteFind(usuario);
-//        } catch (Exception ex) {
-//            cliente=null;
-//        }
         try {        
             model.setCourses(domainService.findAllCourses());
             return "/presentation/Index.jsp";
