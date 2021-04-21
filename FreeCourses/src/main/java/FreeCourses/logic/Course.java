@@ -17,40 +17,44 @@ import javax.persistence.*;
 @Entity
 @Table(name = "courses")
 public class Course implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "thematic")
     private String thematic;
+
     @Column(name = "status")
     private boolean status;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name="courses_sections",joinColumns = @JoinColumn(name = "id"))
+
+    @OneToMany(mappedBy = "course")
     private List<Section> sectionsList;
 
     public Course() {
-        
+
     }
+
     public Course(int id, String name, String thematic, boolean status, List<Section> sectionsList) {
         this.id = id;
         this.name = name;
         this.thematic = thematic;
         this.status = status;
         this.sectionsList = sectionsList;
-        
+
     }
 
     public Course(String name, String thematic, boolean status) {
         this.name = name;
         this.thematic = thematic;
         this.status = status;
-        this.sectionsList=new ArrayList<>();
+        this.sectionsList = new ArrayList<>();
     }
-    
-    
+
     public int getId() {
         return id;
     }

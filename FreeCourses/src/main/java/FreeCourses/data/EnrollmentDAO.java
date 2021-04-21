@@ -5,7 +5,6 @@
  */
 package FreeCourses.data;
 
-
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -13,51 +12,43 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import FreeCourses.logic.*;
+import com.google.common.base.Preconditions;
 
 /**
  *
  * @author joela
  */
 public class EnrollmentDAO {
-        private Session session = HibernateUtil.getSessionFactory().openSession();
-    
+
+    private Session session = HibernateUtil.getSessionFactory().openSession();
+
     public List<Enrollment> findAll() {
-        List<Enrollment> enrollmentsList;
-        enrollmentsList = session.createQuery("from Enrollment", Enrollment.class).list();
-        return enrollmentsList;
+        return session.createQuery("from Enrollment").getResultList();
     }
-    
+
     public Enrollment findById(int id) {
-        Enrollment enrollment;
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Enrollment> query = builder.createQuery(Enrollment.class);
-        Root<Enrollment> root = query.from(Enrollment.class);
-        query.select(root).where(builder.equal(root.get("id"), id));
-        Query q = session.createQuery(query);
-        enrollment = (Enrollment) q.getSingleResult();
-        return enrollment;
+        return session.get(Enrollment.class, id);
     }
-    
+
     public Enrollment save(Enrollment enrollment) {
-        session.beginTransaction();
-        session.save(enrollment);
-        session.getTransaction().commit();
+        Preconditions.checkNotNull(enrollment);
+        session.saveOrUpdate(enrollment);
         return enrollment;
     }
-    
+
     public Enrollment update(Enrollment enrollment) {
-        session.beginTransaction();
-        session.update(enrollment);
-        session.getTransaction().commit();
-        return enrollment;
+        Preconditions.checkNotNull(enrollment);
+        return (Enrollment) session.merge(enrollment);
     }
-    
-    public boolean delete(int id) {
-        Enrollment enrollment;
-        session.beginTransaction();
-        enrollment = session.get(Enrollment.class, id);
+
+    public void delete(Enrollment enrollment) {
+        Preconditions.checkNotNull(enrollment);
         session.delete(enrollment);
-        session.getTransaction().commit();
-        return true;
+    }
+
+    public void deleteById(int id) {
+        final Enrollment enrollment = findById(id);
+        Preconditions.checkState(enrollment != null);
+        delete(enrollment);
     }
 }

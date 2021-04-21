@@ -5,7 +5,6 @@
  */
 package FreeCourses.data;
 
-
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -13,51 +12,43 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import FreeCourses.logic.*;
+import com.google.common.base.Preconditions;
 
 /**
  *
  * @author joela
  */
 public class ProfessorDAO {
-        private Session session = HibernateUtil.getSessionFactory().openSession();
-    
+
+    private Session session = HibernateUtil.getSessionFactory().openSession();
+
     public List<Professor> findAll() {
-        List<Professor> professorsList;
-        professorsList = session.createQuery("from Professor", Professor.class).list();
-        return professorsList;
+        return session.createQuery("from Professor").getResultList();
     }
-    
+
     public Professor findById(String id) {
-        Professor professor;
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Professor> query = builder.createQuery(Professor.class);
-        Root<Professor> root = query.from(Professor.class);
-        query.select(root).where(builder.equal(root.get("id"), id));
-        Query q = session.createQuery(query);
-        professor = (Professor) q.getSingleResult();
-        return professor;
+        return session.get(Professor.class, id);
     }
-    
+
     public Professor save(Professor professor) {
-        session.beginTransaction();
-        session.save(professor);
-        session.getTransaction().commit();
+        Preconditions.checkNotNull(professor);
+        session.saveOrUpdate(professor);
         return professor;
     }
-    
+
     public Professor update(Professor professor) {
-        session.beginTransaction();
-        session.update(professor);
-        session.getTransaction().commit();
-        return professor;
+        Preconditions.checkNotNull(professor);
+        return (Professor) session.merge(professor);
     }
-    
-    public boolean delete(String id) {
-        Professor professor;
-        session.beginTransaction();
-        professor = session.get(Professor.class, id);
+
+    public void delete(Professor professor) {
+        Preconditions.checkNotNull(professor);
         session.delete(professor);
-        session.getTransaction().commit();
-        return true;
+    }
+
+    public void deleteById(String id) {
+        final Professor professor = findById(id);
+        Preconditions.checkState(professor != null);
+        delete(professor);
     }
 }

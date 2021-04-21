@@ -5,7 +5,6 @@
  */
 package FreeCourses.data;
 
-
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -13,51 +12,43 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import FreeCourses.logic.*;
+import com.google.common.base.Preconditions;
 
 /**
  *
  * @author joela
  */
 public class UserDAO {
-        private Session session = HibernateUtil.getSessionFactory().openSession();
-    
+
+    private Session session = HibernateUtil.getSessionFactory().openSession();
+
     public List<User> findAll() {
-        List<User> usersList;
-        usersList = session.createQuery("from User", User.class).list();
-        return usersList;
+        return session.createQuery("from User").getResultList();
     }
-    
+
     public User findById(String id) {
-        User user;
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        query.select(root).where(builder.equal(root.get("id"), id));
-        Query q = session.createQuery(query);
-        user = (User) q.getSingleResult();
-        return user;
+        return session.get(User.class, id);
     }
-    
+
     public User save(User user) {
-        session.beginTransaction();
-        session.save(user);
-        session.getTransaction().commit();
+        Preconditions.checkNotNull(user);
+        session.saveOrUpdate(user);
         return user;
     }
-    
+
     public User update(User user) {
-        session.beginTransaction();
-        session.update(user);
-        session.getTransaction().commit();
-        return user;
+        Preconditions.checkNotNull(user);
+        return (User) session.merge(user);
     }
-    
-    public boolean delete(String id) {
-        User user;
-        session.beginTransaction();
-        user = session.get(User.class, id);
+
+    public void delete(User user) {
+        Preconditions.checkNotNull(user);
         session.delete(user);
-        session.getTransaction().commit();
-        return true;
+    }
+
+    public void deleteById(String id) {
+        final User user = findById(id);
+        Preconditions.checkState(user != null);
+        delete(user);
     }
 }

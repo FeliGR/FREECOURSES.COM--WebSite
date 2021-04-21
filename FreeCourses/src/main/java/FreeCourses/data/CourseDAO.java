@@ -6,57 +6,46 @@
 package FreeCourses.data;
 
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import FreeCourses.logic.*;
+import com.google.common.base.Preconditions;
 
 /**
  *
  * @author joela
  */
 public class CourseDAO {
-    private Session session = HibernateUtil.getSessionFactory().openSession();
-    
+
+    private final Session session = HibernateUtil.getSessionFactory().openSession();
+
     public List<Course> findAll() {
-        List<Course> coursesList;
-        coursesList = session.createQuery("from Course", Course.class).list();
-        return coursesList;
+        return session.createQuery("from Course").getResultList();
     }
-    
+
     public Course findById(int id) {
-        Course course;
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Course> query = builder.createQuery(Course.class);
-        Root<Course> root = query.from(Course.class);
-        query.select(root).where(builder.equal(root.get("id"), id));
-        Query q = session.createQuery(query);
-        course = (Course) q.getSingleResult();
-        return course;
+
+        return session.get(Course.class, id);
     }
-    
+
     public Course save(Course course) {
-        session.beginTransaction();
-        session.save(course);
-        session.getTransaction().commit();
+        Preconditions.checkNotNull(course);
+        session.saveOrUpdate(course);
         return course;
     }
-    
+
     public Course update(Course course) {
-        session.beginTransaction();
-        session.update(course);
-        session.getTransaction().commit();
-        return course;
+        Preconditions.checkNotNull(course);
+        return (Course) session.merge(course);
     }
-    
-    public boolean delete(int id) {
-        Course course;
-        session.beginTransaction();
-        course = session.get(Course.class, id);
+
+    public void delete(Course course) {
+        Preconditions.checkNotNull(course);
         session.delete(course);
-        session.getTransaction().commit();
-        return true;
+    }
+
+    public void deleteById(int id) {
+        final Course course = findById(id);
+        Preconditions.checkState(course != null);
+        delete(course);
     }
 }

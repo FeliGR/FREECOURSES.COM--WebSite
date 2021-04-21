@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package FreeCourses.logic;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+
 /**
  *
  * @author felig
@@ -14,41 +17,49 @@ import javax.persistence.*;
 @Entity
 @Table(name = "sections")
 public class Section implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "courseName")
-    private String courseName;
-     @Column(name = "schedule")
+
+    @Column(name = "schedule")
     private String schedule;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name="sections_enrollments",joinColumns = @JoinColumn(name = "id"))
+    
+    @OneToMany(mappedBy = "enrollment")
     private List<Enrollment> enrollmentsList;
-     
+    @ManyToOne
+    @JoinColumn(name = "id_course", nullable = false)
+    private Course course;
+
     public Section() {
     }
 
-    public Section(String courseName, String schedule) {
-        
-        this.courseName = courseName;
+    public Section(String schedule) {
+
         this.schedule = schedule;
     }
-    
+
+    public Section(String schedule, Course course) {
+        this.schedule = schedule;
+        this.course = course;
+        this.enrollmentsList = new ArrayList<>();
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
     }
 
     public String getSchedule() {
@@ -69,6 +80,6 @@ public class Section implements Serializable {
 
     @Override
     public String toString() {
-        return "Group{" + "id=" + id + ", courseName=" + courseName + ", schedule=" + schedule + ", enrollmentsList=" + enrollmentsList + '}';
+        return "Group{" + "id=" + id + ", schedule=" + schedule + ", enrollmentsList=" + enrollmentsList + '}';
     }
 }

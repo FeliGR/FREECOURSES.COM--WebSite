@@ -20,13 +20,52 @@ public class Enrollment implements Serializable {
     private int id;
     @Column(name = "grade")
     private float grade;
+    @ManyToOne
+    @JoinColumn(name = "id_section", nullable = false)
+    private Section section;
+    @ManyToOne
+    @JoinColumn(name = "id_student", nullable = false)
+    private Student student;
     
     public Enrollment(){
+    }
+
+    public Enrollment(float grade, Section section, Student student) {
+        this.grade = grade;
+        this.section = section;
+        this.student = student;
+    }
+
+    public Enrollment(int id, float grade, Section section, Student student) {
+        this.id = id;
+        this.grade = grade;
+        this.section = section;
+        this.student = student;
+    }
+
+    public Enrollment(float grade) {
+        this.grade = grade;
     }
 
     public Enrollment(int id, float grade) {
         this.id = id;
         this.grade = grade;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
     
     public int getId() {

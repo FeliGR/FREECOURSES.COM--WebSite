@@ -9,7 +9,6 @@ package FreeCourses.data;
  *
  * @author felig
  */
-
 import java.util.Properties;
 
 import org.hibernate.SessionFactory;
@@ -19,14 +18,14 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import FreeCourses.logic.*;
 
-
-
 /**
  * Java based configuration
+ *
  * @author ramesh Fadatare
  *
  */
 public class HibernateUtil {
+
     private static SessionFactory sessionFactory;
 
     /**
@@ -56,7 +55,6 @@ public class HibernateUtil {
                 // create: creates the schema, destroying previous data.
                 // create-drop: drop the schema when the SessionFactory is closed explicitly, typically when the application is stopped.
                 // none: does nothing with the schema, makes no changes to the database
-
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Administrator.class);
                 configuration.addAnnotatedClass(Course.class);

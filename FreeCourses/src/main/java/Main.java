@@ -49,7 +49,7 @@ public class Main {
         Service service = Service.instance();
 
         Course course = new Course("History", "Learn History", true);
-        Section section = new Section("ABCD", "Monday - Friday");
+        Section section = new Section("Monday - Friday");
         service.saveSection(section);
         course.getGroupsList().add(section);
         service.saveCourse(course);

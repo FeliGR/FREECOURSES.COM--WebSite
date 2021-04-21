@@ -5,7 +5,6 @@
  */
 package FreeCourses.data;
 
-
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -13,50 +12,42 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import FreeCourses.logic.*;
+import com.google.common.base.Preconditions;
 
 /**
-  @author joela
+ * @author joela
  */
 public class AdministratorDAO {
+
     private Session session = HibernateUtil.getSessionFactory().openSession();
-    
+
     public List<Administrator> findAll() {
-        List<Administrator> administratorsList;
-        administratorsList = session.createQuery("from Administrator", Administrator.class).list();
-        return administratorsList;
+        return session.createQuery("from Administrator").getResultList();
     }
-    
+
     public Administrator findById(String id) {
-        Administrator administrator;
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Administrator> query = builder.createQuery(Administrator.class);
-        Root<Administrator> root = query.from(Administrator.class);
-        query.select(root).where(builder.equal(root.get("id"), id));
-        Query q = session.createQuery(query);
-        administrator = (Administrator) q.getSingleResult();
-        return administrator;
+        return session.get(Administrator.class, id);
     }
-    
+
     public Administrator save(Administrator administrator) {
-        session.beginTransaction();
-        session.save(administrator);
-        session.getTransaction().commit();
+        Preconditions.checkNotNull(administrator);
+        session.saveOrUpdate(administrator);
         return administrator;
     }
-    
+
     public Administrator update(Administrator administrator) {
-        session.beginTransaction();
-        session.update(administrator);
-        session.getTransaction().commit();
-        return administrator;
+        Preconditions.checkNotNull(administrator);
+        return (Administrator) session.merge(administrator);
     }
-    
-    public boolean delete(String id) {
-        Administrator administrator;
-        session.beginTransaction();
-        administrator = session.get(Administrator.class, id);
+
+    public void deleteById(String id) {
+        final Administrator administrator = findById(id);
+        Preconditions.checkState(administrator != null);
+        delete(administrator);
+    }
+
+    public void delete(Administrator administrator) {
+        Preconditions.checkNotNull(administrator);
         session.delete(administrator);
-        session.getTransaction().commit();
-        return true;
     }
 }
