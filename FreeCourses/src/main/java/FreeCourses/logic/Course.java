@@ -6,6 +6,7 @@
 package FreeCourses.logic;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -39,7 +40,16 @@ public class Course implements Serializable {
         this.thematic = thematic;
         this.status = status;
         this.sectionsList = sectionsList;
+        
     }
+
+    public Course(String name, String thematic, boolean status) {
+        this.name = name;
+        this.thematic = thematic;
+        this.status = status;
+        this.sectionsList=new ArrayList<>();
+    }
+    
     
     public int getId() {
         return id;

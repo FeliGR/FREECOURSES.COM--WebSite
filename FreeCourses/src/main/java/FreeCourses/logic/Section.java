@@ -29,8 +29,8 @@ public class Section implements Serializable {
     public Section() {
     }
 
-    public Section(int id, String courseName, String schedule) {
-        this.id = id;
+    public Section(String courseName, String schedule) {
+        
         this.courseName = courseName;
         this.schedule = schedule;
     }
