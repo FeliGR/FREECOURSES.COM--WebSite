@@ -26,34 +26,33 @@ public class Section implements Serializable {
     @Column(name = "schedule")
     private String schedule;
     
-    @OneToMany(mappedBy = "enrollment")
+    @OneToMany(mappedBy = "section")
     private List<Enrollment> enrollmentsList;
+    
     @ManyToOne
     @JoinColumn(name = "id_course", nullable = false)
     private Course course;
+    
+    @ManyToOne
+    @JoinColumn(name = "id_professor", nullable = true)
+    private Professor professor;
 
     public Section() {
-    }
-
-    public Section(String schedule) {
-
-        this.schedule = schedule;
-    }
-
-    public Section(String schedule, Course course) {
-        this.schedule = schedule;
-        this.course = course;
         this.enrollmentsList = new ArrayList<>();
     }
 
-    public Course getCourse() {
-        return course;
+    public Section(String schedule) {
+        this.schedule = schedule;
+        this.enrollmentsList = new ArrayList<>();
     }
 
-    public void setCourse(Course course) {
+    public Section(String schedule, Course course, Professor professor) {
+        this.schedule = schedule;
         this.course = course;
+        this.professor = professor;
+        this.enrollmentsList = new ArrayList<>();
     }
-
+    
     public int getId() {
         return id;
     }
@@ -76,6 +75,22 @@ public class Section implements Serializable {
 
     public void setEnrollmentsList(List<Enrollment> enrollmentsList) {
         this.enrollmentsList = enrollmentsList;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     @Override

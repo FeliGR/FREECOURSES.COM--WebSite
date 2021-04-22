@@ -14,23 +14,20 @@ import javax.persistence.Id;
  * @author felig
  */
 @Entity
-@Table(name = "persons") // Hay que buscar un nombre apropiado para User
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "persons")
 public class User implements Serializable {
 
     @Id
     @Column(name = "id", unique = true, columnDefinition = "varchar(64)")
     private String id;
+    
     @Column(name = "password")
     protected String password;
+    
     @Column(name = "type")
     private int type;
 
     public User() {
-    }
-
-    public User(String id) {
-        this.id = id;
     }
 
     public User(String id, String password, int type) {

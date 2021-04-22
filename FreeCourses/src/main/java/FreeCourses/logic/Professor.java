@@ -6,6 +6,7 @@
 package FreeCourses.logic;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 /**
@@ -15,41 +16,46 @@ import javax.persistence.*;
 @Entity
 @Table(name = "professors")
 public class Professor implements Serializable {
+    
     @Id
     @Column(name = "id", unique = true, columnDefinition = "varchar(64)")
     private String id;
+    
     @Column(name = "name")
     private String name;
+    
     @Column(name = "email")
     private String email;
+    
     @Column(name = "phone")
     private String phone;
+    
     @Column(name = "specialty")
     private String specialty;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name="professors_sections",joinColumns = @JoinColumn(name = "id"))
+    
+    @OneToMany(mappedBy = "professor")
     private List<Section> sectionsList;
 
     public Professor() {
+        this.sectionsList = new ArrayList<>();
     }
 
-    public Professor(String id, String name, String email, String phone, String specialty, List<Section> sectionsList) {
+    public Professor(String id, String name, String phone, String specialty) {
         this.id = id;
         this.name = name;
-        this.email = email;
         this.phone = phone;
         this.specialty = specialty;
-        this.sectionsList = sectionsList;
+        this.sectionsList = new ArrayList<>();
     }
-
+   
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }  
-    
+    }
+
     public String getName() {
         return name;
     }
@@ -82,11 +88,11 @@ public class Professor implements Serializable {
         this.specialty = specialty;
     }
 
-    public List<Section> getGroupsList() {
+    public List<Section> getSectionsList() {
         return sectionsList;
     }
 
-    public void setGroupsList(List<Section> sectionsList) {
+    public void setSectionsList(List<Section> sectionsList) {
         this.sectionsList = sectionsList;
     }
 

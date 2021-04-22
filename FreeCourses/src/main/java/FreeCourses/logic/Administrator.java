@@ -19,6 +19,7 @@ public class Administrator implements Serializable {
     @Id
     @Column(name = "id", unique = true, columnDefinition = "varchar(64)")
     private String id;
+    
     @Column(name = "name")
     private String name;
     

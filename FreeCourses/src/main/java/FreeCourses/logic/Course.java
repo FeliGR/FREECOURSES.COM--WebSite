@@ -36,16 +36,7 @@ public class Course implements Serializable {
     private List<Section> sectionsList;
 
     public Course() {
-
-    }
-
-    public Course(int id, String name, String thematic, boolean status, List<Section> sectionsList) {
-        this.id = id;
-        this.name = name;
-        this.thematic = thematic;
-        this.status = status;
-        this.sectionsList = sectionsList;
-
+        this.sectionsList = new ArrayList<>();
     }
 
     public Course(String name, String thematic, boolean status) {
@@ -87,16 +78,16 @@ public class Course implements Serializable {
         this.status = status;
     }
 
-    public List<Section> getGroupsList() {
+    public List<Section> getSectionsList() {
         return sectionsList;
     }
 
-    public void setGroupsList(List<Section> sectionsList) {
+    public void setSectionsList(List<Section> sectionsList) {
         this.sectionsList = sectionsList;
     }
 
     @Override
     public String toString() {
-        return "Course{" + "id=" + id + ", name=" + name + ", thematic=" + thematic + ", sectionsList=" + sectionsList + '}';
+        return "Course{" + "id=" + id + ", name=" + name + ", thematic=" + thematic + ", status=" + status + ", sectionsList=" + sectionsList + '}';
     }
 }

@@ -14,15 +14,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "enrollments")
 public class Enrollment implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    
     @Column(name = "grade")
     private float grade;
+    
     @ManyToOne
     @JoinColumn(name = "id_section", nullable = false)
     private Section section;
+    
     @ManyToOne
     @JoinColumn(name = "id_student", nullable = false)
     private Student student;
@@ -36,19 +40,28 @@ public class Enrollment implements Serializable {
         this.student = student;
     }
 
-    public Enrollment(int id, float grade, Section section, Student student) {
-        this.id = id;
-        this.grade = grade;
-        this.section = section;
-        this.student = student;
-    }
-
     public Enrollment(float grade) {
         this.grade = grade;
     }
 
     public Enrollment(int id, float grade) {
         this.id = id;
+        this.grade = grade;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public float getGrade() {
+        return grade;
+    }
+
+    public void setGrade(float grade) {
         this.grade = grade;
     }
 
@@ -66,22 +79,6 @@ public class Enrollment implements Serializable {
 
     public void setStudent(Student student) {
         this.student = student;
-    }
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public float getGrade() {
-        return grade;
-    }
-
-    public void setGrade(float grade) {
-        this.grade = grade;
     }
 
     @Override

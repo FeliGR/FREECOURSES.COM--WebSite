@@ -5,6 +5,8 @@
  */
 package FreeCourses.logic;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 /**
@@ -13,22 +15,26 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "students")
-public class Student {
+public class Student implements Serializable {
     
     @Id
     @Column(name = "id", unique = true, columnDefinition = "varchar(64)")
     private String id;
+    
     @Column(name = "name")
     private String name;
+    
     @Column(name = "email")
     private String email;
+    
     @Column(name = "phone")
     private String phone;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(name="students_enrollments",joinColumns = @JoinColumn(name = "id"))
+    
+    @OneToMany(mappedBy = "student")
     private List<Enrollment> enrollmentsList;
 
     public Student() {
+        this.enrollmentsList = new ArrayList<>();
     }
 
     public Student(String id, String name, String email, String phone) {
@@ -36,6 +42,7 @@ public class Student {
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.enrollmentsList = new ArrayList<>();
     }
 
     public String getId() {
