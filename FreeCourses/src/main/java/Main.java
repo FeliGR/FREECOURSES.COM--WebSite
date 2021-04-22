@@ -17,15 +17,13 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Service service = Service.instance();
+        Section section;
+        Section sectionUpdated;
+        int idEntity = 1;
 
-//        Course course = new Course("History", "Learn History", true);
-//        Section section = new Section ("Monday - Friday");
-//        section.setCourse(course);
-//        service.saveCourse(course);
-//        service.saveSection(section);
-
-        Course course = service.findCourseById(1);
-        System.out.print(course.toString());
-        
+        section = service.findSectionById(idEntity);
+        section.setSchedule("Thu");
+        service.updateSection(section);
+        sectionUpdated = service.findSectionById(idEntity);
     }
 }

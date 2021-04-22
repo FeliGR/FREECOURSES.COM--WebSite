@@ -29,7 +29,7 @@ public class Section implements Serializable {
     @OneToMany(mappedBy = "section")
     private List<Enrollment> enrollmentsList;
     
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "id_course", nullable = false)
     private Course course;
     

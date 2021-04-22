@@ -18,34 +18,40 @@ public class CourseDAO {
 
     private final Session session = HibernateUtil.getSessionFactory().openSession();
 
-    public List<Course> findAll() {
-        return session.createQuery("from Course").getResultList();
-    }
-
     public Course findById(int id) {
-
         return session.get(Course.class, id);
     }
 
     public Course save(Course course) {
-        Preconditions.checkNotNull(course);
-        session.saveOrUpdate(course);
+        session.beginTransaction();
+        session.save(course);
+        session.getTransaction().commit();
+
         return course;
     }
 
     public Course update(Course course) {
-        Preconditions.checkNotNull(course);
-        return (Course) session.merge(course);
+
+        session.beginTransaction();
+        session.update(course);
+        session.getTransaction().commit();
+
+        return course;
     }
 
-    public void delete(Course course) {
-        Preconditions.checkNotNull(course);
-        session.delete(course);
+    @SuppressWarnings("unchecked")
+    public List<Course> findAll() {
+        return session.createQuery("from Course").getResultList();
     }
 
     public void deleteById(int id) {
         final Course course = findById(id);
-        Preconditions.checkState(course != null);
         delete(course);
+    }
+
+    public void delete(Course course) {
+        session.beginTransaction();
+        session.delete(course);
+        session.getTransaction().commit();
     }
 }

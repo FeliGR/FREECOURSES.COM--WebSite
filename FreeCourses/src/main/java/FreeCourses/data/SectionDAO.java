@@ -20,35 +20,42 @@ import com.google.common.base.Preconditions;
  */
 public class SectionDAO {
 
-    private Session session = HibernateUtil.getSessionFactory().openSession();
-
-    public List<Section> findAll() {
-        return session.createQuery("from Section").getResultList();
-    }
+    private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Section findById(int id) {
         return session.get(Section.class, id);
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Section> findAll() {
+        return session.createQuery("from Section").getResultList();
+    }
+
     public Section save(Section section) {
-        Preconditions.checkNotNull(section);
-        session.saveOrUpdate(section);
+        session.beginTransaction();
+        session.save(section);
+        session.getTransaction().commit();
+        
+
         return section;
     }
 
     public Section update(Section section) {
-        Preconditions.checkNotNull(section);
-        return (Section) session.merge(section);
+        session.beginTransaction();
+        session.update(section);
+        session.getTransaction().commit();
+
+        return section;
     }
 
     public void delete(Section section) {
-        Preconditions.checkNotNull(section);
+        session.beginTransaction();
         session.delete(section);
+        session.getTransaction().commit();
     }
 
     public void deleteById(int id) {
         final Section section = findById(id);
-        Preconditions.checkState(section != null);
         delete(section);
     }
 }

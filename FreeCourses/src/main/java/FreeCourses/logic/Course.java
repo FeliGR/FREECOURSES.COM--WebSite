@@ -20,7 +20,7 @@ public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id_course")
     private int id;
 
     @Column(name = "name")
@@ -32,7 +32,7 @@ public class Course implements Serializable {
     @Column(name = "status")
     private boolean status;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", orphanRemoval = true, cascade = CascadeType.PERSIST )
     private List<Section> sectionsList;
 
     public Course() {
