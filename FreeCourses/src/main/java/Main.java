@@ -39,13 +39,21 @@ public class Main {
 
         Course courseCreated = service.saveCourse(course);
 
-        section.setCourse(course);
+        section.setCourse(courseCreated);
         section.setSchedule("Wed - Fri");
 
         sectionCreated = service.saveSection(section);
 
         Course DBCourse = service.findCourseById(courseCreated.getId());
-        System.out.print(DBCourse.toString());
+        System.out.println("Course One:" + DBCourse.toString());
+
+        Section sectionTwo = new Section();
+        sectionTwo.setCourse(courseCreated);
+        sectionTwo.setSchedule("Thu - Sat");
+        sectionCreated = service.saveSection(sectionTwo);
+
+        Course DBCourseTwo = service.findCourseById(courseCreated.getId());
+        System.out.println("Course Two:" + DBCourseTwo.toString());
 
 //        Course course = service.findCourseById(1);
 //        System.out.print(course.toString());

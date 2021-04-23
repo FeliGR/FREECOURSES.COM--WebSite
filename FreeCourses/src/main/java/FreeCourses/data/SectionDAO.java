@@ -20,18 +20,26 @@ import com.google.common.base.Preconditions;
  */
 public class SectionDAO {
 
-    private final Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    public void validateSession(){
+        if(!session.isOpen()){
+            session=HibernateUtil.getSessionFactory().openSession();
+        }
+    }
 
     public Section findById(int id) {
+        validateSession();
         return session.get(Section.class, id);
     }
 
     @SuppressWarnings("unchecked")
     public List<Section> findAll() {
+        validateSession();
         return session.createQuery("from Section").getResultList();
     }
 
     public Section save(Section section) {
+        validateSession();
         session.beginTransaction();
         session.save(section);
         session.getTransaction().commit();
@@ -41,6 +49,7 @@ public class SectionDAO {
     }
 
     public Section update(Section section) {
+        validateSession();
         session.beginTransaction();
         session.update(section);
         session.getTransaction().commit();
@@ -49,12 +58,14 @@ public class SectionDAO {
     }
 
     public void delete(Section section) {
+        validateSession();
         session.beginTransaction();
         session.delete(section);
         session.getTransaction().commit();
     }
 
     public void deleteById(int id) {
+        validateSession();
         final Section section = findById(id);
         delete(section);
     }
