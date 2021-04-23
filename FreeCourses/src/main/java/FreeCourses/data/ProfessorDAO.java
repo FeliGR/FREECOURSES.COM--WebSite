@@ -20,7 +20,7 @@ import com.google.common.base.Preconditions;
  */
 public class ProfessorDAO {
 
-    private Session session = HibernateUtil.getSessionFactory().openSession();
+       private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
     public List<Professor> findAll() {
         return session.createQuery("from Professor").getResultList();

@@ -14,24 +14,24 @@ FreeCourses/presentation/home/Controller.java
  FreeCourses.presentation.home.Controller
 FreeCourses/logic/Section.java
  FreeCourses.logic.Section
-FreeCourses/logic/Enrollment.java
- FreeCourses.logic.Enrollment
-FreeCourses/presentation/signup/Controller.java
- FreeCourses.presentation.signup.Controller
-FreeCourses/presentation/sections/Controller.java
- FreeCourses.presentation.sections.Controller
-FreeCourses/presentation/sections/Model.java
- FreeCourses.presentation.sections.Model
-FreeCourses/logic/Administrator.java
- FreeCourses.logic.Administrator
 FreeCourses/data/EnrollmentDAO.java
  FreeCourses.data.EnrollmentDAO
+FreeCourses/presentation/signup/Controller.java
+ FreeCourses.presentation.signup.Controller
+FreeCourses/presentation/sections/Model.java
+ FreeCourses.presentation.sections.Model
+Main.java
+ Main
+FreeCourses/logic/Administrator.java
+ FreeCourses.logic.Administrator
+FreeCourses/presentation/sections/Controller.java
+ FreeCourses.presentation.sections.Controller
 FreeCourses/logic/User.java
  FreeCourses.logic.User
 FreeCourses/presentation/home/Model.java
  FreeCourses.presentation.home.Model
-FreeCourses/logic/Service.java
- FreeCourses.logic.Service
+FreeCourses/logic/Enrollment.java
+ FreeCourses.logic.Enrollment
 FreeCourses/data/ProfessorDAO.java
  FreeCourses.data.ProfessorDAO
 FreeCourses/data/StudentDAO.java
@@ -46,5 +46,5 @@ FreeCourses/data/SectionDAO.java
  FreeCourses.data.SectionDAO
 FreeCourses/data/CourseDAO.java
  FreeCourses.data.CourseDAO
-Main.java
- Main
+FreeCourses/logic/Service.java
+ FreeCourses.logic.Service

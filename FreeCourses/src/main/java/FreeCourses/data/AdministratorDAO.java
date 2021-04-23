@@ -19,7 +19,7 @@ import com.google.common.base.Preconditions;
  */
 public class AdministratorDAO {
 
-    private Session session = HibernateUtil.getSessionFactory().openSession();
+       private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
     public List<Administrator> findAll() {
         return session.createQuery("from Administrator").getResultList();

@@ -18,25 +18,8 @@ import org.hibernate.SessionFactory;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+
         Service service = Service.instance();
-        Section section = new Section();
-        Course course = new Course();
-        Section sectionCreated = null;
- 
-        course.setName("Progra 3");
-        course.setThematic("About Progra 3");
-        course.setStatus(true);
-
-        
-        service.saveCourse(course);
-
-        section.setCourse(course);
-        section.setSchedule("Mon - Fri");
-
-        sectionCreated = service.saveSection(section);
-//        
-//        System.out.print(course.toString());
-//        
 //        Section section;
 //        Section sectionUpdated;
 //        int idEntity = 1;
@@ -46,11 +29,25 @@ public class Main {
 //        service.updateSection(section);
 //        sectionUpdated = service.findSectionById(idEntity);
 
-//        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-//        System.out.println("Session Factory : " + sessionFactory.hashCode());
-//        SessionFactory sessionFactory2 = HibernateUtil.getSessionFactory();
-//        System.out.println("Session Factory 2 : " + sessionFactory2.hashCode());
-//        SessionFactory sessionFactory3 = HibernateUtil.getSessionFactory();
-//        System.out.println("Session Factory 3 : " + sessionFactory3.hashCode());
+        Section section = new Section();
+        Course course = new Course();
+        Section sectionCreated = null;
+
+        course.setName("Progra 4");
+        course.setThematic("About Progra 4");
+        course.setStatus(true);
+
+        Course courseCreated = service.saveCourse(course);
+
+        section.setCourse(course);
+        section.setSchedule("Wed - Fri");
+
+        sectionCreated = service.saveSection(section);
+
+        Course DBCourse = service.findCourseById(courseCreated.getId());
+        System.out.print(DBCourse.toString());
+
+//        Course course = service.findCourseById(1);
+//        System.out.print(course.toString());
     }
 }
