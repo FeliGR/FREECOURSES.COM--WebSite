@@ -36,14 +36,12 @@ public class Course implements Serializable {
     private List<Section> sectionsList;
 
     public Course() {
-        this.sectionsList = new ArrayList<>();
     }
 
     public Course(String name, String thematic, boolean status) {
         this.name = name;
         this.thematic = thematic;
         this.status = status;
-        this.sectionsList = new ArrayList<>();
     }
 
     public int getId() {
