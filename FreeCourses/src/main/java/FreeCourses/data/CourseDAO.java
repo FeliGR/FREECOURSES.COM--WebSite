@@ -16,7 +16,7 @@ import com.google.common.base.Preconditions;
  */
 public class CourseDAO {
 
-    private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+    private Session session = HibernateUtil.getSessionFactory().openSession();
 
     public void validateSession() {
         if (!session.isOpen()) {
@@ -65,4 +65,6 @@ public class CourseDAO {
         session.delete(course);
         session.getTransaction().commit();
     }
+
+    
 }

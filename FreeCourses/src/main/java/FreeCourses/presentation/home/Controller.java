@@ -17,39 +17,58 @@ import javax.servlet.http.HttpSession;
  *
  * @author alonso
  */
-@WebServlet(name = "CoursesController", urlPatterns = {"/presentation/home/show"})
+@WebServlet(name = "CoursesController", urlPatterns = {"/presentation/home/show", "/presentation/home/serch"})
 public class Controller extends HttpServlet {
-    
-  protected void processRequest(HttpServletRequest request, 
-                                HttpServletResponse response)
-         throws ServletException, IOException {
+
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
 
         request.setAttribute("model", new Model());
-        
-        String viewUrl="";     
+
+        String viewUrl = "";
         switch (request.getServletPath()) {
-          case "/presentation/home/show":
-              viewUrl = this.show(request);
-              break;
-        }          
-        request.getRequestDispatcher(viewUrl).forward( request, response); 
-  }
+            case "/presentation/home/show":
+                viewUrl = this.show(request);
+                break;
+            case "/presentation/home/serch":
+                viewUrl = this.show(request);
+                break;
+        }
+        request.getRequestDispatcher(viewUrl).forward(request, response);
+    }
 
     public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
-    
+
     public String showAction(HttpServletRequest request) {
         Model model = (Model) request.getAttribute("model");
         FreeCourses.logic.Service domainService = FreeCourses.logic.Service.instance();
-        try {        
+        try {
             model.setCourses(domainService.findAllCourses());
             return "/presentation/Index.jsp";
         } catch (Exception ex) {
             return "/presentation/Error.jsp";
         }
     }
-   
+    public String serch(HttpServletRequest request) {
+        return this.serchAction(request);
+    }
+
+    public String serchAction(HttpServletRequest request) {
+        String busqueda = request.getParameter("serchCourse");
+        
+        Model model = (Model) request.getAttribute("model");
+        FreeCourses.logic.Service domainService = FreeCourses.logic.Service.instance();
+        try {
+            model.setCourses(domainService.findAllCourses());
+            return "/presentation/Index.jsp";
+        } catch (Exception ex) {
+            return "/presentation/Error.jsp";
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -88,5 +107,5 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
+
 }

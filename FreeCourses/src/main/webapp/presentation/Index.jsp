@@ -29,14 +29,18 @@
 
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <div class="input-group py-5">
-                        <input type="text" class="form-control" placeholder="Search courses">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
+                    <form action="/FreeCourses/presentation/home/serch" method="POST">
+                        <div class="input-group py-5">
+
+                            <input type="text" name="serchCourse" class="form-control" placeholder="Search courses">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit" >
+                                    <i class="fa fa-search"></i>
+                                </button>
+
+                            </div>
                         </div>
-                    </div>
+                    </form>    
                     <!-- List group-->
                     <ul class="list-group shadow">
                         <% for (Course course : courses) {%>
