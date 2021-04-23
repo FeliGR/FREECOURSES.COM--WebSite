@@ -31,13 +31,11 @@
                 <div class="col-lg-8 mx-auto">
                     <form action="/FreeCourses/presentation/home/serch" method="POST">
                         <div class="input-group py-5">
-
                             <input type="text" name="serchCourse" class="form-control" placeholder="Search courses">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit" >
                                     <i class="fa fa-search"></i>
                                 </button>
-
                             </div>
                         </div>
                     </form>    

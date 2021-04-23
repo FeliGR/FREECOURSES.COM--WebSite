@@ -1,9 +1,12 @@
 
+import FreeCourses.data.CourseDAO;
 import FreeCourses.data.HibernateUtil;
+import FreeCourses.data.SectionDAO;
 import FreeCourses.logic.Course;
 import FreeCourses.logic.Section;
 import FreeCourses.logic.Service;
 import FreeCourses.logic.User;
+import java.util.List;
 import org.hibernate.SessionFactory;
 
 /*
@@ -20,40 +23,66 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         Service service = Service.instance();
-//        Section section;
-//        Section sectionUpdated;
-//        int idEntity = 1;
-//
-//        section = service.findSectionById(idEntity);
-//        section.setSchedule("Thu");
-//        service.updateSection(section);
-//        sectionUpdated = service.findSectionById(idEntity);
-
-        Section section = new Section();
+        
+        Section section1 = new Section();
+        Section section2 = new Section();
         Course course = new Course();
-        Section sectionCreated = null;
-
-        course.setName("Progra 4");
-        course.setThematic("About Progra 4");
+        
+        course.setName("Progra IV");
         course.setStatus(true);
-
+        course.setThematic("Learn Progra IV");
+        
         Course courseCreated = service.saveCourse(course);
-
-        section.setCourse(courseCreated);
-        section.setSchedule("Wed - Fri");
-
-        sectionCreated = service.saveSection(section);
-
-        Course DBCourse = service.findCourseById(courseCreated.getId());
-        System.out.println("Course One:" + DBCourse.toString());
-
-        Section sectionTwo = new Section();
-        sectionTwo.setCourse(courseCreated);
-        sectionTwo.setSchedule("Thu - Sat");
-        sectionCreated = service.saveSection(sectionTwo);
-
-        Course DBCourseTwo = service.findCourseById(courseCreated.getId());
+        
+        section1.setCourse(courseCreated);
+        section1.setSchedule("M-F");
+        
+        Course courseDB = service.findCourseById(1);
+        section2.setCourse(courseDB);
+        section2.setSchedule("M-F");
+        
+        service.saveSection(section1);
+        service.saveSection(section2);
+        
+        System.out.print(courseDB.toString());
+        
+        Course DBCourseTwo = service.findCourseById(courseDB.getId());
         System.out.println("Course Two:" + DBCourseTwo.toString());
+
+//        Service service = Service.instance();
+//
+//
+//        Section courseGroup = new Section();
+//        Course course = new Course();
+//        Section courseGroupCreated = null;
+//
+//        course.setName("Progra 3");
+//        course.setThematic("About Progra 3");
+//        course.setStatus(true);
+//
+//        CourseDAO courseDAO = new CourseDAO();
+//        courseDAO.save(course);
+//
+//        courseGroup.setCourse(course);
+//        courseGroup.setSchedule("Mon - Fri");
+//
+//        SectionDAO sectionDAO = new SectionDAO();
+//        courseGroupCreated = sectionDAO.save(courseGroup);
+//        
+//        
+        
+        
+
+//        Course DBCourse = service.findCourseById(courseCreated.getId());
+//        System.out.println("Course One:" + DBCourse.toString());
+//
+//        Section sectionTwo = new Section();
+//        sectionTwo.setCourse(courseCreated);
+//        sectionTwo.setSchedule("Thu - Sat");
+//        sectionCreated = service.saveSection(sectionTwo);
+//
+//        Course DBCourseTwo = service.findCourseById(courseCreated.getId());
+//        System.out.println("Course Two:" + DBCourseTwo.toString());
 
 //        Course course = service.findCourseById(1);
 //        System.out.print(course.toString());

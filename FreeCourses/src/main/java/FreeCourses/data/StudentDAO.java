@@ -6,11 +6,7 @@
 package FreeCourses.data;
 
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import FreeCourses.logic.*;
 import com.google.common.base.Preconditions;
 
@@ -20,35 +16,42 @@ import com.google.common.base.Preconditions;
  */
 public class StudentDAO {
 
-      private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+     private final Session session = HibernateUtil.getSessionFactory().openSession();
 
+    public Student findById(String id) {
+        return session.find(Student.class, id);
+    }
+
+    @SuppressWarnings("unchecked")
     public List<Student> findAll() {
         return session.createQuery("from Student").getResultList();
     }
 
-    public Student findById(String id) {
-        return session.get(Student.class, id);
-    }
-
     public Student save(Student student) {
-        Preconditions.checkNotNull(student);
-        session.saveOrUpdate(student);
+        session.beginTransaction();
+        session.save(student);
+        session.getTransaction().commit();
+        session.refresh(student);
         return student;
     }
 
     public Student update(Student student) {
-        Preconditions.checkNotNull(student);
-        return (Student) session.merge(student);
+        session.beginTransaction();
+        session.update(student);
+        session.getTransaction().commit();
+        session.refresh(student);
+        return student;
     }
-
-    public void delete(Student student) {
-        Preconditions.checkNotNull(student);
-        session.delete(student);
-    }
-
-    public void deleteById(String id) {
+    
+     public void deleteById(String id) {
         final Student student = findById(id);
-        Preconditions.checkState(student != null);
         delete(student);
+    }
+     
+    public void delete(Student student) {
+        session.beginTransaction();
+        session.delete(student);
+        session.getTransaction().commit();
+        session.refresh(student);
     }
 }

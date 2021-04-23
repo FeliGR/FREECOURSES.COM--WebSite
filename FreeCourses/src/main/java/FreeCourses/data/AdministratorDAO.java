@@ -4,50 +4,51 @@
  * and open the template in the editor.
  */
 package FreeCourses.data;
-
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
-import FreeCourses.logic.*;
-import com.google.common.base.Preconditions;
+import FreeCourses.logic.Administrator;
 
 /**
  * @author joela
  */
 public class AdministratorDAO {
 
-       private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-    public List<Administrator> findAll() {
-        return session.createQuery("from Administrator").getResultList();
-    }
+    private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Administrator findById(String id) {
-        return session.get(Administrator.class, id);
+        return session.find(Administrator.class, id);
     }
 
     public Administrator save(Administrator administrator) {
-        Preconditions.checkNotNull(administrator);
-        session.saveOrUpdate(administrator);
+        session.beginTransaction();
+        session.save(administrator);
+        session.getTransaction().commit();
+        session.refresh(administrator);
         return administrator;
     }
 
     public Administrator update(Administrator administrator) {
-        Preconditions.checkNotNull(administrator);
-        return (Administrator) session.merge(administrator);
+        session.beginTransaction();
+        session.update(administrator);
+        session.getTransaction().commit();
+        session.refresh(administrator);
+        return administrator;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Administrator> findAll() {
+        return session.createQuery("from Administrator").getResultList();
     }
 
     public void deleteById(String id) {
         final Administrator administrator = findById(id);
-        Preconditions.checkState(administrator != null);
         delete(administrator);
     }
 
     public void delete(Administrator administrator) {
-        Preconditions.checkNotNull(administrator);
+        session.beginTransaction();
         session.delete(administrator);
+        session.getTransaction().commit();
+        session.refresh(administrator);
     }
 }

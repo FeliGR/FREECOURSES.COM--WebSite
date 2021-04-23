@@ -4,15 +4,9 @@
  * and open the template in the editor.
  */
 package FreeCourses.data;
-
+import FreeCourses.logic.Professor;
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
-import FreeCourses.logic.*;
-import com.google.common.base.Preconditions;
 
 /**
  *
@@ -20,35 +14,41 @@ import com.google.common.base.Preconditions;
  */
 public class ProfessorDAO {
 
-       private Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-    public List<Professor> findAll() {
-        return session.createQuery("from Professor").getResultList();
-    }
+    private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Professor findById(String id) {
         return session.get(Professor.class, id);
     }
 
     public Professor save(Professor professor) {
-        Preconditions.checkNotNull(professor);
-        session.saveOrUpdate(professor);
+        session.beginTransaction();
+        session.save(professor);
+        session.getTransaction().commit();
+
         return professor;
     }
 
     public Professor update(Professor professor) {
-        Preconditions.checkNotNull(professor);
-        return (Professor) session.merge(professor);
+        session.beginTransaction();
+        session.update(professor);
+        session.getTransaction().commit();
+
+        return professor;
     }
 
-    public void delete(Professor professor) {
-        Preconditions.checkNotNull(professor);
-        session.delete(professor);
+    @SuppressWarnings("unchecked")
+    public List<Professor> findAll() {
+        return session.createQuery("from Professor").getResultList();
     }
 
     public void deleteById(String id) {
         final Professor professor = findById(id);
-        Preconditions.checkState(professor != null);
         delete(professor);
+    }
+
+    public void delete(Professor professor) {
+        session.beginTransaction();
+        session.delete(professor);
+        session.getTransaction().commit();
     }
 }
