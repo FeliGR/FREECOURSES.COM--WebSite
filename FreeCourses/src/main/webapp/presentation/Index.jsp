@@ -20,7 +20,7 @@
         <title>Home | FREECOURSES.COM</title>  
     </head>
     <body>
-        <div class="container py-5">
+        <div class="container my-1">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
                     <h1 class="display-4">Courses List</h1>
@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <form action="/FreeCourses/presentation/home/serch" method="POST">
-                        <div class="input-group py-5">
+                        <div class="input-group py-3">
                             <input type="text" name="serchCourse" class="form-control" placeholder="Search courses">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit" >
@@ -53,7 +53,7 @@
                                     <p class="font-italic text-muted mb-0 small"> On Sale </p>
 
                                     <div class="position-absolute top-50 end-0 translate-middle-y p-3">
-                                        <a href="/FreeCourses/presentation/section/View.jsp"><button type="button" class="btn btn-primary">View Sections</button></a><%--href="/FreeCourses/presentation/section/show?courseId=<%=course.getId()%>"  --%>
+                                        <a href="/FreeCourses/presentation/sections/show?courseId=<%=course.getId()%>"><button type="button" class="btn btn-primary">View Sections</button></a><%--href="/FreeCourses/presentation/section/show?courseId=<%=course.getId()%>"  --%>
                                     </div>
                                     <%--</div><img src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">--%>
 

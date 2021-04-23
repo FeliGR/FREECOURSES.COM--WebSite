@@ -28,7 +28,7 @@ body{
     background: #40c9ff !important;
 }
 .list-group{
-    max-height: 400px;
+    max-height: 380px;
     margin-bottom: 10px;
     overflow:scroll;
     overflow-x: hidden;

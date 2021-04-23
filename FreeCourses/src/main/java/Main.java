@@ -28,23 +28,23 @@ public class Main {
         Section section2 = new Section();
         Course course = new Course();
         
-        course.setName("Progra IV");
+        course.setName("Machine Learning I");
         course.setStatus(true);
-        course.setThematic("Learn Progra IV");
+        course.setThematic("Learn the basics of Machine Learning");
         
         Course courseCreated = service.saveCourse(course);
         
         section1.setCourse(courseCreated);
-        section1.setSchedule("M-F");
+        section1.setSchedule("Mon-Wed: 15-17");
         
-        Course courseDB = service.findCourseById(1);
+        Course courseDB = service.findCourseById(courseCreated.getId());
         section2.setCourse(courseDB);
-        section2.setSchedule("M-F");
+        section2.setSchedule("Thu: 18-22");
         
         service.saveSection(section1);
         service.saveSection(section2);
         
-        System.out.print(courseDB.toString());
+        System.out.println(courseDB.toString());
         
         Course DBCourseTwo = service.findCourseById(courseDB.getId());
         System.out.println("Course Two:" + DBCourseTwo.toString());

@@ -6,7 +6,7 @@
 
 <%@page import="FreeCourses.logic.Section"%>
 <%@page import="java.util.List"%>
- <%-- <%@page import="FreeCourses.presentation.section.Model"%> CORREGIR ESTO--%>
+<%@page import="FreeCourses.presentation.sections.Model"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <%
     Model model = (Model) request.getAttribute("model");
@@ -24,7 +24,7 @@
         <div class="container py-5">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
-                    <h1 class="display-4">Courses List</h1>
+                    <h1 class="display-4">Sections List</h1>
                 </div>
             </div>
 
@@ -37,12 +37,12 @@
                             <!-- Custom content-->
                             <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                                 <div class="media-body order-2 order-lg-1">
-                                    <h5 class="mt-0 font-weight-bold mb-2"> <%=section.getCourseName()%> </h5>
+                                    <h5 class="mt-0 font-weight-bold mb-2"> <%=section.getCourse().getName()%> </h5>
                                     <p class="font-italic text-muted mb-0 small"> <%=section.getSchedule()%> </p>
                                     <p class="font-italic text-muted mb-0 small"> Group: <%=section.getId()%> </p>
-<!--                                    <div class="position-absolute top-50 end-0 translate-middle-y p-3">
-                                        <a href="/FreeCourses/presentation/section/View.jsp"><button type="button" class="btn btn-primary">View Sections</button></a><%--href="/FreeCourses/presentation/section/show?sectionId=<%=section.getId()%>"  --%>
-                                    </div>-->
+                                    <div class="position-absolute top-50 end-0 translate-middle-y p-3">
+                                        <a href="/FreeCourses/presentation/home/show"><button type="button" class="btn btn-success">Enroll</button></a><%--href="/FreeCourses/presentation/section/show?courseId=<%=course.getId()%>"  --%>
+                                    </div>
                                     <%--</div><img src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">--%>
 
                                 </div> <!-- End -->
