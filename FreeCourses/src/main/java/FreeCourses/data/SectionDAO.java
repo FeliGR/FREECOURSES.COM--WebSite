@@ -20,7 +20,7 @@ import com.google.common.base.Preconditions;
  */
 public class SectionDAO {
 
-    private final Session session = HibernateUtil.getSessionFactory().openSession();
+    private final Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
     public Section findById(int id) {
         return session.get(Section.class, id);

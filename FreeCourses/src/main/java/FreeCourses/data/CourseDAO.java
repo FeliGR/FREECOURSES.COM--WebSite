@@ -16,7 +16,7 @@ import com.google.common.base.Preconditions;
  */
 public class CourseDAO {
 
-    private final Session session = HibernateUtil.getSessionFactory().openSession();
+    private final Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
     public Course findById(int id) {
         return session.get(Course.class, id);
