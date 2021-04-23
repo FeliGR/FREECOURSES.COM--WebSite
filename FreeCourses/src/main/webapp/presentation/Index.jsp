@@ -20,7 +20,6 @@
         <title>Home | FREECOURSES.COM</title>  
     </head>
     <body>
-
         <div class="container py-5">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
@@ -30,6 +29,14 @@
 
             <div class="row">
                 <div class="col-lg-8 mx-auto">
+                    <div class="input-group py-5">
+                        <input type="text" class="form-control" placeholder="Search courses">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
                     <!-- List group-->
                     <ul class="list-group shadow">
                         <% for (Course course : courses) {%>
@@ -55,7 +62,6 @@
                     </ul> <!-- End -->
                 </div>
             </div>
-
         </div>
         <%@ include file="/presentation/Footer.jsp" %>
     </body>

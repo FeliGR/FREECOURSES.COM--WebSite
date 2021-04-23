@@ -58,7 +58,7 @@ public class HibernateUtil {
                 // create: creates the schema, destroying previous data.
                 // create-drop: drop the schema when the SessionFactory is closed explicitly, typically when the application is stopped.
                 // none: does nothing with the schema, makes no changes to the database
-                configuration.setProperties(settings);
+                
                 configuration.addAnnotatedClass(Administrator.class);
                 configuration.addAnnotatedClass(Course.class);
                 configuration.addAnnotatedClass(Enrollment.class);
@@ -66,6 +66,8 @@ public class HibernateUtil {
                 configuration.addAnnotatedClass(Professor.class);
                 configuration.addAnnotatedClass(Student.class);
                 configuration.addAnnotatedClass(User.class);
+                configuration.setProperties(settings);
+                
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
 
