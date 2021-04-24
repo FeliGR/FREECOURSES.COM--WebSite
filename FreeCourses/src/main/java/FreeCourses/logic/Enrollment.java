@@ -40,6 +40,11 @@ public class Enrollment implements Serializable {
         this.student = student;
     }
 
+    public Enrollment(Section section, Student student) {
+        this.section = section;
+        this.student = student;
+    }
+
     public Enrollment(float grade) {
         this.grade = grade;
     }

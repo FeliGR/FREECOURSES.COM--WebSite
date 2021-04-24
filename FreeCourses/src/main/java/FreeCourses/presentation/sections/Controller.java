@@ -27,7 +27,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Álvaro
+ * @author joela
+ * @author felig
+ * @author alonsoc
  */
 @WebServlet(name = "CourseSectionsController", urlPatterns = {"/presentation/sections/show"})
 public class Controller extends HttpServlet {

@@ -53,7 +53,7 @@
                                     <p class="font-italic text-muted mb-0 small"> On Sale </p>
 
                                     <div class="position-absolute top-50 end-0 translate-middle-y p-3">
-                                        <a href="/FreeCourses/presentation/sections/show?courseId=<%=course.getId()%>"><button type="button" class="btn btn-primary">View Sections</button></a><%--href="/FreeCourses/presentation/section/show?courseId=<%=course.getId()%>"  --%>
+                                        <a href=<% if (request.getSession(true).getAttribute("student")!=null) {%>"/FreeCourses/presentation/sections/show?courseId=<%=course.getId()%>"<% } else{ %> "/FreeCourses/presentation/login/show"<% }%>><button type="button" class="btn btn-primary">View Sections</button></a>
                                     </div>
                                     <%--</div><img src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">--%>
 

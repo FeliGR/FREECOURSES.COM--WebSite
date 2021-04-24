@@ -79,7 +79,7 @@ public class Controller extends HttpServlet {
     }
 
     void updateModel(HttpServletRequest request) {
-        FreeCourses.presentation.signup.Model model = (FreeCourses.presentation.signup.Model) request.getAttribute("model");
+        Model model = (Model) request.getAttribute("model");
 
         model.getCurrent().setName(request.getParameter("userFullName"));
         model.getCurrent().setEmail(request.getParameter("userEmail"));
@@ -95,15 +95,14 @@ public class Controller extends HttpServlet {
         FreeCourses.logic.Service domainService = FreeCourses.logic.Service.instance();
 
         User user = new User(request.getParameter("userId"), request.getParameter("userPassword"), 1);
-        System.out.print(request.getParameter("userId"));
-        System.out.print(request.getParameter("userPassword"));
+
         Student student = new Student(request.getParameter("userId"), request.getParameter("userFullName"),
                 request.getParameter("userEmail"), request.getParameter("userPhone"));
 
         domainService.saveStudent(student);
         domainService.saveUser(user);
 
-        return "/presentation/Index.jsp";
+        return "/presentation/home/show";
     }
 
     public String show(HttpServletRequest request) {
@@ -111,7 +110,7 @@ public class Controller extends HttpServlet {
     }
 
     public String showAction(HttpServletRequest request) {
-        FreeCourses.presentation.signup.Model model = (FreeCourses.presentation.signup.Model) request.getAttribute("model");
+        Model model = (Model) request.getAttribute("model");
 
         model.getCurrent().setId("");
         model.getCurrent().setName("");

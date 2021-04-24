@@ -28,14 +28,14 @@ public class Main {
         Section section2 = new Section();
         Course course = new Course();
         
-        course.setName("Machine Learning I");
+        course.setName("Coding Java II");
         course.setStatus(true);
-        course.setThematic("Learn the basics of Machine Learning");
+        course.setThematic("Learn to an intermediate level of Java");
         
         Course courseCreated = service.saveCourse(course);
         
         section1.setCourse(courseCreated);
-        section1.setSchedule("Mon-Wed: 15-17");
+        section1.setSchedule("Mon: 15-19");
         
         Course courseDB = service.findCourseById(courseCreated.getId());
         section2.setCourse(courseDB);
