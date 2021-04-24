@@ -23,29 +23,30 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         Service service = Service.instance();
-        
+
         Section section1 = new Section();
         Section section2 = new Section();
-        Course course = new Course();
-        
-        course.setName("Coding Java II");
-        course.setStatus(true);
-        course.setThematic("Learn to an intermediate level of Java");
-        
-        Course courseCreated = service.saveCourse(course);
-        
+//        Course course = new Course();
+//        
+//        course.setName("Coding Java II");
+//        course.setStatus(true);
+//        course.setThematic("Learn to an intermediate level of Java");
+
+//        Course courseCreated = service.saveCourse(course);
+        Course courseCreated = service.findCourseById(2);//quitar de aqui
+
         section1.setCourse(courseCreated);
         section1.setSchedule("Mon: 15-19");
-        
+
         Course courseDB = service.findCourseById(courseCreated.getId());
         section2.setCourse(courseDB);
         section2.setSchedule("Thu: 18-22");
-        
+
         service.saveSection(section1);
         service.saveSection(section2);
-        
+
         System.out.println(courseDB.toString());
-        
+
         Course DBCourseTwo = service.findCourseById(courseDB.getId());
         System.out.println("Course Two:" + DBCourseTwo.toString());
 
@@ -70,9 +71,6 @@ public class Main {
 //        courseGroupCreated = sectionDAO.save(courseGroup);
 //        
 //        
-        
-        
-
 //        Course DBCourse = service.findCourseById(courseCreated.getId());
 //        System.out.println("Course One:" + DBCourse.toString());
 //
@@ -83,7 +81,6 @@ public class Main {
 //
 //        Course DBCourseTwo = service.findCourseById(courseCreated.getId());
 //        System.out.println("Course Two:" + DBCourseTwo.toString());
-
 //        Course course = service.findCourseById(1);
 //        System.out.print(course.toString());
     }

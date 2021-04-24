@@ -5,6 +5,8 @@
  */
 package FreeCourses.presentation.student.history;
 
+import FreeCourses.logic.Service;
+import FreeCourses.logic.Student;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,10 +45,12 @@ public class Controller extends HttpServlet {
     }
     
     public String showAction(HttpServletRequest request) {
-//        FreeCourses.presentation.sections.Model model = (FreeCourses.presentation.sections.Model) request.getAttribute("model");
-//        FreeCourses.logic.Service domainService = FreeCourses.logic.Service.instance();
+        Model model = (Model) request.getAttribute("model");
+        Service domainService = FreeCourses.logic.Service.instance();
         try {
-//            model.setCourse(domainService.findCourseById(Integer.parseInt(request.getParameter("courseId"))));
+            Student student = (Student) request.getSession(true).getAttribute("student");
+            model.setCurrent(domainService.findStudentById(student.getId()));
+            System.out.println(model.getCurrent().toString());
             return "/presentation/student/history/View.jsp";
         } catch (Exception ex) {
             return "/presentation/Error.jsp";
