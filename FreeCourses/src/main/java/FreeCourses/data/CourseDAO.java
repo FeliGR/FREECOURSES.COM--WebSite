@@ -17,7 +17,9 @@ public class CourseDAO {
     private Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Course findById(int id) {
-        return session.find(Course.class, id);
+        Course course = (Course)session.find(Course.class, id);
+        session.refresh(course); 
+        return course;
     }
 
     public Course save(Course course) {
@@ -39,6 +41,7 @@ public class CourseDAO {
     @SuppressWarnings("unchecked")
     public List<Course> findAll() {
         return session.createQuery("from Course").getResultList();
+        
     }
 
     public void deleteById(int id) {

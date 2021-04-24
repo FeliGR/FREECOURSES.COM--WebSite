@@ -17,14 +17,22 @@ public class ProfessorDAO {
     private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Professor findById(String id) {
-        return session.get(Professor.class, id);
+        Professor professor = (Professor)session.find(Professor.class, id);
+        session.refresh(professor); 
+        return professor;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public List<Professor> findAll() {
+        List<Professor> professorssList = (List) session.createQuery("from Professor").getResultList();
+        session.refresh(professorssList);
+        return professorssList;
     }
 
     public Professor save(Professor professor) {
         session.beginTransaction();
         session.save(professor);
         session.getTransaction().commit();
-
         return professor;
     }
 
@@ -32,13 +40,7 @@ public class ProfessorDAO {
         session.beginTransaction();
         session.update(professor);
         session.getTransaction().commit();
-
         return professor;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Professor> findAll() {
-        return session.createQuery("from Professor").getResultList();
     }
 
     public void deleteById(String id) {

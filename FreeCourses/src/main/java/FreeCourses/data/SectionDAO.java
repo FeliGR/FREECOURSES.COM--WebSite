@@ -19,12 +19,16 @@ public class SectionDAO {
     private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Section findById(int id) {
-        return session.find(Section.class, id);
+        Section section = (Section)session.find(Section.class, id);
+        session.refresh(section); 
+        return section;
     }
 
     @SuppressWarnings("unchecked")
     public List<Section> findAll() {
-        return session.createQuery("from Section").getResultList();
+        List<Section> sectionsList = (List) session.createQuery("from Section").getResultList();
+        session.refresh(sectionsList);
+        return sectionsList;
     }
 
     public Section save(Section section) {

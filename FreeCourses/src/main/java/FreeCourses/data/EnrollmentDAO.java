@@ -17,7 +17,9 @@ public class EnrollmentDAO {
     private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Enrollment findById(int id) {
-        return session.get(Enrollment.class, id);
+        Enrollment enrollment = (Enrollment)session.find(Enrollment.class, id);
+        session.refresh(enrollment); 
+        return enrollment;
     }
 
     public Enrollment save(Enrollment enrollment) {
@@ -38,7 +40,9 @@ public class EnrollmentDAO {
 
     @SuppressWarnings("unchecked")
     public List<Enrollment> findAll() {
-        return session.createQuery("from Enrollment").getResultList();
+        List<Enrollment> enrollmentsList = session.createQuery("from Enrollment").getResultList();
+        session.refresh(enrollmentsList);
+        return enrollmentsList;
     }
 
     public void deleteById(int id) {

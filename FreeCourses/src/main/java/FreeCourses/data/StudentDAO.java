@@ -19,12 +19,16 @@ public class StudentDAO {
      private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Student findById(String id) {
-        return session.find(Student.class, id);
+        Student student = (Student)session.find(Student.class, id);
+        session.refresh(student); 
+        return student;
     }
 
     @SuppressWarnings("unchecked")
     public List<Student> findAll() {
-        return session.createQuery("from Student").getResultList();
+        List<Student> studentsList = (List)session.createQuery("from Student").getResultList();
+        session.refresh(studentsList);
+        return studentsList;
     }
 
     public Student save(Student student) {

@@ -18,39 +18,43 @@ public class UserDAO {
     private Session session = HibernateUtil.getSessionFactory().openSession();
 
     public User findById(String id) {
-        return session.find(User.class, id);
+        User user = (User)session.find(User.class, id);
+        session.refresh(user); 
+        return user;
     }
 
-    public User save(User course) {
+    public User save(User user) {
         session.beginTransaction();
-        session.save(course);
+        session.save(user);
         session.getTransaction().commit();
-        session.refresh(course);
-        return course;
+        session.refresh(user);
+        return user;
     }
 
-    public User update(User course) {
+    public User update(User user) {
         session.beginTransaction();
-        session.update(course);
+        session.update(user);
         session.getTransaction().commit();
-        session.refresh(course);
-        return course;
+        session.refresh(user);
+        return user;
     }
 
     @SuppressWarnings("unchecked")
     public List<User> findAll() {
-        return session.createQuery("from User").getResultList();
+        List<User> usersList = (List) session.createQuery("from User").getResultList();
+        session.refresh(usersList);
+        return usersList;
     }
 
     public void deleteById(String id) {
-        final User course = findById(id);
-        delete(course);
+        final User user = findById(id);
+        delete(user);
     }
 
-    public void delete(User course) {
+    public void delete(User user) {
         session.beginTransaction();
-        session.delete(course);
+        session.delete(user);
         session.getTransaction().commit();
-        session.refresh(course);
+        session.refresh(user);
     }
 }
