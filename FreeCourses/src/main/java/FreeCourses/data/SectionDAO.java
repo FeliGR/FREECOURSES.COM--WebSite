@@ -26,9 +26,7 @@ public class SectionDAO {
 
     @SuppressWarnings("unchecked")
     public List<Section> findAll() {
-        List<Section> sectionsList = (List) session.createQuery("from Section").getResultList();
-        session.refresh(sectionsList);
-        return sectionsList;
+        return session.createQuery("from Section").getResultList();
     }
 
     public Section save(Section section) {

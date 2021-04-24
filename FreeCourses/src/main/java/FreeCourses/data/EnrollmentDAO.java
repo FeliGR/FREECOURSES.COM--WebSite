@@ -40,9 +40,8 @@ public class EnrollmentDAO {
 
     @SuppressWarnings("unchecked")
     public List<Enrollment> findAll() {
-        List<Enrollment> enrollmentsList = session.createQuery("from Enrollment").getResultList();
-        session.refresh(enrollmentsList);
-        return enrollmentsList;
+        return session.createQuery("from Enrollment").getResultList();
+        
     }
 
     public void deleteById(int id) {

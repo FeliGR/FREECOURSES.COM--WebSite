@@ -24,9 +24,7 @@ public class ProfessorDAO {
     
     @SuppressWarnings("unchecked")
     public List<Professor> findAll() {
-        List<Professor> professorssList = (List) session.createQuery("from Professor").getResultList();
-        session.refresh(professorssList);
-        return professorssList;
+        return session.createQuery("from Professor").getResultList();
     }
 
     public Professor save(Professor professor) {

@@ -39,9 +39,8 @@ public class AdministratorDAO {
 
     @SuppressWarnings("unchecked")
     public List<Administrator> findAll() {
-        List<Administrator> adminsList = (List) session.createQuery("from Administrator").getResultList();
-        session.refresh(adminsList);
-        return adminsList;
+        return session.createQuery("from Administrator").getResultList();
+        
     }
 
     public void deleteById(String id) {

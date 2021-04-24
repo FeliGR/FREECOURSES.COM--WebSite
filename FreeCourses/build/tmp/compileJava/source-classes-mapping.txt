@@ -40,6 +40,8 @@ FreeCourses/presentation/home/Model.java
  FreeCourses.presentation.home.Model
 FreeCourses/logic/Enrollment.java
  FreeCourses.logic.Enrollment
+FreeCourses/data/CourseDAO.java
+ FreeCourses.data.CourseDAO
 FreeCourses/data/ProfessorDAO.java
  FreeCourses.data.ProfessorDAO
 FreeCourses/data/StudentDAO.java
@@ -52,7 +54,5 @@ FreeCourses/data/SectionDAO.java
  FreeCourses.data.SectionDAO
 FreeCourses/data/EnrollmentDAO.java
  FreeCourses.data.EnrollmentDAO
-FreeCourses/data/CourseDAO.java
- FreeCourses.data.CourseDAO
 FreeCourses/logic/Service.java
  FreeCourses.logic.Service

@@ -41,9 +41,7 @@ public class UserDAO {
 
     @SuppressWarnings("unchecked")
     public List<User> findAll() {
-        List<User> usersList = (List) session.createQuery("from User").getResultList();
-        session.refresh(usersList);
-        return usersList;
+        return session.createQuery("from User").getResultList();
     }
 
     public void deleteById(String id) {
