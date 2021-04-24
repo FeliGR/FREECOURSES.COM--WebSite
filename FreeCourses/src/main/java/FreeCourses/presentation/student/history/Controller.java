@@ -31,6 +31,9 @@ public class Controller extends HttpServlet {
           case "/presentation/student/history/show":
               viewUrl = this.show(request);
               break;
+          case "/presentation/student/history/print":
+              //viewUrl = this.show(request);
+              break;
         }          
         request.getRequestDispatcher(viewUrl).forward( request, response); 
   }
@@ -88,5 +91,12 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
+//    public String print(HttpServletRequest request) {
+//   
+//    }
+//    
+//    public String printAction(HttpServletRequest request) {
+//
+// 
+//    }
 }
