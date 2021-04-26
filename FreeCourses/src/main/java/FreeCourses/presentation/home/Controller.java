@@ -6,6 +6,7 @@
 package FreeCourses.presentation.home;
 
 import java.io.IOException;
+import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author alonso
  */
-@WebServlet(name = "CoursesController", urlPatterns = {"/presentation/home/show", "/presentation/home/serch"})
+@WebServlet(name = "CoursesController", urlPatterns = {"/presentation/home/show", "/presentation/home/search"})
 public class Controller extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request,
@@ -31,8 +32,8 @@ public class Controller extends HttpServlet {
             case "/presentation/home/show":
                 viewUrl = this.show(request);
                 break;
-            case "/presentation/home/serch":
-                viewUrl = this.show(request);
+            case "/presentation/home/search":
+                viewUrl = this.search(request);
                 break;
         }
         request.getRequestDispatcher(viewUrl).forward(request, response);
@@ -52,17 +53,19 @@ public class Controller extends HttpServlet {
             return "/presentation/Error.jsp";
         }
     }
-    public String serch(HttpServletRequest request) {
-        return this.serchAction(request);
+    public String search(HttpServletRequest request) {
+        return this.searchAction(request);
     }
 
-    public String serchAction(HttpServletRequest request) {
-        String busqueda = request.getParameter("serchCourse");
+    public String searchAction(HttpServletRequest request) {
+        String searchTerm = request.getParameter("searchCourse").toUpperCase();
         
         Model model = (Model) request.getAttribute("model");
         FreeCourses.logic.Service domainService = FreeCourses.logic.Service.instance();
+        
         try {
-            model.setCourses(domainService.findAllCourses());
+            model.setCourses(domainService.findAllCourses().stream().filter(course ->
+                    course.getName().contains(searchTerm)).collect(Collectors.toList()));
             return "/presentation/Index.jsp";
         } catch (Exception ex) {
             return "/presentation/Error.jsp";

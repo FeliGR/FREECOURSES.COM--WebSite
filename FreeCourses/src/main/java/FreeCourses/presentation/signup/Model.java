@@ -13,8 +13,8 @@ import FreeCourses.logic.User;
  * @author felig
  */
 public class Model {
-    Student current;
-    User usuario;
+    private Student current;
+    private User usuario;
 
     public User getUser() {
         return usuario;

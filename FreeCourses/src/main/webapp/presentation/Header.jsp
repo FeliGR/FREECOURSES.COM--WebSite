@@ -17,7 +17,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/home/show">Home</a>
                         </li>
@@ -25,15 +25,44 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="/FreeCourses/presentation/login/show">Log in</a>
                         </li>
-                        
-                        <% if (user != null) {%>
+                    	<% if(user != null){%>
+                        <%if(user.getType()== 1){%>
+                        <li class="nav-item">                           
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/student/enrrollment">Sections</a>                            
+                        </li>
                         <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Log out</a>
+                        </li>
+                        <% } %>
+                        <%if(user.getType()== 2) {%>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Sections</a>
+                        </li>
+                        <li class="nav-item">                           
                             <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Log out</a>
                         </li>
                         <% } %>
-                    </ul>
+                        <%if(user.getType()== 3) {%>
+                        <li class="nav-item">                         
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Admin Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Admin Sections</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Admin Professors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Log out</a>
+                        </li>
+                        
+                        <% } %>
+                        
+                    <% } %>
+                   </ul>        
                 </div>
             </div>
         </nav>
     </div>
 </header>
+

@@ -40,10 +40,10 @@
                                 <span><i class="fa fa-phone"></i></span>
                                 <input type="tel" name="userPhone" placeholder="Phone" tabindex="10" required>
                             </div>
-                            <div class="form-input">
+                            <!--<div class="form-input">
                                 <span><i class="fa fa-key"></i></span>
                                 <input type="password" name="userPassword" placeholder="Password" required>
-                            </div>
+                            </div>-->
                             <div class="mb-3 text-center">
                                 <button type="submit" class="btn btn-block text-uppercase">
                                     Create account

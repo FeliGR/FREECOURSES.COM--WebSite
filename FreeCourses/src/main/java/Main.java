@@ -26,28 +26,34 @@ public class Main {
 
         Section section1 = new Section();
         Section section2 = new Section();
-        Course course = new Course();
+        Section section3 = new Section();
+//        Course course = new Course();
 //        
 //        course.setName("Coding Java II");
 //        course.setStatus(true);
 //        course.setThematic("Learn to an intermediate level of Java");
-//
+
 //        Course courseCreated = service.saveCourse(course);
-        Course courseCreated = service.findCourseById(course.getId());//quitar de aqui
+        Course courseCreated = service.findCourseById(6);//quitar de aqui
 
         section1.setCourse(courseCreated);
         section1.setSchedule("Mon: 15-19");
+        courseCreated = service.findCourseById(7);//quitar de aqui
 
-        Course courseDB = service.findCourseById(courseCreated.getId());
-        section2.setCourse(courseDB);
+        section3.setCourse(courseCreated);
+        section3.setSchedule("Wed: 15-19");
+
+        
+        section2.setCourse(courseCreated);
         section2.setSchedule("Thu: 18-22");
 
         service.saveSection(section1);
         service.saveSection(section2);
+        service.saveSection(section3);
 
-        System.out.println(courseDB.toString());
+        System.out.println(courseCreated.toString());
 
-        Course DBCourseTwo = service.findCourseById(courseDB.getId());
+        Course DBCourseTwo = service.findCourseById(courseCreated.getId());
         System.out.println("Course Two:" + DBCourseTwo.toString());
 
 //        Service service = Service.instance();

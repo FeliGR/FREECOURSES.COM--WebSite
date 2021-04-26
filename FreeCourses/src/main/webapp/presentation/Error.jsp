@@ -8,10 +8,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-        <title>JSP Page</title>
+    <head>
+        <%@ include file="/presentation/Head.jsp" %>
+        <%@ include file="/presentation/Header.jsp" %>
+        <title>ERROR | FREECOURSES.COM</title>  
     </head>
-    <body>
-        <h1>ERROR!</h1>
-    </body>
+</head>
+<body>
+    <div class="container">
+        <div class="row text-center text-white mb-1">
+            <div class="col-lg-7 mx-auto">
+                <h1 class="display-4">Error</h1>
+            </div>
+        </div>
+    </div>
+
+    <%@ include file="/presentation/Footer.jsp" %>
+</body>
 </html>

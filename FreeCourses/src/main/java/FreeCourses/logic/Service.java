@@ -79,6 +79,7 @@ public class Service {
     }
 
     public Course saveCourse(Course course) throws Exception {
+        course.setName(course.getName().toUpperCase());
         return courseDAO.save(course);
     }
 
@@ -194,7 +195,7 @@ public class Service {
         studentDAO.delete(student);
     }// </editor-fold>
 
-    // <editor-fold defaultstate="collapsed" desc="User C-R-U-D methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="User C-R-U-D and password generator methods. Click on the + sign on the left to edit the code.">
     public User findUserById(String id) {
         return userDAO.findById(id);
     }
@@ -217,6 +218,20 @@ public class Service {
 
     public void deleteUser(User user) throws Exception {
         userDAO.delete(user);
+    }
+
+    public static String passwordGenerator() {
+        String numbers = "0123456789";
+        String capitalLetter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        String combination = numbers + capitalLetter + lowerCase;
+        String password = "";
+
+        for (int i = 0; i < 4; i++) {
+            password += (combination.charAt((int) (Math.random() * combination.length())));
+        }
+        return password;
     }// </editor-fold>
+
 
 }

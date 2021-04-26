@@ -71,9 +71,7 @@ public class Controller extends HttpServlet {
         if (request.getParameter("userPhone").isEmpty()) {
             errores.put("userPhone", "Phone required");
         }
-        if (request.getParameter("userPassword").isEmpty()) {
-            errores.put("userPassword", "Password required");
-        }
+        
         return errores;
 
     }
@@ -99,10 +97,15 @@ public class Controller extends HttpServlet {
         Student student = new Student(request.getParameter("userId"), request.getParameter("userFullName"),
                 request.getParameter("userEmail"), request.getParameter("userPhone"));
 
+        user.setPassword(passwordGenerator());
+        request.setAttribute("password", user.getPassword());
+
         domainService.saveStudent(student);
         domainService.saveUser(user);
+        model.setCurrent(student);
+        model.setUser(user);
 
-        return "/presentation/home/show";
+        return "/presentation/login/Password.jsp";
     }
 
     public String show(HttpServletRequest request) {
@@ -118,6 +121,19 @@ public class Controller extends HttpServlet {
         model.getCurrent().setPhone("");
         model.getUser().setPassword("");
         return "/presentation/login/SignUp.jsp";
+    }
+
+    public static String passwordGenerator() {
+        String numbers = "0123456789";
+        String capitalLetter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        String combination = numbers + capitalLetter + lowerCase;
+        String password = "";
+
+        for (int i = 0; i < 4; i++) {
+            password += (combination.charAt((int) (Math.random() * combination.length())));
+        }
+        return password;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
