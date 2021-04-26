@@ -15,7 +15,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "students")
-public class Student implements Serializable {
+public class Student  implements Serializable {
     
     @Id
     @Column(name = "id", unique = true, columnDefinition = "varchar(64)")

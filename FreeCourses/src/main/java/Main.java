@@ -21,8 +21,7 @@ import org.hibernate.SessionFactory;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-
-        Service service = Service.instance();
+ Service service = Service.instance();
 
         Section section1 = new Section();
         Section section2 = new Section();
@@ -55,39 +54,5 @@ public class Main {
 
         Course DBCourseTwo = service.findCourseById(courseCreated.getId());
         System.out.println("Course Two:" + DBCourseTwo.toString());
-
-//        Service service = Service.instance();
-//
-//
-//        Section courseGroup = new Section();
-//        Course course = new Course();
-//        Section courseGroupCreated = null;
-//
-//        course.setName("Progra 3");
-//        course.setThematic("About Progra 3");
-//        course.setStatus(true);
-//
-//        CourseDAO courseDAO = new CourseDAO();
-//        courseDAO.save(course);
-//
-//        courseGroup.setCourse(course);
-//        courseGroup.setSchedule("Mon - Fri");
-//
-//        SectionDAO sectionDAO = new SectionDAO();
-//        courseGroupCreated = sectionDAO.save(courseGroup);
-//        
-//        
-//        Course DBCourse = service.findCourseById(courseCreated.getId());
-//        System.out.println("Course One:" + DBCourse.toString());
-//
-//        Section sectionTwo = new Section();
-//        sectionTwo.setCourse(courseCreated);
-//        sectionTwo.setSchedule("Thu - Sat");
-//        sectionCreated = service.saveSection(sectionTwo);
-//
-//        Course DBCourseTwo = service.findCourseById(courseCreated.getId());
-//        System.out.println("Course Two:" + DBCourseTwo.toString());
-//        Course course = service.findCourseById(1);
-//        System.out.print(course.toString());
     }
 }

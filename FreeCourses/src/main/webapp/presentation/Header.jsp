@@ -21,14 +21,15 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/home/show">Home</a>
                         </li>
-                        
+                        <% if(user == null){%>
                         <li class="nav-item">
                             <a class="nav-link active" href="/FreeCourses/presentation/login/show">Log in</a>
                         </li>
+                        <% } %>
                     	<% if(user != null){%>
                         <%if(user.getType()== 1){%>
                         <li class="nav-item">                           
-                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/student/enrrollment">Sections</a>                            
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/student/history/show">History</a>                            
                         </li>
                         <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Log out</a>

@@ -34,27 +34,26 @@
                     <!-- List group-->
                     <ul class="list-group shadow">
                         <% for (Enrollment enrollment : enrollments) {%>
-                            <li class="list-group-item">
-                                <!-- Custom content-->
-                                <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                                    <div class="media-body order-2 order-lg-1">
-                                        <h5 class="mt-0 font-weight-bold mb-2"> <%= enrollment.getSection().getCourse().getName()%> </h5>
-                                        <p class="font-italic text-muted mb-0 small">Group number: <%=enrollment.getSection().getId()%> </p>
-                                        <p class="font-italic text-muted mb-0 small"> <%=enrollment.getSection().getSchedule()%> </p>                                   
-                                        <p class="font-italic text-muted mb-0 small"> Final Grade: <%=enrollment.getGrade()%> </p>                                   
-                                        <div class="position-absolute top-50 end-0 translate-middle-y p-3">
-                                            <a href="/FreeCourses/presentation/home/show"> <button type="button" class="btn btn-success">Print to PDF</button></a>
-                                        </div>
-                                        <%--</div><img src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">--%>
-
-                                    </div> <!-- End -->
-                            </li> <!-- End --> 
+                        <li class="list-group-item">
+                            <!-- Custom content-->
+                            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                                <div class="media-body order-2 order-lg-1">
+                                    <h5 class="mt-0 font-weight-bold mb-2"> <%= enrollment.getSection().getCourse().getName()%> </h5>
+                                    <p class="font-italic text-muted mb-0 small">Group number: <%=enrollment.getSection().getId()%> </p>
+                                    <p class="font-italic text-muted mb-0 small"> <%=enrollment.getSection().getSchedule()%> </p>                                   
+                                    <p class="font-italic text-muted mb-0 small"> Final Grade: <%=enrollment.getGrade()%> </p>                                                  
+                                </div> <!-- End -->
+                        </li> <!-- End --> 
                         <% }%>
+                        
                     </ul> <!-- End -->
+
                 </div>
             </div>
-
-        </div>
-        <%@ include file="/presentation/Footer.jsp" %>
-    </body>
+        <div class="text-center py-4">
+            <a href="/FreeCourses/presentation/student/history/print"> <button type="button" class="btn btn-success">Print to PDF</button></a>
+        </div>  
+    </div>
+    <%@ include file="/presentation/Footer.jsp" %>
+</body>
 </html>
