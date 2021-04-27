@@ -37,7 +37,7 @@
                         <% } %>
                         <%if(user.getType()== 2) {%>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Sections</a>
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/professor/sections/show">Sections</a>
                         </li>
                         <li class="nav-item">                           
                             <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Log out</a>
