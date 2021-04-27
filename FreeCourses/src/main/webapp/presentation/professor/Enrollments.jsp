@@ -25,7 +25,7 @@
         <div class="container py-5">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
-                    <h1 class="display-4">Sections List</h1>
+                    <h1 class="display-4">Students List</h1>
                 </div>
             </div>
 
@@ -38,11 +38,13 @@
                             <!-- Custom content-->
                             <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                                 <div class="media-body order-2 order-lg-1">
-                                    <h5 class="mt-0 font-weight-bold mb-2"> <%= enrollment.getSection().getCourse().getName()%> </h5>
-                                    <p class="font-italic text-muted mb-0 small">Group number: <%=enrollment.getSection().getId()%> </p>
-                                    <p class="font-italic text-muted mb-0 small"> <%=enrollment.getSection().getSchedule()%> </p>                                   
+                                    <h5 class="mt-0 font-weight-bold mb-2"><%= enrollment.getStudent().getName()%> </h5>
+                                    <p class="font-italic text-muted mb-0 small">Id: <%=enrollment.getStudent().getId()%> </p>
+                                    <p class="font-italic text-muted mb-0 small">Email: <%=enrollment.getStudent().getEmail()%> </p>
+                                    <p class="font-italic text-muted mb-0 small">Phone: <%=enrollment.getStudent().getPhone()%> </p>
                                     <div>
-                                        <form action="FreeCourses/presentation/professor/sections/enrollments/update"" method="POST">
+                                        <form action="/FreeCourses/presentation/professor/sections/enrollments/update" method="POST">
+                                            
                                             <div class="input-group py-3">
                                                 <input type="text" name="finalGrade" value=<%=enrollment.getGrade()%> class="form-control" placeholder="Final grade">
                                                 <div class="input-group-append">
@@ -52,6 +54,7 @@
                                                 </div>
                                             </div>
                                         </form> 
+                                       
                                     </div>                                                  
                                 </div> <!-- End -->
                         </li> <!-- End --> 

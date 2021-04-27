@@ -42,7 +42,7 @@
                                     <p class="font-italic text-muted mb-0 small"> <%=section.getSchedule()%> </p>
                                     <p class="font-italic text-muted mb-0 small"> Group: <%=section.getId()%> </p>
                                     <div class="position-absolute top-50 end-0 translate-middle-y p-3">
-                                        <a href="FreeCourses/presentation/professor/sections/enrollments/show?sectionId=<%=section.getId()%>"><button type="button" class="btn btn-success">View Students</button></a>
+                                        <a href="/FreeCourses/presentation/professor/sections/enrollments/show?sectionId=<%=section.getId()%>"><button type="button" class="btn btn-success">View Students</button></a>
                                     </div>
                                 </div> <!-- End -->
                         </li> <!-- End --> 

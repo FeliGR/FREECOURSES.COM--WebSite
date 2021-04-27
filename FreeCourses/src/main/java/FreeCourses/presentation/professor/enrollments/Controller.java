@@ -30,12 +30,13 @@ public class Controller extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setAttribute("model", new FreeCourses.presentation.student.enrollment.Model());
+        request.setAttribute("model", new FreeCourses.presentation.professor.enrollments.Model());
 
         String viewUrl = "";
         switch (request.getServletPath()) {
             case "/presentation/professor/sections/enrollments/show":
-            //viewUrl = this.
+                viewUrl = this.show(request);
+                break;
             case "/presentation/professor/sections/enrollments/update":
                 viewUrl = this.updateGrade(request);
                 break;
@@ -54,7 +55,7 @@ public class Controller extends HttpServlet {
 
             Section section = (Section) domainService.findSectionById(Integer.parseInt(request.getParameter("sectionId")));
             model.setSection(section);
-            return "/presentation/student/history/View.jsp";
+            return "/presentation/professor/Enrollments.jsp";
         } catch (Exception ex) {
             return "/presentation/Error.jsp";
         }
