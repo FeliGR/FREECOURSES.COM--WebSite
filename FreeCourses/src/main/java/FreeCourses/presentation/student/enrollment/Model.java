@@ -53,7 +53,4 @@ public class Model {
     public String toString() {
         return "Model{" + "student=" + student + ", section=" + section + ", enrollment=" + enrollment + '}';
     }
-    
-    
-    
 }

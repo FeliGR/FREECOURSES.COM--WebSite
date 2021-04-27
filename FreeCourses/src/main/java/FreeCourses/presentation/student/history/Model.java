@@ -12,6 +12,7 @@ import FreeCourses.logic.Student;
  * @author joela
  */
 public class Model {
+
     private Student current;
 
     public Model(Student current) {
@@ -33,5 +34,4 @@ public class Model {
     public String toString() {
         return "Model{" + "current=" + current + '}';
     }
-    
 }

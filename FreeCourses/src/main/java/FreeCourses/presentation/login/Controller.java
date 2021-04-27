@@ -46,7 +46,7 @@ public class Controller extends HttpServlet {
     
     private String login(HttpServletRequest request) {
         try {
-            Map<String, String> errors = this.validar(request);
+            Map<String, String> errors = this.validate(request);
             if (errors.isEmpty()) {
                 this.updateModel(request);
                 return this.loginAction(request);
@@ -59,7 +59,7 @@ public class Controller extends HttpServlet {
         }
     }
     
-    Map<String, String> validar(HttpServletRequest request) {
+    Map<String, String> validate(HttpServletRequest request) {
         Map<String, String> errors = new HashMap<>();
         if (request.getParameter("userId").isEmpty()) {
             errors.put("userId", "Required Id");
@@ -95,7 +95,7 @@ public class Controller extends HttpServlet {
                         break;
                     case 2:
                         session.setAttribute("professor", domainService.findProfessorById(real.getId()));
-                        viewUrl = "/presentarion/home/show";//viewUrl="/presentarion/professor";
+                        viewUrl = "/presentation/home/show";//viewUrl="/presentarion/professor";
                         break;
                     case 3:
                         session.setAttribute("admin", domainService.findAdminById(real.getId()));

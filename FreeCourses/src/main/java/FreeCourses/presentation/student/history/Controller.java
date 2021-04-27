@@ -43,7 +43,7 @@ public class Controller extends HttpServlet {
                 viewUrl = this.show(request);
                 break;
             case "/presentation/student/history/print":
-                 viewUrl = this.print(request);
+                viewUrl = this.print(request);
                 break;
         }
         request.getRequestDispatcher(viewUrl).forward(request, response);
@@ -57,10 +57,8 @@ public class Controller extends HttpServlet {
         Model model = (Model) request.getAttribute("model");
         Service domainService = FreeCourses.logic.Service.instance();
         try {
-            
             Student student = (Student) request.getSession(true).getAttribute("student");
             model.setCurrent(domainService.findStudentById(student.getId()));
-            System.out.println(model.getCurrent().toString());
             return "/presentation/student/history/View.jsp";
         } catch (Exception ex) {
             return "/presentation/Error.jsp";
@@ -120,20 +118,20 @@ public class Controller extends HttpServlet {
         try {
             Student student = (Student) request.getSession(true).getAttribute("student");
             studentdb = domainService.findStudentById(student.getId());
-            history = studentdb.getEnrollmentsList();           
-            File file = new File("C:\\Users\\alonso\\Desktop\\"+"HISTORY"+studentdb.getId()+".pdf");
+            history = studentdb.getEnrollmentsList();
+            File file = new File("C:\\Users\\alonso\\Desktop\\" + "HISTORY" + studentdb.getId() + ".pdf");
             FileOutputStream out = new FileOutputStream(file);
-            PdfWriter writer = PdfWriter.getInstance(document,out);
+            PdfWriter writer = PdfWriter.getInstance(document, out);
             document.open();
-            document.add(new Paragraph("STUDENT HISTORY"+"\n"));
-            document.add(new Paragraph(date.toString()+"\n"));
-            document.add(new Paragraph("Student: "+studentdb.getName()+"\n"+"Id: "+studentdb.getId()+"\n"+"\n"));
+            document.add(new Paragraph("STUDENT HISTORY" + "\n"));
+            document.add(new Paragraph(date.toString() + "\n"));
+            document.add(new Paragraph("Student: " + studentdb.getName() + "\n" + "Id: " + studentdb.getId() + "\n" + "\n"));
             for (Enrollment enrollment : history) {
-   
-                document.add(new Paragraph("Course: "+enrollment.getSection().getCourse().getName()+"\n"+
-                        "Section number: "+enrollment.getSection().getId()+"\n"+
-                        "Schedule: "+enrollment.getSection().getSchedule()+"\n"+
-                        "Final Grade: "+enrollment.getGrade()+"\n"+"\n"));
+
+                document.add(new Paragraph("Course: " + enrollment.getSection().getCourse().getName() + "\n"
+                        + "Section number: " + enrollment.getSection().getId() + "\n"
+                        + "Schedule: " + enrollment.getSection().getSchedule() + "\n"
+                        + "Final Grade: " + enrollment.getGrade() + "\n" + "\n"));
             }
             System.out.println("Created successfully ");
             document.close();

@@ -5,6 +5,7 @@
  */
 package FreeCourses.presentation.signup;
 
+import FreeCourses.logic.Service;
 import FreeCourses.logic.Student;
 import FreeCourses.logic.User;
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class Controller extends HttpServlet {
 
     private String signup(HttpServletRequest request) {
         try {
-            Map<String, String> errores = this.validar(request);
+            Map<String, String> errores = this.validate(request);
             if (errores.isEmpty()) {
                 this.updateModel(request);
                 return this.signupAction(request);
@@ -56,7 +57,7 @@ public class Controller extends HttpServlet {
         }
     }
 
-    Map<String, String> validar(HttpServletRequest request) {
+    Map<String, String> validate(HttpServletRequest request) {
         Map<String, String> errores = new HashMap<>();
 
         if (request.getParameter("userId").isEmpty()) {
@@ -90,7 +91,7 @@ public class Controller extends HttpServlet {
 
     public String signupAction(HttpServletRequest request) throws Exception {
         Model model = (Model) request.getAttribute("model");
-        FreeCourses.logic.Service domainService = FreeCourses.logic.Service.instance();
+        Service domainService = Service.instance();
 
         User user = new User(request.getParameter("userId"), request.getParameter("userPassword"), 1);
 

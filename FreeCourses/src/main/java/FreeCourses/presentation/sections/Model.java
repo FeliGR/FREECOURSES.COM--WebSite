@@ -7,7 +7,6 @@ package FreeCourses.presentation.sections;
 
 import FreeCourses.logic.Course;
 import FreeCourses.logic.Section;
-import java.util.List;
 
 /**
  * 
@@ -15,30 +14,16 @@ import java.util.List;
  * @author felig
  */
 public class Model {
-//    List<Section> sectionsList;
     Course course;
     Section current;
 
     public Model() {
     }
 
-//    public Model(List<Section> sectionsList) {
-//        this.sectionsList = sectionsList;
-//    }
-
     public Model(Course course, Section current) {
-        //this.sectionsList = sectionsList;
         this.course = course;
         this.current = current;
     }
-
-//    public List<Section> getSectionsList() {
-//        return sectionsList;
-//    }
-//
-//    public void setSectionsList(List<Section> sectionsList) {
-//        this.sectionsList = sectionsList;
-//    }
 
     public Course getCourse() {
         return course;

@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FreeCourses.presentation.student.enrollment;
+package FreeCourses.presentation.professor.enrollments;
 
 import FreeCourses.logic.Enrollment;
+import FreeCourses.logic.Professor;
+import FreeCourses.logic.Section;
 import FreeCourses.logic.Service;
 import FreeCourses.logic.Student;
 import java.io.IOException;
@@ -19,9 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author joela
+ * @author felig
  */
-@WebServlet(name = "EnrollmentController", urlPatterns = {"/presentation/student/enrollment"})
+@WebServlet(name = "ProfessorController", urlPatterns = {"/presentation/professor/sections/enrollments/show", "/presentation/professor/sections/enrollments/update"})
 public class Controller extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request,
@@ -32,35 +34,58 @@ public class Controller extends HttpServlet {
 
         String viewUrl = "";
         switch (request.getServletPath()) {
-            case "/presentation/student/enrollment":
-                viewUrl = this.enroll(request);
+            case "/presentation/professor/sections/enrollments/show":
+            //viewUrl = this.
+            case "/presentation/professor/sections/enrollments/update":
+                viewUrl = this.updateGrade(request);
                 break;
         }
         request.getRequestDispatcher(viewUrl).forward(request, response);
     }
 
-    private String enroll(HttpServletRequest request) {
+    public String show(HttpServletRequest request) {
+        return this.showAction(request);
+    }
+
+    public String showAction(HttpServletRequest request) {
+        Model model = (Model) request.getAttribute("model");
+        Service domainService = FreeCourses.logic.Service.instance();
+        try {
+
+            Section section = (Section) domainService.findSectionById(Integer.parseInt(request.getParameter("sectionId")));
+            model.setSection(section);
+            return "/presentation/student/history/View.jsp";
+        } catch (Exception ex) {
+            return "/presentation/Error.jsp";
+        }
+    }
+
+    private String updateGrade(HttpServletRequest request) {
         try {
             Map<String, String> errores = this.validate(request);
             if (errores.isEmpty()) {
                 this.updateModel(request);
-                return this.enrollAction(request);
-            } else{
+                return this.updateGradeAction(request);
+            } else {
                 return "/presentation/home/show";
             }
         } catch (Exception e) {
-            System.err.println("error:"+e.getMessage());
             return "/presentation/Error.jsp";
         }
     }
+
     Map<String, String> validate(HttpServletRequest request) {
         Map<String, String> errores = new HashMap<>();
 
         if (request.getParameter("sectionId").isEmpty()) {
             errores.put("sectionId", "Section Required");
         }
-        if (request.getSession(true).getAttribute("student") == null) {
-            errores.put("student", "Student required");
+        if (request.getSession(true).getAttribute("professor") == null) {
+            errores.put("professor", "Professor required");
+        }
+        if (request.getParameter("finalGrade") == null || Integer.parseInt(request.getParameter("finalGrade")) < 0
+                || Integer.parseInt(request.getParameter("finalGrade")) > 100) {
+            errores.put("finalGrade", "Final Grade out of range");
         }
 
         return errores;
@@ -68,26 +93,32 @@ public class Controller extends HttpServlet {
 
     void updateModel(HttpServletRequest request) throws Exception {
         Model model = (Model) request.getAttribute("model");
-        
+
         Service domainService = Service.instance();
 
         model.setSection(domainService.findSectionById(Integer.parseInt(request.getParameter("sectionId"))));
-        
-        model.setStudent((Student)request.getSession(true).getAttribute("student"));
 
-        model.setEnrollment(new Enrollment(model.getSection(), model.getStudent()));
+        model.setProfessor((Professor) request.getSession(true).getAttribute("professor"));
+
+        if (request.getParameter("enrollmentId") != null) {
+            model.setEnrollment(domainService.findEnrollmentById(Integer.parseInt(request.getParameter("enrollmentId"))));
+            Enrollment enrollment = model.getEnrollment();
+            enrollment.setGrade(Float.parseFloat(request.getParameter("finalGrade")));
+            model.setEnrollment(enrollment);
+        }
     }
 
-    public String enrollAction(HttpServletRequest request) throws Exception {
+    public String updateGradeAction(HttpServletRequest request) throws Exception {
         Model model = (Model) request.getAttribute("model");
+
         Service domainService = Service.instance();
 
-        domainService.saveEnrollment(model.getEnrollment());
-        request.getSession(true).setAttribute("student", domainService.findStudentById(model.getStudent().getId()));
+        domainService.updateEnrollment(model.getEnrollment());
 
-        return "/presentation/student/history/show";
+        request.getSession(true).setAttribute("professor", domainService.findProfessorById(model.getProfessor().getId()));
+
+        return "/presentation/professor/sections/enrollments";
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

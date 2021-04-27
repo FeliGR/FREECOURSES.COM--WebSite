@@ -3,18 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package FreeCourses.presentation.sections;
+package FreeCourses.presentation.professor.sections;
 
-/**
- *
- * @author joela
- * @author felig
- */
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import FreeCourses.logic.Professor;
+import FreeCourses.logic.Service;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,21 +16,19 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author joela
  * @author felig
- * @author alonsoc
  */
-@WebServlet(name = "CourseSectionsController", urlPatterns = {"/presentation/sections/show"})
+@WebServlet(name = "ProfessorSectionsController", urlPatterns = {"/presentation/professor/sections/show"})
 public class Controller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, 
                                 HttpServletResponse response)
          throws ServletException, IOException {
 
-        request.setAttribute("model", new Model());
+        request.setAttribute("model", new FreeCourses.presentation.sections.Model());
         
         String viewUrl="";     
         switch (request.getServletPath()) {
-          case "/presentation/sections/show":
+          case "/presentation/professor/sections/show":
               viewUrl = this.show(request);
               break;
         }          
@@ -51,10 +41,11 @@ public class Controller extends HttpServlet {
     
     public String showAction(HttpServletRequest request) {
         Model model = (Model) request.getAttribute("model");
-        FreeCourses.logic.Service domainService = FreeCourses.logic.Service.instance();
+        Service domainService = FreeCourses.logic.Service.instance();
         try {
-            model.setCourse(domainService.findCourseById(Integer.parseInt(request.getParameter("courseId"))));
-            return "/presentation/section/View.jsp";
+            Professor professor = (Professor) request.getSession(true).getAttribute("professor");
+            model.setCurrent(domainService.findProfessorById(professor.getId()));
+            return "/presentation/professor/View.jsp";
         } catch (Exception ex) {
             return "/presentation/Error.jsp";
         }
