@@ -19,7 +19,9 @@ public class SectionDAO {
     private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Section findById(int id) {
+        session.clear();
         Section section = (Section)session.find(Section.class, id);
+        session.refresh(section); 
         session.refresh(section); 
         return section;
     }

@@ -16,6 +16,7 @@ public class AdministratorDAO {
     private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Administrator findById(String id) {
+        session.clear();
         Administrator admin = (Administrator )session.find(Administrator.class, id);
         session.refresh(admin); 
         return admin;

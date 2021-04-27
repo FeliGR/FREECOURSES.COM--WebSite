@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package FreeCourses.data;
+
 import FreeCourses.data.HibernateUtil;
 import FreeCourses.logic.User;
 import java.util.List;
@@ -18,8 +19,9 @@ public class UserDAO {
     private Session session = HibernateUtil.getSessionFactory().openSession();
 
     public User findById(String id) {
-        User user = (User)session.find(User.class, id);
-        session.refresh(user); 
+        session.clear();
+        User user = (User) session.find(User.class, id);
+        session.refresh(user);
         return user;
     }
 

@@ -43,11 +43,12 @@
                                     <p class="font-italic text-muted mb-0 small">Email: <%=enrollment.getStudent().getEmail()%> </p>
                                     <p class="font-italic text-muted mb-0 small">Phone: <%=enrollment.getStudent().getPhone()%> </p>
                                     <div>
-                                        <form action="/FreeCourses/presentation/professor/sections/enrollments/update" method="POST">
+                                        <form action="/FreeCourses/presentation/professor/sections/enrollments/update?sectionId=<%=enrollment.getSection().getId()%>" method="POST">
                                             
                                             <div class="input-group py-3">
                                                 <input type="text" name="finalGrade" value=<%=enrollment.getGrade()%> class="form-control" placeholder="Final grade">
                                                 <div class="input-group-append">
+                                                    <input type="hidden" name="enrollmentId" value="<%=enrollment.getId()%>"> 
                                                     <button class="btn btn-primary" type="submit" >
                                                         Update grade
                                                     </button>

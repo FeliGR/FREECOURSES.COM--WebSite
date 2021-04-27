@@ -84,8 +84,8 @@ public class Controller extends HttpServlet {
         if (request.getSession(true).getAttribute("professor") == null) {
             errores.put("professor", "Professor required");
         }
-        if (request.getParameter("finalGrade") == null || Integer.parseInt(request.getParameter("finalGrade")) < 0
-                || Integer.parseInt(request.getParameter("finalGrade")) > 100) {
+        if (request.getParameter("finalGrade") == null || Float.parseFloat(request.getParameter("finalGrade")) < 0.0
+                || Float.parseFloat(request.getParameter("finalGrade")) > 100.0) {
             errores.put("finalGrade", "Final Grade out of range");
         }
 
@@ -114,11 +114,12 @@ public class Controller extends HttpServlet {
 
         Service domainService = Service.instance();
 
-        domainService.updateEnrollment(model.getEnrollment());
+        model.setEnrollment(domainService.updateEnrollment(model.getEnrollment()));
 
         request.getSession(true).setAttribute("professor", domainService.findProfessorById(model.getProfessor().getId()));
-
-        return "/presentation/professor/sections/enrollments";
+        model.setSection(domainService.findSectionById(Integer.parseInt(request.getParameter("sectionId"))));
+        
+        return "/presentation/professor/sections/enrollments/show?sectionId=" + request.getParameter("sectionId");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

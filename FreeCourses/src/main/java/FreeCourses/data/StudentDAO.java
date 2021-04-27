@@ -19,6 +19,7 @@ public class StudentDAO {
      private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Student findById(String id) {
+        session.clear();
         Student student = (Student)session.find(Student.class, id);
         session.refresh(student); 
         return student;

@@ -17,6 +17,7 @@ public class ProfessorDAO {
     private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Professor findById(String id) {
+        session.clear();
         Professor professor = (Professor)session.find(Professor.class, id);
         session.refresh(professor); 
         return professor;

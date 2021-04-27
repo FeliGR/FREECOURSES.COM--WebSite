@@ -17,6 +17,7 @@ public class EnrollmentDAO {
     private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Enrollment findById(int id) {
+        session.clear();
         Enrollment enrollment = (Enrollment)session.find(Enrollment.class, id);
         session.refresh(enrollment); 
         return enrollment;

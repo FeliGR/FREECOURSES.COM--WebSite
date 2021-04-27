@@ -17,6 +17,7 @@ public class CourseDAO {
     private Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Course findById(int id) {
+        session.clear();
         Course course = (Course)session.find(Course.class, id);
         session.refresh(course); 
         return course;
