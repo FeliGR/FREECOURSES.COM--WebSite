@@ -42,6 +42,14 @@ public class Course implements Serializable {
         this.name = name;
         this.thematic = thematic;
         this.status = status;
+        this.sectionsList = new ArrayList<>();
+    }
+
+    public Course(String name, String thematic) {
+        this.name = name;
+        this.thematic = thematic;
+        this.status = false;
+        this.sectionsList = new ArrayList<>();
     }
 
     public int getId() {

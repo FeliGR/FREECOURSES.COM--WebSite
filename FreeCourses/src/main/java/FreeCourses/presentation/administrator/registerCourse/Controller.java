@@ -66,9 +66,9 @@ public class Controller extends HttpServlet {
         if (request.getParameter("courseThematic").isEmpty()) {
             errores.put("courseThematic", "Thematic required");
         }
-        if (request.getParameter("courseStatus").isEmpty()) {
-            errores.put("courseStatus", "Status required");
-        }
+//        if (request.getParameter("courseStatus").isEmpty()) {
+//            errores.put("courseStatus", "Status required");
+//        }
 
         return errores;
 
@@ -86,8 +86,10 @@ public class Controller extends HttpServlet {
         Model model = (Model) request.getAttribute("model");
         Service domainService = Service.instance();
 
-        Course course = new Course(request.getParameter("courseName"), request.getParameter("courseThematic"),
-                Boolean.parseBoolean(request.getParameter("courseStatus")));
+        Course course = new Course(request.getParameter("courseName"), request.getParameter("courseThematic"));
+        if(Boolean.parseBoolean(request.getParameter("courseStatus"))==true){
+            course.setStatus(true);
+        }
 
 
         domainService.saveCourse(course);

@@ -37,12 +37,6 @@
                                     On Sale
                                 </label>
                             </div>
-                            <div class="form-check text-start">
-                                <input class="form-check-input" name="courseStatus" type="checkbox" value="false" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    NOT On Sale
-                                </label>
-                            </div>
                             <div class="mb-3 text-center">
                                 <button type="submit" class="btn btn-block text-uppercase">
                                     Save
