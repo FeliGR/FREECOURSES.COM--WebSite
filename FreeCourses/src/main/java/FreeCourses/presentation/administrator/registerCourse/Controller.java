@@ -66,12 +66,11 @@ public class Controller extends HttpServlet {
         if (request.getParameter("courseThematic").isEmpty()) {
             errores.put("courseThematic", "Thematic required");
         }
-//        if (request.getParameter("courseStatus").isEmpty()) {
-//            errores.put("courseStatus", "Status required");
-//        }
+        if (request.getParameter("coursePrice").isEmpty()) {
+            errores.put("coursePrice", "Price required");
+        }
 
         return errores;
-
     }
 
     void updateModel(HttpServletRequest request) {
@@ -79,6 +78,7 @@ public class Controller extends HttpServlet {
 
         model.getCurrent().setName(request.getParameter("courseName"));
         model.getCurrent().setThematic(request.getParameter("courseThematic"));
+        model.getCurrent().setPrice(Float.parseFloat(request.getParameter("coursePrice")));
         model.getCurrent().setStatus(Boolean.parseBoolean(request.getParameter("courseStatus")));
     }
 
@@ -86,16 +86,12 @@ public class Controller extends HttpServlet {
         Model model = (Model) request.getAttribute("model");
         Service domainService = Service.instance();
 
-        Course course = new Course(request.getParameter("courseName"), request.getParameter("courseThematic"));
-        if(Boolean.parseBoolean(request.getParameter("courseStatus"))==true){
-            course.setStatus(true);
-        }
-
-
+        Course course = new Course(request.getParameter("courseName"), request.getParameter("courseThematic"), Float.parseFloat(request.getParameter("coursePrice")));
+        course.setStatus(Boolean.parseBoolean(request.getParameter("courseStatus")));
+       
         domainService.saveCourse(course);
-        
+
         model.setCurrent(course);
-        
 
         return "/presentation/administrator/courses/show";
     }
@@ -109,6 +105,7 @@ public class Controller extends HttpServlet {
 
         model.getCurrent().setName("");
         model.getCurrent().setThematic("");
+        model.getCurrent().setPrice(0);
         model.getCurrent().setStatus(false);
         return "/presentation/administrator/RegisterCourses.jsp";
     }

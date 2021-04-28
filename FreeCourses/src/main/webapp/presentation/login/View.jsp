@@ -24,7 +24,6 @@
             <div class="row px-3">
                 <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
                     <div class="img-left d-none d-md-flex"></div>
-
                     <div class="card-body">
                         <h4 class="title text-center mt-4">
                             Login into account
@@ -38,13 +37,11 @@
                                 <span><i class="fa fa-key"></i></span>
                                 <input class="<%=erroneo("userPsw", errors)%>" type="password" name="userPsw" placeholder="Password" value="<%=form.get("userPsw")[0]%>" title="<%=title("userPsw", errors)%>" tabindex="10" required>
                             </div>
-
                             <div class="mb-3 text-center">
                                 <button type="submit" class="btn btn-block text-uppercase">
                                     Login
                                 </button>
                             </div>
-
                             <div class="text-center mb-2">
                                 Don't have an account?
                                 <a href="/FreeCourses/presentation/signup/show" class="register-link">
@@ -58,7 +55,6 @@
         </div>
         <%@ include file="/presentation/Footer.jsp" %>
     </body>
-
 
 </html>
 <%!
@@ -84,6 +80,5 @@
         values.put("userPsw", new String[]{model.getCurrent().getPassword()});
         return values;
     }
-
 %>
 

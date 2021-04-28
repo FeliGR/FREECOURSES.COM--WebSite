@@ -21,14 +21,12 @@
         <title>Professor Section's Enrollments | FREECOURSES.COM</title>  
     </head>
     <body>
-
         <div class="container py-5">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
                     <h1 class="display-4">Students List</h1>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <!-- List group-->
@@ -44,7 +42,6 @@
                                     <p class="font-italic text-muted mb-0 small">Phone: <%=enrollment.getStudent().getPhone()%> </p>
                                     <div>
                                         <form action="/FreeCourses/presentation/professor/sections/enrollments/update?sectionId=<%=enrollment.getSection().getId()%>" method="POST">
-                                            
                                             <div class="input-group py-3">
                                                 <input type="text" name="finalGrade" value=<%=enrollment.getGrade()%> class="form-control" placeholder="Final grade">
                                                 <div class="input-group-append">
@@ -54,10 +51,10 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                        </form> 
-                                       
+                                        </form>
                                     </div>                                                  
-                                </div> <!-- End -->
+                                </div><!-- End --> 
+                            </div>                
                         </li> <!-- End --> 
                         <% }%>
                     </ul> <!-- End -->

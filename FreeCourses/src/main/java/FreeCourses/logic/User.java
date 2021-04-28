@@ -20,10 +20,10 @@ public class User implements Serializable {
     @Id
     @Column(name = "id", unique = true, columnDefinition = "varchar(64)")
     private String id;
-    
+
     @Column(name = "password")
     protected String password;
-    
+
     @Column(name = "type")
     private int type;
 
@@ -64,5 +64,4 @@ public class User implements Serializable {
     public String toString() {
         return "User{" + "id=" + id + ", type=" + type + '}';
     }
-
 }

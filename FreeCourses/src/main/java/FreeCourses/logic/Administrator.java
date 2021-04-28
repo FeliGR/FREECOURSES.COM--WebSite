@@ -49,6 +49,6 @@ public class Administrator implements Serializable {
 
     @Override
     public String toString() {
-        return "Administrator{" + "name=" + name + '}';
+        return "Administrator{" + "id=" + id + ", name=" + name + '}';
     }
 }

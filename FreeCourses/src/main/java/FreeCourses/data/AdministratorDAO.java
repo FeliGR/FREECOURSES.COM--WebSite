@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package FreeCourses.data;
+
 import java.util.List;
 import org.hibernate.Session;
 import FreeCourses.logic.Administrator;
@@ -17,8 +18,8 @@ public class AdministratorDAO {
 
     public Administrator findById(String id) {
         session.clear();
-        Administrator admin = (Administrator )session.find(Administrator.class, id);
-        session.refresh(admin); 
+        Administrator admin = (Administrator) session.find(Administrator.class, id);
+        session.refresh(admin);
         return admin;
     }
 
@@ -42,7 +43,7 @@ public class AdministratorDAO {
     public List<Administrator> findAll() {
         session.clear();
         return session.createQuery("from Administrator").getResultList();
-        
+
     }
 
     public void deleteById(String id) {

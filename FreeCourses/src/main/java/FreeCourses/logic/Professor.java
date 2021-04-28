@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+
 /**
  *
  * @author felig
@@ -16,23 +17,23 @@ import javax.persistence.*;
 @Entity
 @Table(name = "professors")
 public class Professor implements Serializable {
-    
+
     @Id
     @Column(name = "id", unique = true, columnDefinition = "varchar(64)")
     private String id;
-    
+
     @Column(name = "name")
     private String name;
-    
+
     @Column(name = "email")
     private String email;
-    
+
     @Column(name = "phone")
     private String phone;
-    
+
     @Column(name = "specialty")
     private String specialty;
-    
+
     @OneToMany(mappedBy = "professor")
     private List<Section> sectionsList;
 
@@ -40,7 +41,7 @@ public class Professor implements Serializable {
         this.sectionsList = new ArrayList<>();
     }
 
-    public Professor(String id, String name, String phone, String specialty,String email) {
+    public Professor(String id, String name, String phone, String specialty, String email) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -48,7 +49,7 @@ public class Professor implements Serializable {
         this.email = email;
         this.sectionsList = new ArrayList<>();
     }
-   
+
     public String getId() {
         return id;
     }

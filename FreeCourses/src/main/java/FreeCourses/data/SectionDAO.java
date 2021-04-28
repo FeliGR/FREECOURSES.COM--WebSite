@@ -5,7 +5,6 @@
  */
 package FreeCourses.data;
 
-import FreeCourses.data.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 import FreeCourses.logic.*;
@@ -20,9 +19,9 @@ public class SectionDAO {
 
     public Section findById(int id) {
         session.clear();
-        Section section = (Section)session.find(Section.class, id);
-        session.refresh(section); 
-        session.refresh(section); 
+        Section section = (Section) session.find(Section.class, id);
+        session.refresh(section);
+        session.refresh(section);
         return section;
     }
 
@@ -47,12 +46,12 @@ public class SectionDAO {
         session.refresh(section);
         return section;
     }
-    
-     public void deleteById(int id) {
+
+    public void deleteById(int id) {
         final Section section = findById(id);
         delete(section);
     }
-     
+
     public void delete(Section section) {
         session.beginTransaction();
         session.delete(section);

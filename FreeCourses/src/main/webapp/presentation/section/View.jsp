@@ -38,8 +38,9 @@
                             <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                                 <div class="media-body order-2 order-lg-1">
                                     <h5 class="mt-0 font-weight-bold mb-2"> <%=section.getCourse().getName()%> </h5>
-                                    <p class="font-italic text-muted mb-0 small"> <%=section.getSchedule()%> </p>
-                                    <p class="font-italic text-muted mb-0 small"> Group: <%=section.getId()%> </p>
+                                    <p class="font-italic text-muted mb-0 small">Professor: <%=section.getProfessor().getName()%> </p>
+                                    <p class="font-italic text-muted mb-0 small">Schedule: <%=section.getSchedule()%> </p>
+                                    <p class="font-italic text-muted mb-0 small">Group: <%=section.getId()%> </p>
                                     <div class="position-absolute top-50 end-0 translate-middle-y p-3">
                                         <a href="/FreeCourses/presentation/student/enrollment?sectionId=<%=section.getId()%>"><button type="button" class="btn btn-success">Enroll</button></a>
                                     </div>

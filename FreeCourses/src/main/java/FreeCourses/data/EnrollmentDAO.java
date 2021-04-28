@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package FreeCourses.data;
+
 import FreeCourses.logic.Enrollment;
 import java.util.List;
 import org.hibernate.Session;
@@ -18,8 +19,8 @@ public class EnrollmentDAO {
 
     public Enrollment findById(int id) {
         session.clear();
-        Enrollment enrollment = (Enrollment)session.find(Enrollment.class, id);
-        session.refresh(enrollment); 
+        Enrollment enrollment = (Enrollment) session.find(Enrollment.class, id);
+        session.refresh(enrollment);
         return enrollment;
     }
 
@@ -43,7 +44,7 @@ public class EnrollmentDAO {
     public List<Enrollment> findAll() {
         session.clear();
         return session.createQuery("from Enrollment").getResultList();
-        
+
     }
 
     public void deleteById(int id) {

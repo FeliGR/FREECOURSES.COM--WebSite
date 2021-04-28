@@ -17,7 +17,6 @@
             <div class="row px-3">
                 <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
                     <div class="img-left d-none d-md-flex"></div>
-
                     <div class="card-body">
                         <h4 class="title text-center mt-4">
                             Create Course
@@ -30,6 +29,13 @@
                             <div class="form-input">
                                 <span><i class="fa fa-bookmark" aria-hidden="true"></i></span>
                                 <input type="text" name="courseThematic" placeholder="Thematic" tabindex="10" required>
+                            </div>
+                            <div class="form-input">
+                                <span><i class="fa fa-money" aria-hidden="true"></i></span>
+                                <input type="text" name="coursePrice" placeholder="Price" tabindex="10" required>
+                            </div>
+                            <div class="custom-file text-start py-3">
+                                <input type="file" name="image" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
                             </div>
                             <div class="form-check text-start">
                                 <input class="form-check-input" name="courseStatus" type="checkbox" value="true" id="flexCheckDefault">

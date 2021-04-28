@@ -9,6 +9,7 @@ import FreeCourses.logic.Service;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author alonso
  */
 @WebServlet(name = "AdminCoursesController", urlPatterns = {"/presentation/administrator/courses/show", "/presentation/administrator/courses/search"})
+@MultipartConfig(location="C:/AAA/images")
 public class Controller extends HttpServlet {
  protected void processRequest(HttpServletRequest request,
             HttpServletResponse response)

@@ -17,7 +17,6 @@
             <div class="row px-3">
                 <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
                     <div class="img-left d-none d-md-flex"></div>
-
                     <div class="card-body">
                         <h4 class="title text-center mt-4">
                             Create Professor
@@ -47,7 +46,6 @@
                                 <span><i class="fa fa-phone"></i></span>
                                 <input type="tel" name="userPhone" placeholder="Phone" tabindex="10" required>
                             </div>
-
                             <div class="mb-3 text-center">
                                 <button type="submit" class="btn btn-block text-uppercase">
                                     Save

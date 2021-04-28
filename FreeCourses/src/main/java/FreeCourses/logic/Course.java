@@ -32,7 +32,10 @@ public class Course implements Serializable {
     @Column(name = "status")
     private boolean status;
 
-    @OneToMany(mappedBy = "course", orphanRemoval = true, cascade = CascadeType.PERSIST )
+    @Column(name = "price")
+    private float price;
+
+    @OneToMany(mappedBy = "course", orphanRemoval = true, cascade = CascadeType.PERSIST)
     private List<Section> sectionsList;
 
     public Course() {
@@ -45,10 +48,10 @@ public class Course implements Serializable {
         this.sectionsList = new ArrayList<>();
     }
 
-    public Course(String name, String thematic) {
+    public Course(String name, String thematic, float price) {
         this.name = name;
         this.thematic = thematic;
-        this.status = false;
+        this.price = price;
         this.sectionsList = new ArrayList<>();
     }
 
@@ -84,6 +87,14 @@ public class Course implements Serializable {
         this.status = status;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
     public List<Section> getSectionsList() {
         return sectionsList;
     }
@@ -94,6 +105,6 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return "Course{" + "id=" + id + ", name=" + name + ", thematic=" + thematic + ", status=" + status + ", sectionsList=" + sectionsList + '}';
+        return "Course{" + "id=" + id + ", name=" + name + ", thematic=" + thematic + ", status=" + status + ", price=" + price + ", sectionsList=" + sectionsList + '}';
     }
 }

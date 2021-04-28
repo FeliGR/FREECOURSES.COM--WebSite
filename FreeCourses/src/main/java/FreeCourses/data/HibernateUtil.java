@@ -44,7 +44,7 @@ public class HibernateUtil {
                 Properties settings = new Properties();
 
                 settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/free_courses?useSSL=false");
+                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/demo?useSSL=false");
                 settings.put(Environment.USER, "root");
                 settings.put(Environment.PASS, "root");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
@@ -58,7 +58,6 @@ public class HibernateUtil {
                 // create: creates the schema, destroying previous data.
                 // create-drop: drop the schema when the SessionFactory is closed explicitly, typically when the application is stopped.
                 // none: does nothing with the schema, makes no changes to the database
-                
                 configuration.addAnnotatedClass(Administrator.class);
                 configuration.addAnnotatedClass(Course.class);
                 configuration.addAnnotatedClass(Enrollment.class);
@@ -67,7 +66,7 @@ public class HibernateUtil {
                 configuration.addAnnotatedClass(Student.class);
                 configuration.addAnnotatedClass(User.class);
                 configuration.setProperties(settings);
-                
+
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
 

@@ -25,14 +25,14 @@ public class Section implements Serializable {
 
     @Column(name = "schedule")
     private String schedule;
-    
+
     @OneToMany(mappedBy = "section")
     private List<Enrollment> enrollmentsList;
-    
+
     @ManyToOne()
     @JoinColumn(name = "id_course", nullable = false)
     private Course course;
-    
+
     @ManyToOne
     @JoinColumn(name = "id_professor", nullable = true)
     private Professor professor;
@@ -52,7 +52,7 @@ public class Section implements Serializable {
         this.professor = professor;
         this.enrollmentsList = new ArrayList<>();
     }
-    
+
     public int getId() {
         return id;
     }
@@ -95,6 +95,6 @@ public class Section implements Serializable {
 
     @Override
     public String toString() {
-        return "Group{" + "id=" + id + ", schedule=" + schedule + ", enrollmentsList=" + enrollmentsList + '}';
+        return "Section{" + "id=" + id + ", schedule=" + schedule + ", enrollmentsList=" + enrollmentsList + ", course=" + course + ", professor=" + professor + '}';
     }
 }

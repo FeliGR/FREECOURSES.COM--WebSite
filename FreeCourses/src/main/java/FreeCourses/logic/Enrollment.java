@@ -88,6 +88,6 @@ public class Enrollment implements Serializable {
 
     @Override
     public String toString() {
-        return "Enrollment{" + "id=" + id + ", grade=" + grade + '}';
+        return "Enrollment{" + "id=" + id + ", grade=" + grade + ", section=" + section + ", student=" + student + '}';
     }
 }

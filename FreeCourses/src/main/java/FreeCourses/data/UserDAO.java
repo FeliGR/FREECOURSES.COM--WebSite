@@ -5,7 +5,6 @@
  */
 package FreeCourses.data;
 
-import FreeCourses.data.HibernateUtil;
 import FreeCourses.logic.User;
 import java.util.List;
 import org.hibernate.Session;

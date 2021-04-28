@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package FreeCourses.data;
+
 import FreeCourses.logic.Professor;
 import java.util.List;
 import org.hibernate.Session;
@@ -18,11 +19,11 @@ public class ProfessorDAO {
 
     public Professor findById(String id) {
         session.clear();
-        Professor professor = (Professor)session.find(Professor.class, id);
-        session.refresh(professor); 
+        Professor professor = (Professor) session.find(Professor.class, id);
+        session.refresh(professor);
         return professor;
     }
-    
+
     @SuppressWarnings("unchecked")
     public List<Professor> findAll() {
         session.clear();

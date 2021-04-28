@@ -13,7 +13,6 @@
         <title>Password | FREECOURSES.COM</title>  
     </head>
     <body>
-        
         <div class="container">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
@@ -21,7 +20,6 @@
                 </div>
             </div>
         </div>
-
         <%@ include file="/presentation/Footer.jsp" %>
     </body>
 </html>

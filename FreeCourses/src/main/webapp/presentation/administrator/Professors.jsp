@@ -16,17 +16,15 @@
     <head>
         <%@ include file="/presentation/Head.jsp" %>
         <%@ include file="/presentation/Header.jsp" %>
-        <title>Professor list | FREECOURSES.COM</title>  
+        <title>Admin Professors | FREECOURSES.COM</title>  
     </head>
     <body>
-
         <div class="container py-5">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
                     <h1 class="display-4">Professor List</h1>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <form action="/FreeCourses/presentation/administrator/professors/search" method="POST">

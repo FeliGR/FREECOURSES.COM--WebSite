@@ -12,7 +12,6 @@
     Model model = (Model) request.getAttribute("model");
     List<Enrollment> enrollments = model.getCurrent().getEnrollmentsList();
 %>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,14 +20,12 @@
         <title>Sections | FREECOURSES.COM</title>  
     </head>
     <body>
-
         <div class="container py-5">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
                     <h1 class="display-4">History</h1>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <!-- List group-->
@@ -45,15 +42,13 @@
                                 </div> <!-- End -->
                         </li> <!-- End --> 
                         <% }%>
-                        
                     </ul> <!-- End -->
-
                 </div>
             </div>
-        <div class="text-center py-4">
-            <a href="/FreeCourses/presentation/student/history/print"> <button type="button" class="btn btn-success">Print to PDF</button></a>
-        </div>  
-    </div>
-    <%@ include file="/presentation/Footer.jsp" %>
-</body>
+            <div class="text-center py-4">
+                <a href="/FreeCourses/presentation/student/history/print"> <button type="button" class="btn btn-success">Print to PDF</button></a>
+            </div>  
+        </div>
+        <%@ include file="/presentation/Footer.jsp" %>
+    </body>
 </html>

@@ -21,14 +21,12 @@
         <title>Professor Sections | FREECOURSES.COM</title>  
     </head>
     <body>
-
         <div class="container py-5">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
                     <h1 class="display-4">Sections List</h1>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <!-- List group-->
@@ -50,7 +48,6 @@
                     </ul> <!-- End -->
                 </div>
             </div>
-
         </div>
         <%@ include file="/presentation/Footer.jsp" %>
     </body>

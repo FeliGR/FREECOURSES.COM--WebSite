@@ -8,7 +8,6 @@ package FreeCourses.data;
 import java.util.List;
 import org.hibernate.Session;
 import FreeCourses.logic.*;
-import com.google.common.base.Preconditions;
 
 /**
  *
@@ -16,19 +15,19 @@ import com.google.common.base.Preconditions;
  */
 public class StudentDAO {
 
-     private final Session session = HibernateUtil.getSessionFactory().openSession();
+    private final Session session = HibernateUtil.getSessionFactory().openSession();
 
     public Student findById(String id) {
         session.clear();
-        Student student = (Student)session.find(Student.class, id);
-        session.refresh(student); 
+        Student student = (Student) session.find(Student.class, id);
+        session.refresh(student);
         return student;
     }
 
     @SuppressWarnings("unchecked")
     public List<Student> findAll() {
         session.clear();
-       return session.createQuery("from Student").getResultList();
+        return session.createQuery("from Student").getResultList();
     }
 
     public Student save(Student student) {
@@ -46,12 +45,12 @@ public class StudentDAO {
         session.refresh(student);
         return student;
     }
-    
-     public void deleteById(String id) {
+
+    public void deleteById(String id) {
         final Student student = findById(id);
         delete(student);
     }
-     
+
     public void delete(Student student) {
         session.beginTransaction();
         session.delete(student);
