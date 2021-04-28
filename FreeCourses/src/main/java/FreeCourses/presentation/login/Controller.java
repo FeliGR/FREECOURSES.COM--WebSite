@@ -121,6 +121,9 @@ public class Controller extends HttpServlet {
     public String logoutAction(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         session.removeAttribute("user");
+        session.removeAttribute("student");
+        session.removeAttribute("professor");
+        session.removeAttribute("administrator");
         session.invalidate();
         return "/presentation/home/show";
     }

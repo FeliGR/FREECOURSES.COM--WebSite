@@ -40,9 +40,9 @@
                         </div>
                     </form>    
                     <!-- List group-->
-                    <ul class="list-group shadow">
+                    <ul class="list-group administrator shadow">
                         <% for (Course course : courses) {%>
-                        <% if (course.isStatus() || (request != null && request.getParameter("searchCourse") != null && !request.getParameter("searchCourse").isEmpty())) {%>
+                        
                         <li class="list-group-item">
                             <!-- Custom content-->
                             <div class="media align-items-lg-center flex-column flex-lg-row p-3">
@@ -56,14 +56,13 @@
                                     <% } %>
 
                                     <div class="position-absolute top-50 end-0 translate-middle-y p-3">
-                                        <a href="/FreeCourses/presentation/administrator/sections/show"><button type="button" class="btn btn-primary">View Sections</button></a>
+                                        <a href="/FreeCourses/presentation/administrator/sections/show?courseId=<%=course.getId()%>"><button type="button" class="btn btn-primary">Administrate Sections</button></a>
                                     </div>
                                     <%--</div><img src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">--%>
 
                                 </div> <!-- End -->
                         </li> <!-- End -->
                         <% } %> 
-                        <% }%>
                     </ul> <!-- End -->
                 </div>
             </div>

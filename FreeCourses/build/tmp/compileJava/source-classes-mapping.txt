@@ -1,66 +1,86 @@
 FreeCourses/logic/Professor.java
  FreeCourses.logic.Professor
-FreeCourses/presentation/signup/Model.java
- FreeCourses.presentation.signup.Model
+FreeCourses/presentation/administrator/sections/Controller.java
+ FreeCourses.presentation.administrator.sections.Controller
 FreeCourses/logic/Course.java
  FreeCourses.logic.Course
 FreeCourses/presentation/login/Model.java
  FreeCourses.presentation.login.Model
-FreeCourses/presentation/login/Controller.java
- FreeCourses.presentation.login.Controller
+FreeCourses/presentation/administrator/registerCourse/Controller.java
+ FreeCourses.presentation.administrator.registerCourse.Controller
 FreeCourses/presentation/professor/enrollments/Model.java
  FreeCourses.presentation.professor.enrollments.Model
 FreeCourses/presentation/student/history/Model.java
  FreeCourses.presentation.student.history.Model
-FreeCourses/presentation/sections/Model.java
- FreeCourses.presentation.sections.Model
+FreeCourses/data/EnrollmentDAO.java
+ FreeCourses.data.EnrollmentDAO
+FreeCourses/presentation/administrator/registerProfessor/Model.java
+ FreeCourses.presentation.administrator.registerProfessor.Model
 FreeCourses/presentation/home/Controller.java
  FreeCourses.presentation.home.Controller
 FreeCourses/logic/Section.java
  FreeCourses.logic.Section
-FreeCourses/presentation/sections/Controller.java
- FreeCourses.presentation.sections.Controller
+FreeCourses/logic/Service.java
+ FreeCourses.logic.Service
 FreeCourses/presentation/student/history/Controller.java
  FreeCourses.presentation.student.history.Controller
-FreeCourses/presentation/signup/Controller.java
- FreeCourses.presentation.signup.Controller
-FreeCourses/data/SectionDAO.java
- FreeCourses.data.SectionDAO
+FreeCourses/data/AdministratorDAO.java
+ FreeCourses.data.AdministratorDAO
+FreeCourses/data/StudentDAO.java
+ FreeCourses.data.StudentDAO
 Main.java
  Main
+FreeCourses/presentation/administrator/courses/Model.java
+ FreeCourses.presentation.administrator.courses.Model
 FreeCourses/presentation/student/enrollment/Controller.java
  FreeCourses.presentation.student.enrollment.Controller
 FreeCourses/logic/Administrator.java
  FreeCourses.logic.Administrator
-FreeCourses/presentation/home/Model.java
- FreeCourses.presentation.home.Model
+FreeCourses/data/CourseDAO.java
+ FreeCourses.data.CourseDAO
+FreeCourses/presentation/administrator/registerProfessor/Controller.java
+ FreeCourses.presentation.administrator.registerProfessor.Controller
+FreeCourses/presentation/administrator/sections/Model.java
+ FreeCourses.presentation.administrator.sections.Model
 FreeCourses/logic/User.java
  FreeCourses.logic.User
+FreeCourses/presentation/administrator/courses/Controller.java
+ FreeCourses.presentation.administrator.courses.Controller
 FreeCourses/presentation/professor/sections/Model.java
  FreeCourses.presentation.professor.sections.Model
+FreeCourses/presentation/home/Model.java
+ FreeCourses.presentation.home.Model
 FreeCourses/presentation/student/enrollment/Model.java
  FreeCourses.presentation.student.enrollment.Model
-FreeCourses/presentation/professor/sections/Controller.java
- FreeCourses.presentation.professor.sections.Controller
+FreeCourses/data/UserDAO.java
+ FreeCourses.data.UserDAO
+FreeCourses/presentation/administrator/professors/Controller.java
+ FreeCourses.presentation.administrator.professors.Controller
 FreeCourses/logic/Enrollment.java
  FreeCourses.logic.Enrollment
 FreeCourses/logic/Student.java
  FreeCourses.logic.Student
 FreeCourses/data/HibernateUtil.java
  FreeCourses.data.HibernateUtil
+FreeCourses/data/SectionDAO.java
+ FreeCourses.data.SectionDAO
+FreeCourses/presentation/sections/Controller.java
+ FreeCourses.presentation.sections.Controller
+FreeCourses/presentation/administrator/professors/Model.java
+ FreeCourses.presentation.administrator.professors.Model
+FreeCourses/presentation/sections/Model.java
+ FreeCourses.presentation.sections.Model
 FreeCourses/presentation/professor/enrollments/Controller.java
  FreeCourses.presentation.professor.enrollments.Controller
 FreeCourses/data/ProfessorDAO.java
  FreeCourses.data.ProfessorDAO
-FreeCourses/data/StudentDAO.java
- FreeCourses.data.StudentDAO
-FreeCourses/data/UserDAO.java
- FreeCourses.data.UserDAO
-FreeCourses/data/AdministratorDAO.java
- FreeCourses.data.AdministratorDAO
-FreeCourses/data/CourseDAO.java
- FreeCourses.data.CourseDAO
-FreeCourses/data/EnrollmentDAO.java
- FreeCourses.data.EnrollmentDAO
-FreeCourses/logic/Service.java
- FreeCourses.logic.Service
+FreeCourses/presentation/professor/sections/Controller.java
+ FreeCourses.presentation.professor.sections.Controller
+FreeCourses/presentation/signup/Model.java
+ FreeCourses.presentation.signup.Model
+FreeCourses/presentation/signup/Controller.java
+ FreeCourses.presentation.signup.Controller
+FreeCourses/presentation/administrator/registerCourse/Model.java
+ FreeCourses.presentation.administrator.registerCourse.Model
+FreeCourses/presentation/login/Controller.java
+ FreeCourses.presentation.login.Controller

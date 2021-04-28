@@ -9,8 +9,9 @@ import FreeCourses.logic.Student;
 import FreeCourses.logic.User;
 
 /**
- *
+ * @author alonso
  * @author felig
+ * @author joela
  */
 public class Model {
     private Student current;
