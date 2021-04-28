@@ -99,7 +99,7 @@ public class Controller extends HttpServlet {
                         break;
                     case 3:
                         session.setAttribute("admin", domainService.findAdminById(real.getId()));
-                        viewUrl = "/presentarion/home/show";//viewUrl="/presentarion/admin";
+                        viewUrl = "/presentation/home/show";//viewUrl="/presentarion/admin";
                 }
                 return viewUrl;
             } else {

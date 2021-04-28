@@ -25,6 +25,7 @@ public class ProfessorDAO {
     
     @SuppressWarnings("unchecked")
     public List<Professor> findAll() {
+        session.clear();
         return session.createQuery("from Professor").getResultList();
     }
 

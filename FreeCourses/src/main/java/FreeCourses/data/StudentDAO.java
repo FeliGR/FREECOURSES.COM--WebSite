@@ -27,6 +27,7 @@ public class StudentDAO {
 
     @SuppressWarnings("unchecked")
     public List<Student> findAll() {
+        session.clear();
        return session.createQuery("from Student").getResultList();
     }
 

@@ -41,6 +41,7 @@ public class EnrollmentDAO {
 
     @SuppressWarnings("unchecked")
     public List<Enrollment> findAll() {
+        session.clear();
         return session.createQuery("from Enrollment").getResultList();
         
     }

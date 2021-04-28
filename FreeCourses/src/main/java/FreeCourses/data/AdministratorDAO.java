@@ -40,6 +40,7 @@ public class AdministratorDAO {
 
     @SuppressWarnings("unchecked")
     public List<Administrator> findAll() {
+        session.clear();
         return session.createQuery("from Administrator").getResultList();
         
     }

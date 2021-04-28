@@ -45,13 +45,10 @@
                         <% } %>
                         <%if(user.getType()== 3) {%>
                         <li class="nav-item">                         
-                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Admin Courses</a>
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/administrator/courses/show">Admin Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Admin Sections</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Admin Professors</a>
+                            <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/administrator/professors/show">Admin Professors</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/FreeCourses/presentation/login/logout">Log out</a>

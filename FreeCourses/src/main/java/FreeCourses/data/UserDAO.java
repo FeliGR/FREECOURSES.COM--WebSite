@@ -43,6 +43,7 @@ public class UserDAO {
 
     @SuppressWarnings("unchecked")
     public List<User> findAll() {
+        session.clear();
         return session.createQuery("from User").getResultList();
     }
 

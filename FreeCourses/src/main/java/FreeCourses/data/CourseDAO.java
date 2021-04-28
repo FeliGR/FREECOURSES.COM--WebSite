@@ -41,6 +41,7 @@ public class CourseDAO {
 
     @SuppressWarnings("unchecked")
     public List<Course> findAll() {
+        session.clear();
         return session.createQuery("from Course").getResultList();
         
     }

@@ -40,11 +40,12 @@ public class Professor implements Serializable {
         this.sectionsList = new ArrayList<>();
     }
 
-    public Professor(String id, String name, String phone, String specialty) {
+    public Professor(String id, String name, String phone, String specialty,String email) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.specialty = specialty;
+        this.email = email;
         this.sectionsList = new ArrayList<>();
     }
    
