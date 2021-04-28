@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="text-center py-4">
-                <a href="/FreeCourses/presentation/home/show"><button type="button" class="btn btn-success">Add Section</button></a>
+                <a href="/FreeCourses/presentation/administrator/registerSection/show?courseId=<%=model.getCourse().getId()%>"><button type="button" class="btn btn-success">Add Section</button></a>
             </div>
         </div>
         <%@ include file="/presentation/Footer.jsp" %>

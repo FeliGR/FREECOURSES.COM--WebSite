@@ -6,8 +6,8 @@ FreeCourses/logic/Course.java
  FreeCourses.logic.Course
 FreeCourses/presentation/login/Model.java
  FreeCourses.presentation.login.Model
-FreeCourses/presentation/administrator/registerCourse/Controller.java
- FreeCourses.presentation.administrator.registerCourse.Controller
+FreeCourses/presentation/login/Controller.java
+ FreeCourses.presentation.login.Controller
 FreeCourses/presentation/professor/enrollments/Model.java
  FreeCourses.presentation.professor.enrollments.Model
 FreeCourses/presentation/student/history/Model.java
@@ -80,7 +80,11 @@ FreeCourses/presentation/signup/Model.java
  FreeCourses.presentation.signup.Model
 FreeCourses/presentation/signup/Controller.java
  FreeCourses.presentation.signup.Controller
+FreeCourses/presentation/administrator/registerSection/Model.java
+ FreeCourses.presentation.administrator.registerSection.Model
 FreeCourses/presentation/administrator/registerCourse/Model.java
  FreeCourses.presentation.administrator.registerCourse.Model
-FreeCourses/presentation/login/Controller.java
- FreeCourses.presentation.login.Controller
+FreeCourses/presentation/administrator/registerCourse/Controller.java
+ FreeCourses.presentation.administrator.registerCourse.Controller
+FreeCourses/presentation/administrator/registerSection/Controller.java
+ FreeCourses.presentation.administrator.registerSection.Controller

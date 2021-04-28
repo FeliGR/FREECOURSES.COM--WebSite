@@ -23,26 +23,15 @@
                         <h4 class="title text-center mt-4">
                             Create Course
                         </h4>
-                        <form class="form-box px-3" action="/FreeCourses/presentation/administrator/registerCourse/register" method="post">
+                        <form class="form-box px-3" action="/FreeCourses/presentation/administrator/registerSection/register?courseId=<%= request.getParameter("courseId")%>" method="post">
                             <div class="form-input">
-                                <span><i class="fa fa-book" aria-hidden="true"></i></span>
-                                <input type="text" name="courseName" placeholder="Name" tabindex="10" required>
+                                <span><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                <input type="text" name="sectionSchedule" placeholder="Schedule" tabindex="10" required>
                             </div>
+                            
                             <div class="form-input">
-                                <span><i class="fa fa-bookmark" aria-hidden="true"></i></span>
-                                <input type="text" name="courseThematic" placeholder="Thematic" tabindex="10" required>
-                            </div>
-                            <div class="form-check text-start">
-                                <input class="form-check-input" name="courseStatus" type="checkbox" value="true" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    On Sale
-                                </label>
-                            </div>
-                            <div class="form-check text-start">
-                                <input class="form-check-input" name="courseStatus" type="checkbox" value="false" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    NOT On Sale
-                                </label>
+                                <span><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                                <input type="text" name="sectionProfessorId" placeholder="Professor id" tabindex="10" required>
                             </div>
                             <div class="mb-3 text-center">
                                 <button type="submit" class="btn btn-block text-uppercase">

@@ -6,8 +6,6 @@
 package FreeCourses.presentation.administrator.registerCourse;
 
 import FreeCourses.logic.Course;
-import FreeCourses.logic.Student;
-import FreeCourses.logic.User;
 
 /**
  * @author alonso
