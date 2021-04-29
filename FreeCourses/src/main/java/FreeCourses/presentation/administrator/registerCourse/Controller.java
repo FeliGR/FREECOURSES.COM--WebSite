@@ -11,10 +11,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  * @author alonso
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author joela
  */
 @WebServlet(name = "RegisterCourseController", urlPatterns = {"/presentation/administrator/registerCourse/show", "/presentation/administrator/registerCourse/register"})
+@MultipartConfig(location="C:/freeCoursesImages")
 public class Controller extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request,
@@ -43,6 +46,7 @@ public class Controller extends HttpServlet {
     }
 
     private String register(HttpServletRequest request) {
+         
         try {
             Map<String, String> errores = this.validate(request);
             if (errores.isEmpty()) {
@@ -83,13 +87,15 @@ public class Controller extends HttpServlet {
     }
 
     public String registerAction(HttpServletRequest request) throws Exception {
+        Part image;
+        image = request.getPart("image");
         Model model = (Model) request.getAttribute("model");
         Service domainService = Service.instance();
 
         Course course = new Course(request.getParameter("courseName"), request.getParameter("courseThematic"), Float.parseFloat(request.getParameter("coursePrice")));
         course.setStatus(Boolean.parseBoolean(request.getParameter("courseStatus")));
-       
-        domainService.saveCourse(course);
+        
+        image.write(Integer.toString(domainService.saveCourse(course).getId()));
 
         model.setCurrent(course);
 

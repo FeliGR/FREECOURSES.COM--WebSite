@@ -6,19 +6,23 @@
 package FreeCourses.presentation.home;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author alonso
  */
-@WebServlet(name = "CoursesController", urlPatterns = {"/presentation/home/show", "/presentation/home/search"})
+@WebServlet(name = "CoursesController", urlPatterns = {"/presentation/home/show", "/presentation/home/search", "/presentation/home/image"})
+
 public class Controller extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request,
@@ -35,6 +39,8 @@ public class Controller extends HttpServlet {
             case "/presentation/home/search":
                 viewUrl = this.search(request);
                 break;
+            case "/presentation/home/image":
+                viewUrl = this.image(request,response);
         }
         request.getRequestDispatcher(viewUrl).forward(request, response);
     }
@@ -71,6 +77,17 @@ public class Controller extends HttpServlet {
             return "/presentation/Error.jsp";
         }
     }
+    private String image(HttpServletRequest request,  HttpServletResponse response) {     
+        String imageId = request.getParameter("imageId");
+        Path path = FileSystems.getDefault().getPath("C:/freeCoursesImages", imageId);
+        try (OutputStream out = response.getOutputStream()) {
+            Files.copy(path, out);
+            out.flush();
+        } catch (Exception ex) {
+            return "/presentation/Error.jsp";
+        }
+        return null;
+    }  
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

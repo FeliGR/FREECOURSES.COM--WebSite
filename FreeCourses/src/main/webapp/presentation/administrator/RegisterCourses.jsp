@@ -21,7 +21,7 @@
                         <h4 class="title text-center mt-4">
                             Create Course
                         </h4>
-                        <form class="form-box px-3" action="/FreeCourses/presentation/administrator/registerCourse/register" method="post">
+                        <form class="form-box px-3" action="/FreeCourses/presentation/administrator/registerCourse/register" enctype="multipart/form-data" method="post">
                             <div class="form-input">
                                 <span><i class="fa fa-book" aria-hidden="true"></i></span>
                                 <input type="text" name="courseName" placeholder="Name" tabindex="10" required>
