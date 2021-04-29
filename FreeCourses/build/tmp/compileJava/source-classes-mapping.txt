@@ -20,8 +20,8 @@ FreeCourses/presentation/administrator/professors/Model.java
  FreeCourses.presentation.administrator.professors.Model
 FreeCourses/presentation/administrator/registerProfessor/Model.java
  FreeCourses.presentation.administrator.registerProfessor.Model
-FreeCourses/presentation/sections/Controller.java
- FreeCourses.presentation.sections.Controller
+FreeCourses/presentation/home/Controller.java
+ FreeCourses.presentation.home.Controller
 FreeCourses/logic/Section.java
  FreeCourses.logic.Section
 FreeCourses/logic/Service.java
@@ -68,8 +68,8 @@ FreeCourses/presentation/home/Model.java
  FreeCourses.presentation.home.Model
 FreeCourses/presentation/professor/enrollments/Controller.java
  FreeCourses.presentation.professor.enrollments.Controller
-FreeCourses/presentation/home/Controller.java
- FreeCourses.presentation.home.Controller
+FreeCourses/presentation/sections/Controller.java
+ FreeCourses.presentation.sections.Controller
 FreeCourses/data/ProfessorDAO.java
  FreeCourses.data.ProfessorDAO
 FreeCourses/data/StudentDAO.java

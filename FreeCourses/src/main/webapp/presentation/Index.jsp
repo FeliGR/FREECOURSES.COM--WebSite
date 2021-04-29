@@ -60,7 +60,7 @@
                                     <p class="font-italic text-muted mb-0 small"> NOT On Sale: Normal Price </p>
                                     <% } %>
                                     <div class="position-absolute top-50 end-50 translate-middle-y p-3">
-                                        <img class="img-course w-100" src='/FreeCourses/presentation/home/image?imageId=<%=course.getId()%>'>
+                                        <img class="img-course" src='/FreeCourses/presentation/home/image?imageId=<%=course.getId()%>'>
                                     </div>
                                     <div class="position-absolute top-50 end-0 translate-middle-y p-3">
                                         <a href=<% if (request.getSession(true).getAttribute("student") != null){%>

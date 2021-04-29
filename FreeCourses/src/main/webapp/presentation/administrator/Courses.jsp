@@ -53,13 +53,16 @@
                                     <% } else { %>
                                     <p class="font-italic text-muted mb-0 small"> NOT On Sale: Normal Price </p>
                                     <% }%>
-                                    <div class="position-absolute top-50 end-50 translate-middle-y p-3">
-                                        <img class="img-course w-100" src='/FreeCourses/presentation/home/image?imageId=<%=course.getId()%>'>
-                                    </div>
                                     <div class="position-absolute top-50 end-0 translate-middle-y p-3">
+                                        <img class="img-course" src='/FreeCourses/presentation/home/image?imageId=<%=course.getId()%>'>
+                                    </div>
+                                    <div class=" py-2">
                                         <a href="/FreeCourses/presentation/administrator/sections/show?courseId=<%=course.getId()%>"><button type="button" class="btn btn-primary">Administrate Sections</button></a>
                                     </div>
-                                    <%--</div><img src="https://i.imgur.com/KFojDGa.jpg" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">--%>
+                                    <div class="py-2">
+                                        <a href="/FreeCourses/presentation/administrator/courses/changeStatus?courseId=<%=course.getId()%>"><button type="button" class="btn btn-secondary">Change Status</button></a>
+                                    </div>
+                                   
                                 </div> <!-- End -->
                         </li> <!-- End -->
                         <% }%> 

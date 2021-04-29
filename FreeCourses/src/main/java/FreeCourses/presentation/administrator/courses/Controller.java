@@ -5,8 +5,11 @@
  */
 package FreeCourses.presentation.administrator.courses;
 
+import FreeCourses.logic.Course;
 import FreeCourses.logic.Service;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -19,10 +22,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author alonso
  */
-@WebServlet(name = "AdminCoursesController", urlPatterns = {"/presentation/administrator/courses/show", "/presentation/administrator/courses/search"})
-@MultipartConfig(location="C:/AAA/images")
+@WebServlet(name = "AdminCoursesController", urlPatterns = {"/presentation/administrator/courses/show", "/presentation/administrator/courses/search", "/presentation/administrator/courses/changeStatus"})
 public class Controller extends HttpServlet {
- protected void processRequest(HttpServletRequest request,
+
+    protected void processRequest(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -35,6 +38,9 @@ public class Controller extends HttpServlet {
                 break;
             case "/presentation/administrator/courses/search":
                 viewUrl = this.search(request);
+                break;
+            case "/presentation/administrator/courses/changeStatus":
+                viewUrl = this.updateStatus(request);
                 break;
 
         }
@@ -56,27 +62,49 @@ public class Controller extends HttpServlet {
         }
     }
 
-        public String search(HttpServletRequest request) {
+    public String search(HttpServletRequest request) {
         return this.searchAction(request);
     }
 
     public String searchAction(HttpServletRequest request) {
         String searchTerm = request.getParameter("searchCourse").toUpperCase();
-        
+
         Model model = (Model) request.getAttribute("model");
         Service domainService = Service.instance();
-        
+
         try {
-            model.setCourses(domainService.findAllCourses().stream().filter(course ->
-                    course.getName().contains(searchTerm)).collect(Collectors.toList()));
+            List<Course> coursesList = domainService.findAllCourses();
+            List<Course> searchedCourses = new ArrayList<>();
+
+            for (Course course : coursesList) {
+                String toSearch = course.getName() + course.getThematic();
+                if (toSearch.toUpperCase().contains(searchTerm)) {
+                    searchedCourses.add(course);
+                }
+            }
+            model.setCourses(searchedCourses);
             return "/presentation/administrator/Courses.jsp";
         } catch (Exception ex) {
             return "/presentation/Error.jsp";
         }
     }
 
+    private String updateStatus(HttpServletRequest request) {
+        try {
+            Model model = (Model) request.getAttribute("model");
+            Service domainService = Service.instance();
+            Course course = domainService.findCourseById(Integer.parseInt(request.getParameter("courseId")));
+            course.setStatus(!course.isStatus());
+            domainService.updateCourse(course);
+            model.setCourses(domainService.findAllCourses());
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+            return "/presentation/administrator/Courses.jsp";
+        } catch (Exception ex) {
+            return "/presentation/Error.jsp";
+        }
+    }
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
