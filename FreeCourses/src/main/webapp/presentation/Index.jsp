@@ -4,13 +4,18 @@
     Author     : felig
 --%>
 <%@page import="FreeCourses.logic.Course"%>
+<%@page import="FreeCourses.logic.Student"%>
+<%@page import="FreeCourses.logic.Enrollment"%>
+<%@page import="FreeCourses.logic.Section"%>
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <%@page import="FreeCourses.presentation.home.Model"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%
+    Student student = null;
     Model model = (Model) request.getAttribute("model");
     List<Course> courses = model.getCourses();
+    if (request.getSession(true).getAttribute("student") != null){student = (Student) request.getAttribute("student");}
 %>
 <!DOCTYPE html>
 <html>
@@ -45,19 +50,26 @@
                         <li class="list-group-item">
                             <!-- Custom content-->
                             <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                                <div class="media-body order-2 order-lg-1">
-                                    <h5 class="mt-0 font-weight-bold mb-2"> <%=course.getName()%> </h5>
+                                <div class="media-body order-2 order-lg-1">                                    
+                                    <h5 class="mt-0 mb-1 font-weight-bold mb-2"> <%=course.getName()%> </h5>
                                     <p class="font-italic text-muted mb-0 small">Thematic: <%=course.getThematic()%> </p>
-                                    <p class="font-italic text-muted mb-0 small">Price: <%=course.getPrice()%> </p>
+                                    <p class="font-italic text-muted mb-0 small">Price: <%=course.getPrice()%> $</p>
                                     <% if (course.isStatus()) {%>
                                     <p class="font-italic text-muted mb-0 small"> On Sale </p>
                                     <% } else { %>
                                     <p class="font-italic text-muted mb-0 small"> NOT On Sale: Normal Price </p>
                                     <% } %>
-                                    <div class="position-absolute top-50 end-0 translate-middle-y p-3">
-                                        <a href=<% if (request.getSession(true).getAttribute("student") != null) {%>"/FreeCourses/presentation/sections/show?courseId=<%=course.getId()%>"<% } else { %> "/FreeCourses/presentation/login/show"<% }%>><button type="button" class="btn btn-primary">View Sections</button></a>
+                                    <div class="position-absolute top-50 end-50 translate-middle-y p-3">
+                                        <img class="img-course w-100" src='/FreeCourses/presentation/home/image?imageId=<%=course.getId()%>'>
                                     </div>
-                                        <div><img src='/FreeCourses/presentation/home/image?imageId=<%=course.getId()%>'></div>
+                                    <div class="position-absolute top-50 end-0 translate-middle-y p-3">
+                                        <a href=<% if (request.getSession(true).getAttribute("student") != null){%>
+                                           "/FreeCourses/presentation/sections/show?courseId=<%=course.getId()%>"
+                                           <% } else { %> "/FreeCourses/presentation/login/show"<% }%>>
+                                            <button type="button" class="btn btn-primary">View Sections</button>
+                                        </a>
+                                    </div>
+                                    
                                 </div> <!-- End -->
                         </li> <!-- End -->
                         <% } %> 

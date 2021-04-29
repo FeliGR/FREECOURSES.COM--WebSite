@@ -84,7 +84,6 @@ public class Student  implements Serializable {
     public void setEnrollmentsList(List<Enrollment> enrollmentsList) {
         this.enrollmentsList = enrollmentsList;
     }
-
     @Override
     public String toString() {
         return "Student{" + "id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", enrollmentsList=" + enrollmentsList + '}';

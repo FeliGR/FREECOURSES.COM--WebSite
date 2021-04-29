@@ -19,7 +19,7 @@
                     <div class="img-left d-none d-md-flex"></div>
                     <div class="card-body">
                         <h4 class="title text-center mt-4">
-                            Create Course
+                            Create Section
                         </h4>
                         <form class="form-box px-3" action="/FreeCourses/presentation/administrator/registerSection/register?courseId=<%= request.getParameter("courseId")%>" method="post">
                             <div class="form-input">

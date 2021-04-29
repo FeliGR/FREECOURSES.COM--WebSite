@@ -6,16 +6,19 @@
 package FreeCourses.presentation.student.enrollment;
 
 import FreeCourses.logic.Enrollment;
+import FreeCourses.logic.Section;
 import FreeCourses.logic.Service;
 import FreeCourses.logic.Student;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static jdk.nashorn.internal.runtime.Debug.id;
 
 /**
  *
@@ -49,11 +52,10 @@ public class Controller extends HttpServlet {
                 return "/presentation/home/show";
             }
         } catch (Exception e) {
-            System.err.println("error:"+e.getMessage());
             return "/presentation/Error.jsp";
         }
     }
-    Map<String, String> validate(HttpServletRequest request) {
+    Map<String, String> validate(HttpServletRequest request) throws Exception {
         Map<String, String> errores = new HashMap<>();
 
         if (request.getParameter("sectionId").isEmpty()) {
@@ -62,7 +64,9 @@ public class Controller extends HttpServlet {
         if (request.getSession(true).getAttribute("student") == null) {
             errores.put("student", "Student required");
         }
-
+        if(courseTaken(request)){
+            errores.put("student", "Course already taken");
+        }        
         return errores;
     }
 
@@ -87,9 +91,16 @@ public class Controller extends HttpServlet {
 
         return "/presentation/student/history/show";
     }
-
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
+ public boolean courseTaken(HttpServletRequest request) throws Exception{
+        Student student =(Student)request.getSession(true).getAttribute("student");
+        Service domainService = Service.instance();
+        List<Enrollment> enrollmentsList = domainService.findStudentById(student.getId()).getEnrollmentsList();
+        Section section = domainService.findSectionById(Integer.parseInt(request.getParameter("sectionId")));
+       
+        return enrollmentsList.stream().anyMatch(enrollment -> ((section.getCourse().getId())==enrollment.getSection().getCourse().getId()));
+    }
+  // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -128,3 +139,4 @@ public class Controller extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 }
+   
