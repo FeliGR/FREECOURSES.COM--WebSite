@@ -23,7 +23,7 @@
         <div class="container my-1">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
-                    <h1 class="display-4">Courses List</h1>
+                    <h1 class="display-4 fw-bold ">Courses List</h1>
                 </div>
             </div>
             <div class="row">
@@ -45,6 +45,7 @@
                             <!-- Custom content-->
                             <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                                 <div class="media-body order-2 order-lg-1">
+                                    <img class="float-start img-course" src='/FreeCourses/presentation/home/image?imageId=<%=course.getId()%>'>
                                     <h5 class="mt-0 font-weight-bold mb-2"> <%=course.getName()%> </h5>
                                     <p class="font-italic text-muted mb-0 small">Thematic: <%=course.getThematic()%> </p>
                                     <p class="font-italic text-muted mb-0 small">Price: <%=course.getPrice()%> </p>
@@ -53,16 +54,13 @@
                                     <% } else { %>
                                     <p class="font-italic text-muted mb-0 small"> NOT On Sale: Normal Price </p>
                                     <% }%>
-                                    <div class="position-absolute top-50 end-0 translate-middle-y p-3">
-                                        <img class="img-course" src='/FreeCourses/presentation/home/image?imageId=<%=course.getId()%>'>
-                                    </div>
-                                    <div class=" py-2">
+
+                                    <div class="position-absolute top-0 end-0 py-2 px-3">
                                         <a href="/FreeCourses/presentation/administrator/sections/show?courseId=<%=course.getId()%>"><button type="button" class="btn btn-primary">Administrate Sections</button></a>
                                     </div>
-                                    <div class="py-2">
-                                        <a href="/FreeCourses/presentation/administrator/courses/changeStatus?courseId=<%=course.getId()%>"><button type="button" class="btn btn-secondary">Change Status</button></a>
+                                    <div class="position-absolute bottom-0 end-0 py-2 customButton">
+                                        <a href="/FreeCourses/presentation/administrator/courses/changeStatus?courseId=<%=course.getId()%>"><button type="button" class="btn btn-warning">Change Status</button></a>
                                     </div>
-                                   
                                 </div> <!-- End -->
                         </li> <!-- End -->
                         <% }%> 

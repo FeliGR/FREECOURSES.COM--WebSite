@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row text-center text-white mb-1">
             <div class="col-lg-7 mx-auto">
-                <h1 class="display-4">Error</h1>
+                <h1 class="display-4 fw-bold">Error</h1>
             </div>
         </div>
     </div>

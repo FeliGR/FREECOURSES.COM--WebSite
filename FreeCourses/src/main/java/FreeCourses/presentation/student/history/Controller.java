@@ -109,7 +109,7 @@ public class Controller extends HttpServlet {
     }
 
     public String printAction(HttpServletRequest request) {
-        String dest = "C:\\Users\\alonso\\Desktop";
+        String dest = "C:\\Users\\felig\\Desktop";
         Date date = new Date();
         Student studentdb;
         List<Enrollment> history;
@@ -119,7 +119,7 @@ public class Controller extends HttpServlet {
             Student student = (Student) request.getSession(true).getAttribute("student");
             studentdb = domainService.findStudentById(student.getId());
             history = studentdb.getEnrollmentsList();
-            File file = new File("C:\\Users\\alonso\\Desktop\\" + "HISTORY" + studentdb.getId() + ".pdf");
+            File file = new File("C:\\Users\\felig\\Desktop\\" + "HISTORY" + studentdb.getId() + ".pdf");
             FileOutputStream out = new FileOutputStream(file);
             PdfWriter writer = PdfWriter.getInstance(document, out);
             document.open();

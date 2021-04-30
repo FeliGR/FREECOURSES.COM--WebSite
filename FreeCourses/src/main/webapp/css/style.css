@@ -54,8 +54,10 @@ body{
     background-size: cover;
 }
 .img-course {
-    width: 75px; 
-    height: 75px;
+    width: 115px; 
+    height: 90px;
+    padding-right: 20px;
+    display: block;
 }
 
 .img-course:hover {
@@ -183,4 +185,8 @@ input[type=text].is-invalid,input[type=password].is-invalid{
     background-position: center right;
     background-size: 12 12;
 
+}
+
+.customButton {
+    padding-right: 45px;
 }

@@ -24,7 +24,7 @@
         <div class="container py-5">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
-                    <h1 class="display-4">Sections List</h1>
+                    <h1 class="display-4 fw-bold">Sections List</h1>
                 </div>
             </div>
             <div class="row">

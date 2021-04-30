@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-input">
                                 <span><i class="fa fa-user-o" aria-hidden="true"></i></span>
-                                <input type="text" name="sectionProfessorId" placeholder="Professor id" tabindex="10" required>
+                                <input type="text" name="sectionProfessorId" placeholder="Professor Id" tabindex="10" required>
                             </div>
                             <div class="mb-3 text-center">
                                 <button type="submit" class="btn btn-block text-uppercase">
@@ -40,5 +40,6 @@
                 </div>
             </div>
         </div>
+        <%@ include file="/presentation/Footer.jsp" %>
     </body>
 </html>

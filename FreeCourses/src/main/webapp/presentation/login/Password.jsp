@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row text-center text-white mb-1">
                 <div class="col-lg-7 mx-auto">
-                    <h1 class="display-4">User's New Password: <%=request.getAttribute("password")%></h1>
+                    <h1 class="display-4 fw-bold">User's New Password: <%=request.getAttribute("password")%></h1>
                 </div>
             </div>
         </div>
